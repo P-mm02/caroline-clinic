@@ -20,7 +20,7 @@
 .navbar-logo {
   position: absolute;
   left: 2rem;
-  top: -24rem;
+  top: -23.5rem;
   height: 40rem;
   width: 40rem;
   background-color: #fefffe;
@@ -32,13 +32,16 @@
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 55;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
 }
 
 /* === Logo Image === */
 .navbar-logo-img {
-  height: 17rem;        /* or match your navbar height */
+  height: 17rem;
   width: auto;
   object-fit: contain;
+  padding: 1rem;
 }
 
 
@@ -118,4 +121,29 @@
   .navbar-menu-mobile {
     padding: 1.5rem 2rem;
   }
+
+  .navbar-logo {
+    left: 0;
+    top: -10rem;
+    height: 20rem;
+    width: 20rem;
+  }
+  .navbar-logo-img {
+    height: 10rem;
+    padding: 0.5rem;
+  }
+}
+
+/* When menu is open — hide + move up */
+.hidden-move-up {
+  opacity: 0;
+  transform: translateY(-30px);
+  pointer-events: none;
+}
+
+/* When menu is closed — fully visible */
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }

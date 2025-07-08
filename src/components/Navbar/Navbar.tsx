@@ -16,12 +16,14 @@ const navItems = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  
+
   return (
     <header className="navbar">
       <nav className="navbar-inner">
-        <Link href="/" className="navbar-logo">
+        <Link href="/" className={`navbar-logo ${menuOpen ? 'hidden-move-up' : 'visible'}`}>
           <img
-            src="/CAROLINE-CLINIC-LOGO.jpg"
+            src="/Caroline-Clinic-Logo.jpg"
             alt="Caroline Clinic Logo"
             className="navbar-logo-img"
           />

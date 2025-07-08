@@ -20,9 +20,9 @@
 .navbar-logo {
   position: absolute;
   left: 2rem;
-  top: -23.5rem;
-  height: 40rem;
-  width: 40rem;
+  top: -10rem;
+  height: 28rem;
+  width: 28rem;
   background-color: #fefffe;
   display: flex;
   justify-content: center;
@@ -38,7 +38,7 @@
 
 /* === Logo Image === */
 .navbar-logo-img {
-  height: 17rem;
+  height: 18rem;
   width: auto;
   object-fit: contain;
   padding: 1rem;
@@ -107,6 +107,54 @@
   display: none;
 }
 
+@media (max-width: 1536px) {
+  .navbar-logo {
+    top: -10rem;
+    height: 26rem;
+    width: 26rem;
+  }
+  .navbar-logo-img {
+    height: 16rem;
+  }
+}
+
+@media (max-width: 1440px) {
+  .navbar-logo {
+    left: 0;
+    top: -10rem;
+    height: 24rem;
+    width: 24rem;
+  }
+  .navbar-logo-img {
+    height: 14rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  .navbar-logo {
+    left: 0;
+    top: -10rem;
+    height: 22rem;
+    width: 22rem;
+  }
+  .navbar-logo-img {
+    height: 12rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar-logo {
+    left: 0;
+    top: -10rem;
+    height: 20rem;
+    width: 20rem;
+  }
+  .navbar-logo-img {
+    height: 10rem;
+    padding: 0.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .desktop-only {
     display: none;
@@ -133,6 +181,7 @@
     padding: 0.5rem;
   }
 }
+
 
 /* When menu is open — hide + move up */
 .hidden-move-up {

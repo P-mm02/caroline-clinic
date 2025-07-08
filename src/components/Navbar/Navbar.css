@@ -1,0 +1,121 @@
+/* === Navbar Layout === */
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  z-index: 50;
+}
+
+.navbar-inner {
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+/* === Logo Wrapper === */
+.navbar-logo {
+  position: absolute;
+  left: 2rem;
+  top: -24rem;
+  height: 40rem;
+  width: 40rem;
+  background-color: #fefffe;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 55;
+}
+
+/* === Logo Image === */
+.navbar-logo-img {
+  height: 17rem;        /* or match your navbar height */
+  width: auto;
+  object-fit: contain;
+}
+
+
+/* === Desktop Menu === */
+.navbar-menu {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* === Link Styles === */
+.navbar-link {
+  text-decoration: none;
+  color: #374151;
+  transition: color 0.2s ease;
+}
+
+.navbar-link:hover {
+  color: #ec4899;
+}
+
+/* === Hamburger Button === */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.hamburger {
+  width: 24px;
+  height: 2px;
+  background-color: #374151;
+  border-radius: 2px;
+}
+
+/* === Mobile Dropdown Menu === */
+.navbar-menu-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: white;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 1rem;
+  font-weight: 500;
+  list-style: none;
+}
+
+/* === Responsive Controls === */
+.desktop-only {
+  display: flex;
+}
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbar-menu-mobile {
+    padding: 1.5rem 2rem;
+  }
+}

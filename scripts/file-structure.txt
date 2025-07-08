@@ -1,0 +1,55 @@
+📄 .gitignore
+📁 .netlify
+  📁 blobs-serve
+  📁 functions-internal
+  📁 plugins
+    📄 package-lock.json
+    📄 package.json
+  📄 state.json
+  📁 v1
+    📁 functions
+📄 next-env.d.ts
+📄 next.config.ts
+📄 package-lock.json
+📄 package.json
+📁 public
+📄 README.md
+📁 scripts
+  📄 file-structure.txt
+  📄 generate-tree.js
+📁 src
+  📁 app
+    📁 about
+      📄 page.css
+      📄 page.tsx
+      📄 PageClient.tsx
+    📁 article
+      📄 page.css
+      📄 page.tsx
+      📄 PageClient.tsx
+    📁 contact
+      📄 page.css
+      📄 page.tsx
+      📄 PageClient.tsx
+    📄 favicon.ico
+    📄 globals.css
+    📄 layout.tsx
+    📄 page.module.css
+    📄 page.tsx
+    📄 PageClient.tsx
+    📁 promotion
+      📄 page.css
+      📄 page.tsx
+      📄 PageClient.tsx
+    📁 review
+      📄 page.css
+      📄 page.tsx
+      📄 PageClient.tsx
+    📁 services
+      📄 page.css
+      📄 page.tsx
+      📄 PageClient.tsx
+  📁 components
+    📄 Footer.tsx
+    📄 Navbar.tsx
+📄 tsconfig.json

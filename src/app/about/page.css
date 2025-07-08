@@ -1,0 +1,25 @@
+.about-section {
+    padding: 5rem 1rem;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .about-container {
+    max-width: 768px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .about-title {
+    font-size: 1.875rem;
+    color: #ec4899; /* pink-600 */
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .about-description {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+  

@@ -1,3 +1,8 @@
+/* 🌐 Import Google Fonts: Prompt (for English) + Noto Sans Thai (for Thai) */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&family=Noto+Sans+Thai:wght@400;600&display=swap');
+
+
+/* 🎨 Global theme colors using CSS variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -8,35 +13,98 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+}
+
+/* 📐 Root font-size for rem scaling */
+html {
+  font-size: 16px !important; /* 1rem = 16px on desktop */
+}
+
+@media (max-width: 1440px) {
+  .DW1440-display-none {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1280px) {
+  .DW1280-display-none {
+    display: none !important;
+  }
+  .display-grid-column{
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 14px !important; /* 1rem = 14px on tablets */
+  }
+
+  .DW1024-display-none {
+    display: none !important;
+  }
+  .display-grid-column{
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 13px !important; /* 1rem = 14px on tablets */
+  }
+  .DW760-display-none {
+    display: none !important;
+  }
+  .display-grid-column{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 12px !important; /* 1rem = 12px on mobile phones */
+  }
+}
+
+/* 📏 Base layout styling */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: clip;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Prompt', 'Noto Sans Thai', sans-serif; /* 🅰️ Apply imported fonts */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth; /* 🔁 Smooth scroll for anchor links */
+}
+
+/* 🧹 Reset box model and spacing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🔗 Basic anchor style */
+a {
+  text-decoration: none;
+}
+
+
+/* 🎯 Utility classes */
+.text-center {
+  text-align: center !important;
+}
+
+/* 📧 Wrap long text like email or address */
+.text-wrap {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
 }

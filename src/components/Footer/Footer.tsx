@@ -8,45 +8,36 @@ export default function Footer() {
     <footer>
       <div className="footer-inner">
         {/* Column 1: Logo & tagline */}
-        <div>
+        <div className="footer-column">
           <h2 className="footer-logo">Caroline Clinic</h2>
-          <p>ความงามที่มั่นใจ ปลอดภัยทุกขั้นตอน</p>
+          <p className="footer-tagline">ความงามที่มั่นใจ ปลอดภัยทุกขั้นตอน</p>
         </div>
 
         {/* Column 2: Quick links */}
-        <div>
+        <div className="footer-column">
           <h3 className="footer-title">ลิงก์ด่วน</h3>
           <ul className="footer-links">
-            <li>
-              <a href="#services">บริการ</a>
-            </li>
-            <li>
-              <a href="#about">เกี่ยวกับเรา</a>
-            </li>
-            <li>
-              <a href="#review">รีวิว</a>
-            </li>
-            <li>
-              <a href="#promotion">โปรโมชั่น</a>
-            </li>
-            <li>
-              <a href="#contact">ติดต่อ</a>
-            </li>
+            <li><a href="#services">บริการ</a></li>
+            <li><a href="#about">เกี่ยวกับเรา</a></li>
+            <li><a href="#review">รีวิว</a></li>
+            <li><a href="#promotion">โปรโมชั่น</a></li>
+            <li><a href="#contact">ติดต่อ</a></li>
           </ul>
         </div>
 
         {/* Column 3: Contact Info */}
-        <div>
+        <div className="footer-column">
           <h3 className="footer-title">ติดต่อเรา</h3>
-          <p>โทร: 095-123-4567</p>
-          <p>LINE: @carolineclinic</p>
+          <p>โทร: <a href="tel:0951234567">095-123-4567</a></p>
+          <p>LINE: <a href="https://line.me/R/ti/p/@carolineclinic" target="_blank">@carolineclinic</a></p>
           <p>เปิดทุกวัน 11.00 - 19.30</p>
         </div>
       </div>
 
       {/* Bottom bar */}
       <div className="footer-bottom">
-        © {new Date().getFullYear()} Caroline Clinic. All rights reserved.
+        <div className="footer-bar-gradient" />
+        <p>© {new Date().getFullYear()} Caroline Clinic. All rights reserved.</p>
       </div>
     </footer>
   )

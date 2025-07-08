@@ -12,12 +12,13 @@ footer {
     gap: 2rem;
   }
   
-  @media (min-width: 768px) {
+  @media (max-width: 767px) {
     .footer-inner {
-      grid-template-columns: repeat(3, 1fr);
+      display: grid;
+      place-items: center;
+      text-align: center;
     }
-  }
-  
+  }  
   .footer-logo {
     font-size: 1.125rem;
     font-weight: bold;

@@ -18,7 +18,7 @@
   }
   
   .promotion-description {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #555;
     margin-bottom: 2.5rem;
   }
@@ -44,14 +44,14 @@
   }
   
   .promotion-card h3 {
-    font-size: 1.125rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: #b91c1c;
   }
   
   .promotion-card p {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     color: #444;
   }
   

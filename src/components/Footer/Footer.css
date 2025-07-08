@@ -2,7 +2,7 @@ footer {
     background-color: #f7f7f7;
     color: #4b5563; /* Tailwind's gray-700 */
     padding: 2.5rem 1rem;
-    font-size: 0.875rem;
+    font-size: 1.2rem;
   }
   
   .footer-inner {
@@ -20,7 +20,7 @@ footer {
     }
   }  
   .footer-logo {
-    font-size: 1.125rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #ec4899; /* Tailwind's pink-600 */
     margin-bottom: 0.5rem;
@@ -53,7 +53,7 @@ footer {
   
   .footer-bottom {
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 1.2rem;
     color: #9ca3af; /* Tailwind's gray-400 */
     margin-top: 2.5rem;
     border-top: 1px solid #e5e7eb; /* gray-200 */

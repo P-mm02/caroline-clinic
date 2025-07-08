@@ -18,7 +18,7 @@
   }
   
   .article-description {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 2.5rem;
     color: #555;
   }
@@ -45,14 +45,14 @@
   }
   
   .article-card h3 {
-    font-size: 1.125rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: #111827;
   }
   
   .article-card p {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
   }

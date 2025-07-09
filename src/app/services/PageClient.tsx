@@ -15,7 +15,7 @@ export default function ServicesClient() {
     <section id="services" className="services-section">
       <div className="services-container">
         <span className="services-title-en">SERVICE</span>
-        <h2 className="services-title">Our Services</h2>
+        <h2 className="services-title">บริการของเรา</h2>
         <p className="services-description">
           Caroline Clinic offers a full range of beauty services provided by
           expert physicians and modern equipment.

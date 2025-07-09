@@ -5,6 +5,7 @@ import Link from 'next/link'
 import './Navbar.css'
 
 const navItems = [
+  { label: 'หน้าแรก', href: '/' },
   { label: 'บริการ', href: '/services' },
   { label: 'เกี่ยวกับเรา', href: '/about' },
   { label: 'รีวิว', href: '/review' },
@@ -21,14 +22,17 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <nav className="navbar-inner">
-        <Link href="/" className={`navbar-logo ${menuOpen ? 'hidden-move-up' : 'visible'}`}>
+        <Link
+          href="/"
+          className={`navbar-logo ${menuOpen ? 'hidden-move-up' : 'visible'}`}
+        >
           <img
-            src="/Caroline-Clinic-Logo.jpg"
+            src="/Caroline-Clinic-Logo-noBG.png"
             alt="Caroline Clinic Logo"
             className="navbar-logo-img"
           />
         </Link>
-
+        <div className={`navbar-Logo-mirage ${menuOpen ? 'display-none' : ''}`}></div>
         {/* Desktop Menu */}
         <ul className="navbar-menu desktop-only">
           {navItems.map(({ label, href }) => (

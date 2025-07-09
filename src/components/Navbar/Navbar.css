@@ -1,15 +1,21 @@
 /* === Navbar Layout === */
 .navbar {
   position: sticky;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   top: 0;
+  width: 100vw;
+  padding: 1rem 0;
   background-color: white;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
   z-index: 50;
 }
 
 .navbar-inner {
-  margin: 0 auto;
+  position: relative;
   padding: 1.5rem 2rem;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -43,6 +49,9 @@
   padding: 1rem;
 }
 
+.navbar-Logo-mirage{
+  width: 28rem;
+}
 
 /* === Desktop Menu === */
 .navbar-menu {
@@ -73,20 +82,26 @@
   background: none;
   border: none;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   padding: 0.5rem;
   cursor: pointer;
 }
 
 .hamburger {
-  width: 24px;
-  height: 2px;
+  width: 36px;
+  height: 4px;
   background-color: #374151;
   border-radius: 2px;
 }
 
 /* === Mobile Dropdown Menu === */
+/* === Mobile Dropdown Menu === */
 .navbar-menu-mobile {
+  position: absolute; /* ✅ makes it float */
+  top: 100%; /* just below the navbar-inner */
+  left: 0;
+  right: 0;
+  z-index: 49; /* just below navbar logo z-index 55 */
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -96,7 +111,9 @@
   font-size: 1.2rem;
   font-weight: 500;
   list-style: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
+
 
 /* === Responsive Controls === */
 .desktop-only {
@@ -105,82 +122,6 @@
 .mobile-only {
   display: none;
 }
-
-@media (max-width: 1536px) {
-  .navbar-logo {
-    top: -10rem;
-    height: 26rem;
-    width: 26rem;
-  }
-  .navbar-logo-img {
-    height: 16rem;
-  }
-}
-
-@media (max-width: 1440px) {
-  .navbar-logo {
-    left: 0;
-    top: -10rem;
-    height: 24rem;
-    width: 24rem;
-  }
-  .navbar-logo-img {
-    height: 14rem;
-  }
-}
-
-@media (max-width: 1280px) {
-  .navbar-logo {
-    left: 0;
-    top: -10rem;
-    height: 22rem;
-    width: 22rem;
-  }
-  .navbar-logo-img {
-    height: 12rem;
-  }
-}
-
-@media (max-width: 1024px) {
-  .navbar-logo {
-    left: 0;
-    top: -10rem;
-    height: 20rem;
-    width: 20rem;
-  }
-  .navbar-logo-img {
-    height: 10rem;
-    padding: 0.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .desktop-only {
-    display: none;
-  }
-
-  .mobile-only {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .navbar-menu-mobile {
-    padding: 1.5rem 2rem;
-  }
-
-  .navbar-logo {
-    left: 0;
-    top: -10rem;
-    height: 20rem;
-    width: 20rem;
-  }
-  .navbar-logo-img {
-    height: 10rem;
-    padding: 0.5rem;
-  }
-}
-
 
 /* When menu is open — hide + move up */
 .hidden-move-up {

@@ -1,0 +1,11 @@
+@media (max-width: 768px) {
+    .hero-section {
+      height: 70vh;
+    }
+  }
+
+.hero-image {
+    transform: scale(1.6); /* Zoom in */
+    transform-origin: center top; /* Optional: keeps face in frame */
+}
+

@@ -13,6 +13,9 @@
 📄 package-lock.json
 📄 package.json
 📁 public
+  📄 Caroline-Clinic-Logo-noBG.png
+  📄 Caroline-Clinic-Logo.jpg
+  📄 ChatGPT Image Jul 9, 2025, 10_49_51 AM.png
 📄 README.md
 📁 scripts
   📄 file-structure.txt
@@ -33,6 +36,8 @@
       📄 PageClient.tsx
     📄 favicon.ico
     📄 globals.css
+    📁 Hero
+      📄 Hero.tsx
     📄 layout.tsx
     📄 page.module.css
     📄 page.tsx
@@ -50,6 +55,10 @@
       📄 page.tsx
       📄 PageClient.tsx
   📁 components
-    📄 Footer.tsx
-    📄 Navbar.tsx
+    📁 Footer
+      📄 Footer.css
+      📄 Footer.tsx
+    📁 Navbar
+      📄 Navbar.css
+      📄 Navbar.tsx
 📄 tsconfig.json

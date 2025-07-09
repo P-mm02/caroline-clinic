@@ -1,17 +1,12 @@
 'use client'
 
-import { useState } from 'react'
 import './page.css'
+import './pageMedia.css'
 import { categorizedServices } from './data'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function ServicesClient() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  const toggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
-
   return (
     <section id="services" className="services-section">
       <div className="services-container">
@@ -24,7 +19,8 @@ export default function ServicesClient() {
         <div className="services-category-container">
           {categorizedServices.map((section, index) => (
             <div key={index} className="services-category">
-              <button className="category-title" onClick={() => toggle(index)}>
+              <Link href={`/services#category-${section.category}`} className="category-title">
+              {/* </Link><Link href={`/services/${index}`} className="category-title"> */}
                 <Image
                   src="/icons/example.png"
                   alt="Caroline Clinic service example"
@@ -32,21 +28,8 @@ export default function ServicesClient() {
                   height={100}
                   className="services-example"
                 />
-
                 {section.category}
-                <span className="arrow">{openIndex === index ? '▲' : '▼'}</span>
-              </button>
-
-              {openIndex === index && (
-                <div className="services-list">
-                  {section.items.map((title, idx) => (
-                    <div key={idx} className="service-card">
-                      <h3>{title}</h3>
-                      <p>More details coming soon</p>
-                    </div>
-                  ))}
-                </div>
-              )}
+              </Link>
             </div>
           ))}
         </div>

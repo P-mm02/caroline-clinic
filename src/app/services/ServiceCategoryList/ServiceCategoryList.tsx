@@ -1,0 +1,39 @@
+'use client'
+
+import { categorizedServices } from '../data'
+import Image from 'next/image'
+import './ServiceCategoryList.css'
+
+export default function ServiceCategoryList() {
+  return (
+    <div className="services-category-list-container">
+      {categorizedServices.map((section, index) => (
+        <div
+          key={index}
+          id={`category-${section.category.toLowerCase().replace(/\s+/g, '-')}`}
+          className="services-category-list"
+        >
+          <div className="category-list-header">
+            <Image
+              src="/icons/example.png"
+              alt="Caroline Clinic service example"
+              width={100}
+              height={100}
+              className="services-category-list-example"
+            />
+            <h3>{section.category}</h3>
+          </div>
+
+          <ul className="service-item-list">
+            {section.items.map((item, idx) => (
+              <li key={idx} className="service-item">
+                <h4 className="service-name">{item.name}</h4>
+                <p className="service-description">{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  )
+}

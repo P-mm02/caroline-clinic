@@ -1,69 +1,45 @@
 export const categorizedServices = [
   {
-    category: 'ดูแลผิวหน้า / รักษาสิว',
+    category: 'รักษาสิว',
     items: [
-      'รักษาสิว',
-      'กดสิวทั่วใบหน้า',
-      'คลีนซิ่งมิลค์',
-      'ฉายแสง LED',
-      'CRYO COOLING',
-      'เลเซอร์ ACL/IPL',
-      'มาส์ก ANTI-ACNE',
-      'เมโสผิวใส (Meso Skin)',
+      { name: 'รักษาสิว', description: 'บำรุงและลดการอักเสบของสิว ด้วยเวชสำอางและยาเฉพาะบุคคล' },
+      { name: 'กดสิวทั่วใบหน้า', description: 'ขจัดสิวอุดตันและสิวหัวดำ โดยผู้เชี่ยวชาญ' },
+      { name: 'ฉายแสง LED', description: 'ลดการอักเสบของสิวและกระตุ้นการฟื้นฟูผิว' },
+      { name: 'เลเซอร์ ACL/IPL', description: 'เลเซอร์ลดรอยแดง สิว และความมันบนใบหน้า' },
+      { name: 'มาส์ก ANTI-ACNE', description: 'ฟื้นฟูผิว ลดแบคทีเรียต้นเหตุของสิว' },
     ],
   },
   {
-    category: 'ปรับรูปหน้า / ฉีดสาร',
+    category: 'บำรุงผิวหน้า',
     items: [
-      'ฉีดโบท็อกซ์',
-      'Botulinum Toxin',
-      'ฉีดฟิลเลอร์',
-      'ฉีดไหมน้ำกระตุ้นคอลลาเจน (JuveLook)',
-      'Meso Chanel',
-      'Meso Fat ลดแก้มและเหนียง',
+      { name: 'คลีนซิ่งมิลค์', description: 'ทำความสะอาดผิวอย่างอ่อนโยน เหมาะสำหรับผิวแพ้ง่าย' },
+      { name: 'CRYO COOLING', description: 'ปลอบประโลมผิวด้วยความเย็น ลดการระคายเคือง' },
+      { name: 'เมโสผิวใส (Meso Skin)', description: 'เติมวิตามินเข้าสู่ผิวหน้าเพื่อความกระจ่างใส' },
     ],
   },
   {
-    category: 'เลเซอร์ / กำจัดขน',
-    items: ['กำจัดขนถาวร', 'Diode Laser'],
-  },
-  {
-    category: 'บริการดูแลสุขภาพ',
-    items: ['วิตามินทางเส้นเลือด (IV Drip)', 'ปากกาควบคุมความอยากอาหาร'],
-  },
-]
-
-export const categorizedServicesEN = [
-  {
-    category: 'Facial Treatments / Acne Care',
+    category: 'ปรับรูปหน้า',
     items: [
-      'Acne Treatment',
-      'Full Face Extraction',
-      'Cleansing Milk',
-      'LED Light Therapy',
-      'Cryo Cooling',
-      'ACL/IPL Laser',
-      'Anti-Acne Mask',
-      'Meso Skin',
+      { name: 'ฉีดโบท็อกซ์', description: 'ลดริ้วรอยและปรับรูปหน้าให้เรียวกระชับ' },
+      { name: 'Botulinum Toxin', description: 'สารลดการหดเกร็งของกล้ามเนื้อที่มีประสิทธิภาพ' },
+      { name: 'ฉีดฟิลเลอร์', description: 'เติมเต็มร่องลึก ปรับรูปหน้าให้ดูอ่อนเยาว์' },
+      { name: 'ฉีดไหมน้ำกระตุ้นคอลลาเจน (JuveLook)', description: 'กระตุ้นการสร้างคอลลาเจน คืนความยืดหยุ่นให้ผิว' },
+      { name: 'Meso Chanel', description: 'บำรุงผิวด้วยวิตามินล้ำลึกทั่วใบหน้า' },
+      { name: 'Meso Fat ลดแก้มและเหนียง', description: 'ลดไขมันสะสมเฉพาะจุด ปรับรูปหน้าเรียวขึ้น' },
     ],
   },
   {
-    category: 'Facial Sculpting / Injectables',
+    category: 'เลเซอร์',
     items: [
-      'Botox Injections',
-      'Botulinum Toxin',
-      'Filler Injections',
-      'Thread Lift (JuveLook)',
-      'Meso Chanel',
-      'Meso Fat Reduction',
+      { name: 'กำจัดขนถาวร', description: 'เลเซอร์กำจัดขนอย่างอ่อนโยนและปลอดภัย' },
+      { name: 'Diode Laser', description: 'เลเซอร์เทคโนโลยีสูงสำหรับการกำจัดขนถาวร' },
     ],
   },
   {
-    category: 'Laser / Hair Removal',
-    items: ['Hair Removal', 'Diode Laser'],
-  },
-  {
-    category: 'Wellness Services',
-    items: ['IV Drip', 'Appetite Control Pen'],
+    category: 'ดูแลสุขภาพ',
+    items: [
+      { name: 'วิตามินทางเส้นเลือด (IV Drip)', description: 'เติมวิตามินและสารต้านอนุมูลอิสระเข้าสู่ร่างกาย' },
+      { name: 'ปากกาควบคุมความอยากอาหาร', description: 'ช่วยลดความอยากอาหารและควบคุมน้ำหนัก' },
+    ],
   },
 ]

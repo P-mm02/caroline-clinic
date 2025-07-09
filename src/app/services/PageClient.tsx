@@ -1,31 +1,45 @@
 'use client'
 
+import { useState } from 'react'
 import './page.css'
+import { categorizedServices } from './data'
 
 export default function ServicesClient() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const toggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
   return (
     <section id="services" className="services-section">
       <div className="services-container">
-        <h2 className="services-title">บริการของเรา</h2>
+        <span className="services-title-en">SERVICE</span>
+        <h2 className="services-title">Our Services</h2>
         <p className="services-description">
-          Caroline Clinic ให้บริการความงามครบวงจร
-          โดยทีมแพทย์ผู้เชี่ยวชาญและเครื่องมือทันสมัย
+          Caroline Clinic offers a full range of beauty services provided by
+          expert physicians and modern equipment.
         </p>
 
-        <div className="services-list">
-          <div className="service-card">
-            <h3>Botox</h3>
-            <p>ลดกราม ริ้วรอย ปรับรูปหน้าโดยไม่ต้องผ่าตัด</p>
+        {categorizedServices.map((section, index) => (
+          <div key={index} className="services-category">
+            <button className="category-title" onClick={() => toggle(index)}>
+              {section.category}
+              <span className="arrow">{openIndex === index ? '▲' : '▼'}</span>
+            </button>
+
+            {openIndex === index && (
+              <div className="services-list">
+                {section.items.map((title, idx) => (
+                  <div key={idx} className="service-card">
+                    <h3>{title}</h3>
+                    <p>More details coming soon</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-          <div className="service-card">
-            <h3>Filler</h3>
-            <p>เติมเต็มร่องลึก ปาก จมูก ใต้ตา ปรับรูปหน้าอย่างปลอดภัย</p>
-          </div>
-          <div className="service-card">
-            <h3>HIFU</h3>
-            <p>ยกกระชับผิวหน้า ลดเหนียง ไม่เจ็บ ไม่ต้องพักฟื้น</p>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   )

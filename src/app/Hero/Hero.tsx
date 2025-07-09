@@ -2,12 +2,21 @@
 
 import './Hero.css'
 import './HeroMedia.css'
+import Image from 'next/image'
 
 export default function Hero() {
   return (
     <section className="hero-section">
       <div className="hero-overlay">
-        <h1 className="hero-heading">Caroline Clinic</h1>
+        <div className="hero-heading-wrapper">
+          <Image
+            src="/Caroline-Clinic-Logo-noBG-Text.png"
+            alt="Caroline Clinic Logo"
+            width={2560} // or appropriate width
+            height={320} // maintain aspect ratio
+            className="hero-heading"
+          />
+        </div>
         <p className="hero-subheading">ความงามที่มั่นใจ ปลอดภัยทุกขั้นตอน</p>
       </div>
       <img

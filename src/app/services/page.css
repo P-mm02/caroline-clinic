@@ -1,57 +1,123 @@
 .services-section {
-    padding: 5rem 1rem;
-    background-color: #fdf4ff;
-    color: #333;
-  }
-  
-  .services-container {
-    max-width: 1024px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .services-title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: #ec4899;
-    margin-bottom: 1rem;
-  }
-  
-  .services-description {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 2.5rem;
-  }
-  
+  padding: 4rem 1rem;
+  background-color: #fdf4ff;
+  color: #333;
+}
+
+.services-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.services-title-en {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #8b1e83;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #b833a1, #7b1fa2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.services-title-en::after {
+  content: '';
+  display: block;
+  width: 10rem;
+  height: 0.2rem;
+  margin: 1rem auto 1rem;
+  background: #8b1e83;
+  border-radius: 2px;
+}
+
+.services-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #ec4899;
+  margin-bottom: 1rem;
+}
+
+.services-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2.5rem;
+}
+
+.services-list {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
   .services-list {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  @media (min-width: 768px) {
-    .services-list {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  
-  .service-card {
-    background-color: #fff;
-    border: 1px solid #f3e8ff;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-  
-  .service-card h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #a21caf;
-  }
-  
-  .service-card p {
-    font-size: 1.2rem;
-    color: #444;
-  }
-  
+}
+
+.service-card {
+  background-color: #fff;
+  border: 1px solid #f3e8ff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.service-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #a21caf;
+}
+
+.service-card p {
+  font-size: 1.2rem;
+  color: #444;
+}
+
+/* NEW: Accordion Styles */
+.services-category {
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+.category-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: none;
+  border: none;
+  color: #a21caf;
+  width: 100%;
+  padding: 0.75rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid #e5e5e5;
+  transition: color 0.2s;
+  text-align: left;
+}
+
+.category-title:hover {
+  color: #7b1fa2;
+}
+
+.arrow {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}

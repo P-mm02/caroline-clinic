@@ -29,10 +29,10 @@ export default function AboutClient() {
           {/* Right: Image */}
           <div className="about-image-wrapper">
             <Image
-              src="/icons/example.png"
+              src="/images/about/Caroline_Team.png"
               alt="Caroline Clinic"
-              width={400}
-              height={400}
+              width={600}
+              height={600}
               className="about-image"
             />
           </div>

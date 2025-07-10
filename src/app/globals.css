@@ -147,3 +147,7 @@ a {
   color: #ec4899;
   margin-bottom: 1rem;
 }
+
+.review-slider-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}

@@ -12,27 +12,9 @@
 }
 
 .services-title-en {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  font-weight: 900;
-  color: #8b1e83;
-  letter-spacing: 0.2em;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(to right, #b833a1, #7b1fa2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .services-title-en::after {
-  content: '';
-  display: block;
-  width: 10rem;
-  height: 0.2rem;
-  margin: 1rem auto 1rem;
-  background: #8b1e83;
-  border-radius: 2px;
 }
 
 .services-title {
@@ -51,7 +33,6 @@
 .services-category-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
   justify-content: center; /* or 'space-between' if you want spacing on edges */
   margin-top: 2rem;
 }
@@ -59,6 +40,7 @@
 
 .services-category {
   text-align: center;
+  margin: 1rem;
 }
 
 .services-example {

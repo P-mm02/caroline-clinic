@@ -1,6 +1,5 @@
-/* 🌐 Import Google Fonts: Prompt (for English) + Noto Sans Thai (for Thai) */
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&family=Noto+Sans+Thai:wght@400;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap');
 
 /* 🎨 Global theme colors using CSS variables */
 :root {
@@ -117,4 +116,28 @@ a {
 
 .display-none {
   display: none !important;
+}
+
+.section-title-en{
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #8b1e83;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #b833a1, #7b1fa2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-title-en::after {
+  content: '';
+  display: block;
+  width: 10rem;
+  height: 0.2rem;
+  margin: 1rem auto 1rem;
+  background: #8b1e83;
+  border-radius: 2px;
 }

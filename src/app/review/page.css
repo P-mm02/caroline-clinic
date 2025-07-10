@@ -27,21 +27,25 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 1rem;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+
+}
+.review-slider-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 .review-list {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 1rem;
   padding: 0.5rem;
   scroll-behavior: smooth;
 }
 
 .review-card {
-  min-width: 320px;
-  max-width: 30rem;
+  width: 320px;
   flex: 0 0 auto;
   scroll-snap-align: start;
   background-color: #fff;
@@ -49,6 +53,11 @@
   border-radius: 10px;
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.review-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
 }
 
 .review-text {
@@ -68,14 +77,21 @@
   object-fit: cover;
 }
 
-.review-photo {
+.review-image-wrapper {
+  position: relative;
   width: 100%;
-  height: auto;
+  padding-top: 100%;  /* 1:1 aspect ratio */
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fdf2f8;
+}
+.review-image {
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid #f3f3f3;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
+
 
 .review-slider-container {
   position: relative;

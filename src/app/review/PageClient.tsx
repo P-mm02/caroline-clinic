@@ -134,13 +134,16 @@ export default function ReviewClient({ limit }: Props) {
 
                   <p className="review-text">{review.text}</p>
 
-                  <div style={{ marginTop: '1.5rem' }}>
+                  <div
+                    className="review-image-wrapper"
+                    style={{ marginTop: '1.5rem' }}
+                  >
                     <Image
                       src={review.photo}
                       alt={`ภาพรีวิวจาก ${review.name}`}
-                      width={600}
-                      height={400}
-                      className="review-photo"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="review-image"
                     />
                   </div>
                 </div>

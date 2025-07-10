@@ -1,18 +1,18 @@
+
 @media (max-width: 768px) {
-  .review-arrow {
+  .promotion-arrow {
     display: none;
   }
-  .review-card {
+  .promotion-card {
     min-width: 85vw;
     max-width: 90vw;
     padding: 1rem;
   }
-  .review-list {
+  .promotion-list {
     gap: 1rem;
   }
-  .review-slider-container {
+  .promotion-slider-container {
     margin-left: -1rem;
     margin-right: -1rem;
   }
 }
-  

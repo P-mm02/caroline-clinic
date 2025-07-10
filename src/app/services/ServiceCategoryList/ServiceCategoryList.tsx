@@ -1,6 +1,6 @@
 'use client'
 
-import { categorizedServices } from '../data'
+import categorizedServices from '../data.json'
 import Image from 'next/image'
 import './ServiceCategoryList.css'
 

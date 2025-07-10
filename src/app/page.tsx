@@ -13,10 +13,10 @@ export const metadata = {
 export default function HomePage() {
   return (
     <main>
-      <Hero/>
+      <Hero />
       <Services />
       <About />
-      <Review />
+      <Review limit={3} />
       <Promotion />
       <Article />
       <Contact />

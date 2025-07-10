@@ -6,12 +6,12 @@ export default function ContactClient() {
   return (
     <section id="contact" className="contact-section">
       <div className="contact-container">
-        <h2 className="contact-title">ติดต่อเรา</h2>
+        <span className="section-title-en">CONTACT</span>
+        <h2 className="section-title-th">ติดต่อเรา</h2>
         <p className="contact-description">
           สามารถติดต่อ Caroline Clinic
           เพื่อสอบถามข้อมูลหรือจองคิวล่วงหน้าได้ทุกวัน
         </p>
-
         <div className="contact-info">
           <p>
             <strong>โทร:</strong> 095-123-4567

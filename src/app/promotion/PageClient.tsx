@@ -6,11 +6,11 @@ export default function PromotionClient() {
   return (
     <section id="promotion" className="promotion-section">
       <div className="promotion-container">
-        <h2 className="promotion-title">โปรโมชั่นพิเศษ</h2>
+        <span className="section-title-en">PROMOTION</span>
+        <h2 className="section-title-th">โปรโมชั่นพิเศษ</h2>
         <p className="promotion-description">
           โปรโมชั่นเสริมความงามราคาสุดคุ้ม สำหรับลูกค้า Caroline Clinic
         </p>
-
         <div className="promotion-list">
           <div className="promotion-card">
             <h3>Botox ลดกราม</h3>

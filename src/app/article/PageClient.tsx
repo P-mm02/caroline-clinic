@@ -6,7 +6,8 @@ export default function ArticleClient() {
   return (
     <section id="article" className="article-section">
       <div className="article-container">
-        <h2 className="article-title">บทความแนะนำ</h2>
+        <span className="section-title-en">BLOG</span>
+        <h2 className="section-title-th">บทความแนะนำ</h2>
         <p className="article-description">
           ติดตามบทความเกี่ยวกับความงาม การดูแลผิวพรรณ
           และเทคโนโลยีความงามล่าสุดจากแพทย์ผู้เชี่ยวชาญของเรา

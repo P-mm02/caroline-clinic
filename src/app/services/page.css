@@ -11,19 +11,6 @@
   align-items: center;
 }
 
-.services-title-en {
-}
-
-.services-title-en::after {
-}
-
-.services-title {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: #ec4899;
-  margin-bottom: 1rem;
-}
-
 .services-description {
   font-size: 1rem;
   color: #555;

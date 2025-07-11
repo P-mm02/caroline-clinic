@@ -23,12 +23,6 @@ export default function ReviewClient({ limit }: Props) {
         <div className="review-grid-container">
           {visibleReviews.map((review, index) => (
             <div key={index} className="review-card">
-              <h3 className="review-title" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>
-                {review.title}
-              </h3>
-              <p className="review-text" style={{ marginBottom: '1.2rem' }}>
-                {review.description}
-              </p>
               <div className="review-image-wrapper" style={{ marginTop: '1rem' }}>
                 <Image
                   src={review.image}

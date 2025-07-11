@@ -12,8 +12,8 @@ export default function Hero() {
           <Image
             src="/Caroline-Clinic-Logo-noBG-Text-min.png"
             alt="Caroline Clinic Logo"
-            width={2560} // or appropriate width
-            height={320} // maintain aspect ratio
+            width={1024}
+            height={128}
             className="hero-heading"
           />
         </div>

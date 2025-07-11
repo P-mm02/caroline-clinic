@@ -10,7 +10,7 @@ export default function Hero() {
       <div className="hero-overlay">
         <div className="hero-heading-wrapper">
           <Image
-            src="/Caroline-Clinic-Logo-noBG-Text.png"
+            src="/Caroline-Clinic-Logo-noBG-Text-min.png"
             alt="Caroline Clinic Logo"
             width={2560} // or appropriate width
             height={320} // maintain aspect ratio
@@ -20,7 +20,7 @@ export default function Hero() {
         <p className="hero-subheading">ความงามที่มั่นใจ ปลอดภัยทุกขั้นตอน</p>
       </div>
       <img
-        src="/images/Hero/HeroImage2.png"
+        src="/images/Hero/HeroImage2-min.png"
         alt="Caroline Clinic Hero"
         className="hero-image"
       />

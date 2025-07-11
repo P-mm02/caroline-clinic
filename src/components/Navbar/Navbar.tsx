@@ -27,7 +27,7 @@ export default function Navbar() {
           className={`navbar-logo ${menuOpen ? 'hidden-move-up' : 'visible'}`}
         >
           <img
-            src="/Caroline-Clinic-Logo-noBG.png"
+            src="/Caroline-Clinic-Logo-noBG-min.png"
             alt="Caroline Clinic Logo"
             className="navbar-logo-img"
           />

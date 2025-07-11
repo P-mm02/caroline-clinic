@@ -27,15 +27,16 @@ export default function AboutClient() {
           </div>
 
           {/* Right: Image */}
-          <div className="about-image-wrapper">
-            <Image
-              src="/images/about/Caroline_Team-min.png"
-              alt="Caroline Clinic"
-              width={400}
-              height={600}
-              className="about-image"
-            />
-          </div>
+          <Image
+            src="/images/about/Caroline_Team-min.png"
+            alt="Caroline Clinic"
+            width={400}
+            height={600}
+            className="about-image"
+            priority
+            placeholder="blur"
+            blurDataURL="/images/about/Caroline_Team-min-blur.png" // If you generate one
+          />
         </div>
       </div>
     </section>

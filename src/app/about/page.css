@@ -45,7 +45,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.about-image:hover {
+.about-image-wrapper:hover {
   transform: scale(1.03);
   box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
 }
@@ -55,11 +55,4 @@
   line-height: 1.8;
   text-align: left;
   text-indent: 2em;
-}
-
-/* Mobile layout */
-@media (max-width: 768px) {
-  .about-image-wrapper {
-    margin-top: 1rem;
-  }
 }

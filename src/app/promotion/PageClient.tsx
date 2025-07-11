@@ -4,7 +4,7 @@ import './page.css'
 import './pageMedia.css'
 import Image from 'next/image'
 import promotions from './data.json'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
 type Props = {
   limit?: number
@@ -12,68 +12,69 @@ type Props = {
 
 export default function PromotionClient({ limit }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
-  const direction = useRef(1)
-  const [visible, setVisible] = useState(true)
+  const [autoScrollActive, setAutoScrollActive] = useState(false)
+  const [direction, setDirection] = useState(1)
 
-  const startAutoScroll = () => {
-    if (!scrollRef.current || intervalRef.current || !visible) return
+  const pause = useCallback(() => setAutoScrollActive(false), [])
+  const resume = useCallback(() => setAutoScrollActive(true), [])
 
-    intervalRef.current = setInterval(() => {
-      const container = scrollRef.current!
-      const maxScroll = container.scrollWidth - container.clientWidth
-      const atStart = container.scrollLeft <= 0
-      const atEnd = container.scrollLeft >= maxScroll - 10
+  const visiblePromotions = limit ? promotions.slice(0, limit) : promotions
 
-      if (atEnd) direction.current = -1
-      else if (atStart) direction.current = 1
-
-      container.scrollBy({
-        left: 320 * direction.current,
-        behavior: 'smooth',
-      })
-    }, 2000)
-  }
-
-  const stopAutoScroll = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-      intervalRef.current = null
-    }
-  }
+  const scrollBy = useCallback((amount: number) => {
+    scrollRef.current?.scrollBy({ left: amount, behavior: 'smooth' })
+  }, [])
 
   useEffect(() => {
     const container = scrollRef.current
     if (!container) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const isVisible = entry.isIntersecting
-        setVisible(isVisible)
-        if (isVisible) startAutoScroll()
-        else stopAutoScroll()
-      },
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setAutoScrollActive(entry.isIntersecting),
       { root: null, threshold: 0.1 }
     )
-
     observer.observe(container)
 
-    container.addEventListener('mouseenter', stopAutoScroll)
-    container.addEventListener('mouseleave', startAutoScroll)
-    container.addEventListener('touchstart', stopAutoScroll)
-    container.addEventListener('touchend', startAutoScroll)
+    container.addEventListener('mouseenter', pause)
+    container.addEventListener('mouseleave', resume)
+    container.addEventListener('touchstart', pause)
+    container.addEventListener('touchend', resume)
 
     return () => {
-      stopAutoScroll()
       observer.disconnect()
-      container.removeEventListener('mouseenter', stopAutoScroll)
-      container.removeEventListener('mouseleave', startAutoScroll)
-      container.removeEventListener('touchstart', stopAutoScroll)
-      container.removeEventListener('touchend', startAutoScroll)
+      container.removeEventListener('mouseenter', pause)
+      container.removeEventListener('mouseleave', resume)
+      container.removeEventListener('touchstart', pause)
+      container.removeEventListener('touchend', resume)
     }
-  }, [visible])
+  }, [pause, resume])
 
-  const visiblePromotions = limit ? promotions.slice(0, limit) : promotions
+  useEffect(() => {
+    if (!autoScrollActive) return
+    const container = scrollRef.current
+    if (!container) return
+
+    const scrollStep = 320
+    const handle = setInterval(() => {
+      const maxScroll = container.scrollWidth - container.clientWidth
+      const atStart = container.scrollLeft <= 0
+      const atEnd = container.scrollLeft >= maxScroll - 10
+
+      if (atEnd) setDirection(-1)
+      else if (atStart) setDirection(1)
+
+      container.scrollBy({
+        left: scrollStep * direction,
+        behavior: 'smooth',
+      })
+    }, 2000)
+    return () => clearInterval(handle)
+  }, [autoScrollActive, direction])
+
+  const canScrollLeft = () => (scrollRef.current?.scrollLeft ?? 0) > 0
+  const canScrollRight = () => {
+    const el = scrollRef.current
+    return el ? el.scrollLeft < el.scrollWidth - el.clientWidth - 10 : false
+  }
 
   return (
     <section id="promotion" className="promotion-section">
@@ -86,17 +87,23 @@ export default function PromotionClient({ limit }: Props) {
         <div className="promotion-slider-container">
           <button
             className="promotion-arrow left"
-            onClick={() =>
-              scrollRef.current?.scrollBy({ left: -320, behavior: 'smooth' })
-            }
+            onClick={() => scrollBy(-320)}
+            aria-label="เลื่อนไปทางซ้าย"
+            disabled={!canScrollLeft()}
+            tabIndex={0}
+            onMouseEnter={pause}
+            onMouseLeave={resume}
           >
             ◀
           </button>
           <button
             className="promotion-arrow right"
-            onClick={() =>
-              scrollRef.current?.scrollBy({ left: 320, behavior: 'smooth' })
-            }
+            onClick={() => scrollBy(320)}
+            aria-label="เลื่อนไปทางขวา"
+            disabled={!canScrollRight()}
+            tabIndex={0}
+            onMouseEnter={pause}
+            onMouseLeave={resume}
           >
             ▶
           </button>
@@ -108,7 +115,8 @@ export default function PromotionClient({ limit }: Props) {
                     <Image
                       src={promo.image}
                       alt={promo.title}
-                      fill
+                      width={375}
+                      height={450}                      
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="promotion-image"
                     />

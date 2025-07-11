@@ -113,10 +113,6 @@ export default function PromotionClient({ limit }: Props) {
                       className="promotion-image"
                     />
                   </div>
-                  <div className="promotion-info">
-                    <h3>{promo.title}</h3>
-                    <p>{promo.description}</p>
-                  </div>
                 </div>
               ))}
             </div>

@@ -13,9 +13,58 @@
 📄 package-lock.json
 📄 package.json
 📁 public
-  📄 Caroline-Clinic-Logo-noBG.png
-  📄 Caroline-Clinic-Logo.jpg
-  📄 ChatGPT Image Jul 9, 2025, 10_49_51 AM.png
+  📄 Caroline-Clinic-Logo-noBG-min.png
+  📄 Caroline-Clinic-Logo-noBG-Text-min.png
+  📁 icons
+    📄 example.png
+    📄 Promotion_Example.png
+  📁 images
+    📁 about
+      📄 Caroline_Team-min.png
+    📁 Hero
+      📄 HeroImage-min.png
+      📄 HeroImage2-min.png
+    📁 promotion
+      📄 Caroline_Clinic_Promotion_1.png
+      📄 Caroline_Clinic_Promotion_10.png
+      📄 Caroline_Clinic_Promotion_11.png
+      📄 Caroline_Clinic_Promotion_12.png
+      📄 Caroline_Clinic_Promotion_13.png
+      📄 Caroline_Clinic_Promotion_14.png
+      📄 Caroline_Clinic_Promotion_15.png
+      📄 Caroline_Clinic_Promotion_16.JPG
+      📄 Caroline_Clinic_Promotion_17.JPG
+      📄 Caroline_Clinic_Promotion_18.JPG
+      📄 Caroline_Clinic_Promotion_19.JPG
+      📄 Caroline_Clinic_Promotion_2.png
+      📄 Caroline_Clinic_Promotion_20.JPG
+      📄 Caroline_Clinic_Promotion_21.png
+      📄 Caroline_Clinic_Promotion_22.png
+      📄 Caroline_Clinic_Promotion_23.png
+      📄 Caroline_Clinic_Promotion_3.png
+      📄 Caroline_Clinic_Promotion_4.png
+      📄 Caroline_Clinic_Promotion_5.png
+      📄 Caroline_Clinic_Promotion_6.png
+      📄 Caroline_Clinic_Promotion_7.png
+      📄 Caroline_Clinic_Promotion_8.png
+      📄 Caroline_Clinic_Promotion_9.png
+    📁 review
+      📄 Caroline_Clinic_Review_1.jpg
+      📄 Caroline_Clinic_Review_10.png
+      📄 Caroline_Clinic_Review_11.png
+      📄 Caroline_Clinic_Review_12.png
+      📄 Caroline_Clinic_Review_13.png
+      📄 Caroline_Clinic_Review_14.png
+      📄 Caroline_Clinic_Review_15.png
+      📄 Caroline_Clinic_Review_16.png
+      📄 Caroline_Clinic_Review_2.png
+      📄 Caroline_Clinic_Review_3.png
+      📄 Caroline_Clinic_Review_4.png
+      📄 Caroline_Clinic_Review_5.png
+      📄 Caroline_Clinic_Review_6.JPG
+      📄 Caroline_Clinic_Review_7.png
+      📄 Caroline_Clinic_Review_8.png
+      📄 Caroline_Clinic_Review_9.png
 📄 README.md
 📁 scripts
   📄 file-structure.txt
@@ -37,23 +86,32 @@
     📄 favicon.ico
     📄 globals.css
     📁 Hero
+      📄 Hero.css
       📄 Hero.tsx
+      📄 HeroMedia.css
     📄 layout.tsx
     📄 page.module.css
     📄 page.tsx
     📄 PageClient.tsx
     📁 promotion
+      📄 data.json
       📄 page.css
       📄 page.tsx
       📄 PageClient.tsx
+      📄 pageMedia.css
     📁 review
+      📄 data.json
       📄 page.css
       📄 page.tsx
       📄 PageClient.tsx
+      📄 pageMedia.css
     📁 services
+      📄 data.json
       📄 page.css
       📄 page.tsx
       📄 PageClient.tsx
+      📄 pageMedia.css
+      📁 ServiceCategoryList
   📁 components
     📁 Footer
       📄 Footer.css
@@ -61,4 +119,7 @@
     📁 Navbar
       📄 Navbar.css
       📄 Navbar.tsx
+      📄 NavbarMedia.css
+  📁 lib
+    📄 scrolling.ts
 📄 tsconfig.json

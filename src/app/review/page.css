@@ -22,32 +22,17 @@
   margin-bottom: 2.5rem;
 }
 
-.review-slider-wrapper {
-  position: relative;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
-
-}
-.review-slider-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+/* New: responsive grid container */
+.review-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
 }
 
-.review-list {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  padding: 0.5rem;
-  scroll-behavior: smooth;
-}
+/* Removed slider-wrapper, list, scroll, and arrows */
 
 .review-card {
-  width: 320px;
-  flex: 0 0 auto;
-  scroll-snap-align: start;
   background-color: #fff;
   border: 1px solid #fcd6e5;
   border-radius: 10px;
@@ -55,9 +40,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .review-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
 }
 
 .review-text {
@@ -85,16 +71,12 @@
   overflow: hidden;
   background: #fdf2f8;
 }
+
 .review-image {
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid #f3f3f3;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-
-.review-slider-container {
-  position: relative;
 }
 
 .review-more-button {
@@ -109,37 +91,9 @@
   transition: background-color 0.3s ease;
   margin-top: 2rem;
 }
+
 .review-more-button:hover {
-  background-color: #db2777;       /* deeper pink */
-  transform: translateY(-2px);     /* slight lift */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* soft shadow */
-}
-
-.review-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  background: rgba(239, 209, 233, 0.7);
-  color: rgba(0, 0, 0, 0.63);
-  border: none;
-  font-size: 2rem;
-  padding: 4rem 1rem;
-  border-radius: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  
-}
-
-.review-arrow:hover {
-  background: rgba(236, 72, 153, 0.9);
-  color: white;
-}
-
-.review-arrow.left {
-  left: 0;
-}
-
-.review-arrow.right {
-  right: 0;
+  background-color: #db2777;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }

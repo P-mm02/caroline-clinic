@@ -1,102 +1,117 @@
 [
   {
-    "title": "Botox ลดกราม",
-    "description": "เพียง 3,999 บาท (จากปกติ 6,500 บาท)",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 1",
+    "description": "รายละเอียดโปรโมชันที่ 1",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_1.png"
   },
   {
-    "title": "HIFU ปรับรูปหน้า",
-    "description": "โปร 1 แถม 1 ทุกคอร์ส เฉพาะเดือนนี้",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 2",
+    "description": "รายละเอียดโปรโมชันที่ 2",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_2.png"
   },
   {
-    "title": "Filler ปากสายฝอ",
-    "description": "เริ่มต้นเพียง 6,999 บาท พร้อมปรับทรงฟรี",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 3",
+    "description": "รายละเอียดโปรโมชันที่ 3",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_3.png"
   },
   {
-    "title": "Meso Fat สลายไขมัน",
-    "description": "ครั้งละ 2,499 บาท (ปกติ 4,000 บาท)",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 4",
+    "description": "รายละเอียดโปรโมชันที่ 4",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_4.png"
   },
   {
-    "title": "IPL Laser หน้าใส",
-    "description": "คอร์ส 5 ครั้ง ราคา 9,999 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 5",
+    "description": "รายละเอียดโปรโมชันที่ 5",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_5.png"
   },
   {
-    "title": "IV Drip ผิวขาว",
-    "description": "เพียง 1,999 บาท (ปกติ 3,000 บาท)",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 6",
+    "description": "รายละเอียดโปรโมชันที่ 6",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_6.png"
   },
   {
-    "title": "ร้อยไหมยกกระชับ",
-    "description": "ลด 50% เฉพาะเดือนนี้",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 7",
+    "description": "รายละเอียดโปรโมชันที่ 7",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_7.png"
   },
   {
-    "title": "Vitamin ผิวกระจ่างใส",
-    "description": "แพ็คเกจ 10 ครั้ง 7,999 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 8",
+    "description": "รายละเอียดโปรโมชันที่ 8",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_8.png"
   },
   {
-    "title": "ลดริ้วรอยใต้ตา",
-    "description": "เริ่มต้น 3,499 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 9",
+    "description": "รายละเอียดโปรโมชันที่ 9",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_9.png"
   },
   {
-    "title": "เลเซอร์กำจัดขน",
-    "description": "เหมาทั้งตัว 8,999 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 10",
+    "description": "รายละเอียดโปรโมชันที่ 10",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_10.png"
   },
   {
-    "title": "ฉีดวิตามินบำรุงผม",
-    "description": "โปร 5 ครั้ง 4,500 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 11",
+    "description": "รายละเอียดโปรโมชันที่ 11",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_11.png"
   },
   {
-    "title": "Cryo Cooling",
-    "description": "ลดทันที 30% ทุกแพ็คเกจ",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 12",
+    "description": "รายละเอียดโปรโมชันที่ 12",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_12.png"
   },
   {
-    "title": "ทรีตเมนต์สิว",
-    "description": "โปรแกรมรักษาสิว 5 ครั้ง 5,999 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 13",
+    "description": "รายละเอียดโปรโมชันที่ 13",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_13.png"
   },
   {
-    "title": "Cleansing Milk",
-    "description": "เพียง 1,499 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 14",
+    "description": "รายละเอียดโปรโมชันที่ 14",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_14.png"
   },
   {
-    "title": "ยกกระชับใบหน้า",
-    "description": "โปรแกรม 6,999 บาท (ปกติ 9,999 บาท)",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 15",
+    "description": "รายละเอียดโปรโมชันที่ 15",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_15.png"
   },
   {
-    "title": "LED Light Therapy",
-    "description": "ครั้งละ 999 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 16",
+    "description": "รายละเอียดโปรโมชันที่ 16",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_16.png"
   },
   {
-    "title": "ฉีดผิวออร่า",
-    "description": "โปรโมชั่นพิเศษ 4,999 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 17",
+    "description": "รายละเอียดโปรโมชันที่ 17",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_17.png"
   },
   {
-    "title": "เมโสหน้าใส",
-    "description": "3 ครั้ง 4,999 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 18",
+    "description": "รายละเอียดโปรโมชันที่ 18",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_18.png"
   },
   {
-    "title": "ทรีตเมนต์หน้าใส",
-    "description": "คอร์ส 3 ครั้ง 2,999 บาท",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 19",
+    "description": "รายละเอียดโปรโมชันที่ 19",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_19.png"
   },
   {
-    "title": "ฟื้นฟูผิวจากแดด",
-    "description": "เพียง 2,499 บาท (ปกติ 4,000 บาท)",
-    "image": "/icons/Promotion_Example.png"
+    "title": "ชื่อโปรโมชันที่ 20",
+    "description": "รายละเอียดโปรโมชันที่ 20",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_20.png"
+  },
+  {
+    "title": "ชื่อโปรโมชันที่ 21",
+    "description": "รายละเอียดโปรโมชันที่ 21",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_21.png"
+  },
+  {
+    "title": "ชื่อโปรโมชันที่ 22",
+    "description": "รายละเอียดโปรโมชันที่ 22",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_22.png"
+  },
+  {
+    "title": "ชื่อโปรโมชันที่ 23",
+    "description": "รายละเอียดโปรโมชันที่ 23",
+    "image": "/images/promotion/Caroline_Clinic_Promotion_23.png"
   }
 ]

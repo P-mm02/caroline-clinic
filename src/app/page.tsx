@@ -16,7 +16,7 @@ export default function HomePage() {
       <Hero />
       <Services />
       <About />
-      <Review limit={6} />
+      <Review limit={3} />
       <Promotion limit={6} />
       <Article />
       <Contact />

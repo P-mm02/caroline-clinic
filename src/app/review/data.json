@@ -1,142 +1,82 @@
 [
   {
-    "name": "คุณแอน",
-    "location": "กรุงเทพฯ",
-    "text": "ประทับใจมากค่ะ คุณหมอให้คำแนะนำดีมาก มือเบา เห็นผลชัดเจน จะกลับมาอีกแน่นอน!",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 1",
+    "description": "รายละเอียดรีวิวที่ 1",
+    "image": "/images/review/Caroline_Clinic_Review_1.jpg"
   },
   {
-    "name": "คุณเจ",
-    "location": "นนทบุรี",
-    "text": "พนักงานบริการดีมาก คลินิกสะอาด บรรยากาศอบอุ่น รู้สึกปลอดภัยตลอดการรักษา",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 2",
+    "description": "รายละเอียดรีวิวที่ 2",
+    "image": "/images/review/Caroline_Clinic_Review_2.png"
   },
   {
-    "name": "คุณมายด์",
-    "location": "ปทุมธานี",
-    "text": "ราคาดี มีโปรโมชั่นเยอะ ใช้ผลิตภัณฑ์ของแท้แน่นอนค่ะ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 3",
+    "description": "รายละเอียดรีวิวที่ 3",
+    "image": "/images/review/Caroline_Clinic_Review_3.png"
   },
   {
-    "name": "คุณบิว",
-    "location": "ชลบุรี",
-    "text": "คุณหมอเก่งมากค่ะ ฉีดโบท็อกซ์แล้วเห็นผลชัด หน้าเรียวขึ้นจริง",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 4",
+    "description": "รายละเอียดรีวิวที่ 4",
+    "image": "/images/review/Caroline_Clinic_Review_4.png"
   },
   {
-    "name": "คุณแป้ง",
-    "location": "เชียงใหม่",
-    "text": "บริการอบอุ่นเหมือนครอบครัวค่ะ สบายใจทุกครั้งที่มาที่นี่",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 5",
+    "description": "รายละเอียดรีวิวที่ 5",
+    "image": "/images/review/Caroline_Clinic_Review_5.png"
   },
   {
-    "name": "คุณโบว์",
-    "location": "นครราชสีมา",
-    "text": "คลินิกสวยมาก เครื่องมือทันสมัย ไม่ผิดหวังเลยค่ะ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 6",
+    "description": "รายละเอียดรีวิวที่ 6",
+    "image": "/images/review/Caroline_Clinic_Review_6.JPG"
   },
   {
-    "name": "คุณเฟิร์น",
-    "location": "อยุธยา",
-    "text": "ชอบบริการที่นี่มากๆ พนักงานน่ารักทุกคนเลยค่ะ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 7",
+    "description": "รายละเอียดรีวิวที่ 7",
+    "image": "/images/review/Caroline_Clinic_Review_7.png"
   },
   {
-    "name": "คุณเอิร์น",
-    "location": "ระยอง",
-    "text": "เป็นคลินิกที่ไว้ใจที่สุดเลยค่ะ ไม่เปลี่ยนใจแน่นอน",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 8",
+    "description": "รายละเอียดรีวิวที่ 8",
+    "image": "/images/review/Caroline_Clinic_Review_8.png"
   },
   {
-    "name": "คุณเนย",
-    "location": "ลพบุรี",
-    "text": "ราคาคุ้มค่า คุณภาพเยี่ยม ติดใจจนต้องบอกต่อ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 9",
+    "description": "รายละเอียดรีวิวที่ 9",
+    "image": "/images/review/Caroline_Clinic_Review_9.png"
   },
   {
-    "name": "คุณน้ำ",
-    "location": "นครปฐม",
-    "text": "บรรยากาศดี พนักงานใส่ใจทุกขั้นตอนค่ะ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 10",
+    "description": "รายละเอียดรีวิวที่ 10",
+    "image": "/images/review/Caroline_Clinic_Review_10.png"
   },
   {
-    "name": "คุณแพร",
-    "location": "พิษณุโลก",
-    "text": "มากี่ครั้งก็ประทับใจทุกครั้งค่ะ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 11",
+    "description": "รายละเอียดรีวิวที่ 11",
+    "image": "/images/review/Caroline_Clinic_Review_11.png"
   },
   {
-    "name": "คุณซัน",
-    "location": "สงขลา",
-    "text": "ทีมงานมืออาชีพสุดๆ บริการดีมาก",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 12",
+    "description": "รายละเอียดรีวิวที่ 12",
+    "image": "/images/review/Caroline_Clinic_Review_12.png"
   },
   {
-    "name": "คุณฟ้า",
-    "location": "ขอนแก่น",
-    "text": "ฉีดฟิลเลอร์ที่นี่ธรรมชาติมากค่ะ ไม่โป๊ะเลย",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 13",
+    "description": "รายละเอียดรีวิวที่ 13",
+    "image": "/images/review/Caroline_Clinic_Review_13.png"
   },
   {
-    "name": "คุณกิ๊ฟ",
-    "location": "เชียงราย",
-    "text": "รักที่นี่สุดๆ เหมือนบ้านหลังที่สอง",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 14",
+    "description": "รายละเอียดรีวิวที่ 14",
+    "image": "/images/review/Caroline_Clinic_Review_14.png"
   },
   {
-    "name": "คุณดา",
-    "location": "สุพรรณบุรี",
-    "text": "บริการดีตั้งแต่หน้าประตูจนออกมาเลยค่ะ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 15",
+    "description": "รายละเอียดรีวิวที่ 15",
+    "image": "/images/review/Caroline_Clinic_Review_15.png"
   },
   {
-    "name": "คุณเมย์",
-    "location": "สมุทรปราการ",
-    "text": "เครื่องมือใหม่ทุกชิ้น ดูแลผิวแล้วมั่นใจ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
-  },
-  {
-    "name": "คุณจูน",
-    "location": "อุบลราชธานี",
-    "text": "ทำ IPL แล้วหน้ากระจ่างใสมาก ประทับใจสุดๆ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
-  },
-  {
-    "name": "คุณแน๊ต",
-    "location": "นครศรีธรรมราช",
-    "text": "โปรเยอะมาก ได้ของแถมกลับบ้านด้วย!",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
-  },
-  {
-    "name": "คุณหลิน",
-    "location": "มหาสารคาม",
-    "text": "ทุกคนดูแลดีมาก มาทำทุกเดือนเลยค่ะ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
-  },
-  {
-    "name": "คุณเอม",
-    "location": "สุราษฎร์ธานี",
-    "text": "คุ้มค่าทุกบาท ไม่ผิดหวังเลยจริงๆ",
-    "profile": "/icons/example.png",
-    "photo": "/icons/example.png"
+    "title": "รีวิวที่ 16",
+    "description": "รายละเอียดรีวิวที่ 16",
+    "image": "/images/review/Caroline_Clinic_Review_16.png"
   }
 ]

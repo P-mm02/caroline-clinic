@@ -33,7 +33,6 @@
 
 .promotion-list {
   display: flex;
-  align-items: center;
   gap: 2rem;
   padding: 0.5rem;
   scroll-behavior: smooth;
@@ -66,28 +65,11 @@
   padding-top: 100%;  /* 1:1 aspect ratio */
   border-radius: 0.75rem;
   overflow: hidden;
-  margin-bottom: 1rem;
   background: #fdf2f8;
 }
 .promotion-image {
   object-fit: cover;
   border-radius: 0.75rem;
-}
-
-.promotion-info {
-  text-align: center;
-}
-
-.promotion-info h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #b91c1c;
-  margin-bottom: 0.5rem;
-}
-
-.promotion-info p {
-  font-size: 1.1rem;
-  color: #444;
 }
 
 .promotion-arrow {
@@ -130,4 +112,3 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
-

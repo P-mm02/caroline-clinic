@@ -23,6 +23,7 @@
 .promotion-slider-wrapper {
   position: relative;
   overflow-x: auto;
+  overflow-y: visible;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
@@ -37,6 +38,8 @@
   gap: 2rem;
   padding: 0.5rem;
   scroll-behavior: smooth;
+  overflow-y: visible;
+
 }
 
 .promotion-card {

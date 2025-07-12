@@ -2,7 +2,6 @@ import Services from './services/PageClient'
 import About from './about/PageClient'
 import Review from './review/PageClient'
 import Promotion from './promotion/PageClient'
-import Contact from './contact/PageClient'
 import Article from './article/PageClient'
 import Hero from './Hero/Hero'
 
@@ -19,7 +18,6 @@ export default function HomePage() {
       <Review limit={3} />
       <Promotion limit={6} />
       <Article />
-      <Contact />
     </main>
   )
 }

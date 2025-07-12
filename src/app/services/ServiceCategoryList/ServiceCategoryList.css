@@ -38,10 +38,11 @@
 }
 
 .services-category-list-example {
-  border-radius: 1rem;
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
+  width: 14rem;
+  height: 14rem;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.04);
 }
 
 .service-item-list {

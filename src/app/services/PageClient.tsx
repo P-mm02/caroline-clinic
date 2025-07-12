@@ -23,12 +23,11 @@ export default function ServicesClient() {
                 href={`/services#category-${section.category}`}
                 className="category-title"
               >
-                {/* </Link><Link href={`/services/${index}`} className="category-title"> */}
                 <Image
-                  src="/icons/example.png"
+                  src={section.image}
                   alt="Caroline Clinic service example"
-                  width={100}
-                  height={100}
+                  width={150}
+                  height={150}
                   className="services-example"
                 />
                 {section.category}

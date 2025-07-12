@@ -1,98 +1,121 @@
 [
   {
     "category": "รักษาสิว",
+    "image": "/images/services/Service_Acne.png",
     "items": [
       {
         "name": "รักษาสิว",
-        "description": "บำรุงและลดการอักเสบของสิว ด้วยเวชสำอางและยาเฉพาะบุคคล"
+        "description": "บำรุงและลดการอักเสบของสิว ด้วยเวชสำอางและยาเฉพาะบุคคล",
+        "image": "/images/services/Service_Acne.png"
       },
       {
         "name": "กดสิวทั่วใบหน้า",
-        "description": "ขจัดสิวอุดตันและสิวหัวดำ โดยผู้เชี่ยวชาญ"
+        "description": "ขจัดสิวอุดตันและสิวหัวดำ โดยผู้เชี่ยวชาญ",
+        "image": "/images/services/Service_Acne.png"
       },
       {
         "name": "ฉายแสง LED",
-        "description": "ลดการอักเสบของสิวและกระตุ้นการฟื้นฟูผิว"
+        "description": "ลดการอักเสบของสิวและกระตุ้นการฟื้นฟูผิว",
+        "image": "/images/services/Service_Acne.png"
       },
       {
         "name": "เลเซอร์ ACL/IPL",
-        "description": "เลเซอร์ลดรอยแดง สิว และความมันบนใบหน้า"
+        "description": "เลเซอร์ลดรอยแดง สิว และความมันบนใบหน้า",
+        "image": "/images/services/Service_Acne.png"
       },
       {
         "name": "มาส์ก ANTI-ACNE",
-        "description": "ฟื้นฟูผิว ลดแบคทีเรียต้นเหตุของสิว"
+        "description": "ฟื้นฟูผิว ลดแบคทีเรียต้นเหตุของสิว",
+        "image": "/images/services/Service_Acne.png"
       }
     ]
   },
   {
     "category": "บำรุงผิวหน้า",
+    "image": "/images/services/Service_FacialCare.png",
     "items": [
       {
         "name": "คลีนซิ่งมิลค์",
-        "description": "ทำความสะอาดผิวอย่างอ่อนโยน เหมาะสำหรับผิวแพ้ง่าย"
+        "description": "ทำความสะอาดผิวอย่างอ่อนโยน เหมาะสำหรับผิวแพ้ง่าย",
+        "image": "/images/services/Service_FacialCare.png"
       },
       {
         "name": "CRYO COOLING",
-        "description": "ปลอบประโลมผิวด้วยความเย็น ลดการระคายเคือง"
+        "description": "ปลอบประโลมผิวด้วยความเย็น ลดการระคายเคือง",
+        "image": "/images/services/Service_FacialCare.png"
       },
       {
         "name": "เมโสผิวใส (Meso Skin)",
-        "description": "เติมวิตามินเข้าสู่ผิวหน้าเพื่อความกระจ่างใส"
+        "description": "เติมวิตามินเข้าสู่ผิวหน้าเพื่อความกระจ่างใส",
+        "image": "/images/services/Service_FacialCare.png"
       }
     ]
   },
   {
     "category": "ปรับรูปหน้า",
+    "image": "/images/services/Service_Filler.png",
     "items": [
       {
         "name": "ฉีดโบท็อกซ์",
-        "description": "ลดริ้วรอยและปรับรูปหน้าให้เรียวกระชับ"
+        "description": "ลดริ้วรอยและปรับรูปหน้าให้เรียวกระชับ",
+        "image": "/images/services/Service_Filler.png"
       },
       {
         "name": "Botulinum Toxin",
-        "description": "สารลดการหดเกร็งของกล้ามเนื้อที่มีประสิทธิภาพ"
+        "description": "สารลดการหดเกร็งของกล้ามเนื้อที่มีประสิทธิภาพ",
+        "image": "/images/services/Service_Filler.png"
       },
       {
         "name": "ฉีดฟิลเลอร์",
-        "description": "เติมเต็มร่องลึก ปรับรูปหน้าให้ดูอ่อนเยาว์"
+        "description": "เติมเต็มร่องลึก ปรับรูปหน้าให้ดูอ่อนเยาว์",
+        "image": "/images/services/Service_Filler.png"
       },
       {
         "name": "ฉีดไหมน้ำกระตุ้นคอลลาเจน (JuveLook)",
-        "description": "กระตุ้นการสร้างคอลลาเจน คืนความยืดหยุ่นให้ผิว"
+        "description": "กระตุ้นการสร้างคอลลาเจน คืนความยืดหยุ่นให้ผิว",
+        "image": "/images/services/Service_Filler.png"
       },
       {
         "name": "Meso Chanel",
-        "description": "บำรุงผิวด้วยวิตามินล้ำลึกทั่วใบหน้า"
+        "description": "บำรุงผิวด้วยวิตามินล้ำลึกทั่วใบหน้า",
+        "image": "/images/services/Service_Filler.png"
       },
       {
         "name": "Meso Fat ลดแก้มและเหนียง",
-        "description": "ลดไขมันสะสมเฉพาะจุด ปรับรูปหน้าเรียวขึ้น"
+        "description": "ลดไขมันสะสมเฉพาะจุด ปรับรูปหน้าเรียวขึ้น",
+        "image": "/images/services/Service_Filler.png"
       }
     ]
   },
   {
     "category": "เลเซอร์",
+    "image": "/images/services/Service_Lazer.png",
     "items": [
       {
         "name": "กำจัดขนถาวร",
-        "description": "เลเซอร์กำจัดขนอย่างอ่อนโยนและปลอดภัย"
+        "description": "เลเซอร์กำจัดขนอย่างอ่อนโยนและปลอดภัย",
+        "image": "/images/services/Service_Lazer.png"
       },
       {
         "name": "Diode Laser",
-        "description": "เลเซอร์เทคโนโลยีสูงสำหรับการกำจัดขนถาวร"
+        "description": "เลเซอร์เทคโนโลยีสูงสำหรับการกำจัดขนถาวร",
+        "image": "/images/services/Service_Lazer.png"
       }
     ]
   },
   {
     "category": "ดูแลสุขภาพ",
+    "image": "/images/services/Service_Health.png",
     "items": [
       {
         "name": "วิตามินทางเส้นเลือด (IV Drip)",
-        "description": "เติมวิตามินและสารต้านอนุมูลอิสระเข้าสู่ร่างกาย"
+        "description": "เติมวิตามินและสารต้านอนุมูลอิสระเข้าสู่ร่างกาย",
+        "image": "/images/services/Service_Health.png"
       },
       {
         "name": "ปากกาควบคุมความอยากอาหาร",
-        "description": "ช่วยลดความอยากอาหารและควบคุมน้ำหนัก"
+        "description": "ช่วยลดความอยากอาหารและควบคุมน้ำหนัก",
+        "image": "/images/services/Service_Health.png"
       }
     ]
   }

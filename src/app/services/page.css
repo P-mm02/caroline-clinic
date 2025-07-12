@@ -21,40 +21,39 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* or 'space-between' if you want spacing on edges */
-  margin-top: 2rem;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 
 .services-category {
   text-align: center;
-  margin: 1rem;
 }
 
 .services-example {
   border-radius: 1rem;
-  margin-bottom: 0;
 }
 
 
 .category-title {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   font-family: 'Poppins', 'Noto Sans Thai', sans-serif;
-  background-color: #f3e8ff;
   color: #7e22ce;
+ /*  background-color: #f3e8ff;  
   border: 2px solid #e9d5ff;
-  border-radius: 1rem;
-  padding: 1.5rem 1.25rem;
+  border-radius: 1rem; */
+  padding: 0rem;
+  margin: 1rem 0;
   text-align: center;
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04); */
 }
 
 .category-title:hover {

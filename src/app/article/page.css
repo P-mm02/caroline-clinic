@@ -10,22 +10,6 @@
   padding: 0 2rem;
 }
 
-.section-title-en {
-  display: block;
-  font-size: 1.12rem;
-  color: #ea4c89;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  margin-bottom: 0.3rem;
-}
-
-.section-title-th {
-  font-size: 2.1rem;
-  color: #b81e5d;
-  font-weight: 800;
-  margin: 0 0 0.7rem 0;
-  letter-spacing: 0.04em;
-}
 
 .article-description {
   color: #9f2352;
@@ -138,9 +122,6 @@
   }
 }
 @media (max-width: 600px) {
-  .section-title-th {
-    font-size: 1.32rem;
-  }
   .article-card {
     border-radius: 1rem;
     min-height: 220px;

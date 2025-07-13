@@ -69,7 +69,7 @@
 
 .promotion-image {
   object-fit: contain;    /* <-- was cover */
-  width: 30rem;
+  width: 640px;
   height: auto;
   border-radius: 0.75rem;
   background: #fff;       /* optional: for letterbox bars */

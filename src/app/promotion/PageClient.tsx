@@ -14,6 +14,15 @@ export default function PromotionClient({ limit }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [autoScrollActive, setAutoScrollActive] = useState(false)
   const [direction, setDirection] = useState(1)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const pause = useCallback(() => setAutoScrollActive(false), [])
   const resume = useCallback(() => setAutoScrollActive(true), [])
@@ -53,23 +62,18 @@ export default function PromotionClient({ limit }: Props) {
     const container = scrollRef.current
     if (!container) return
 
-    const scrollStep = 54 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const scrollStep = isMobile ? 320 : 640
 
     const handle = setInterval(() => {
       const maxScroll = container.scrollWidth - container.clientWidth
       const atStart = container.scrollLeft <= 16
       const atEnd = container.scrollLeft >= maxScroll - 16
 
-      console.log('container.scrollLeft:'+container.scrollLeft);
-
-      if (atEnd) {
-        console.log('atEnd');
-        setDirection(-1)
-      }
-      else if (atStart) {
-        console.log('atStart');
-        setDirection(1)
-      }
+      setDirection(dir => {
+        if (atEnd) return -1
+        if (atStart) return 1
+        return dir
+      })
 
       container.scrollBy({
         left: scrollStep * direction,
@@ -77,7 +81,7 @@ export default function PromotionClient({ limit }: Props) {
       })
     }, 2000)
     return () => clearInterval(handle)
-  }, [autoScrollActive, direction])
+  }, [autoScrollActive, direction, isMobile])
 
   const canScrollLeft = () => (scrollRef.current?.scrollLeft ?? 0) > 0
   const canScrollRight = () => {
@@ -96,7 +100,7 @@ export default function PromotionClient({ limit }: Props) {
         <div className="promotion-slider-container">
           <button
             className="promotion-arrow left"
-            onClick={() => scrollBy(-320)}
+            onClick={() => scrollBy(isMobile ? -320 : -640)}
             aria-label="เลื่อนไปทางซ้าย"
             disabled={!canScrollLeft()}
             tabIndex={0}
@@ -107,7 +111,7 @@ export default function PromotionClient({ limit }: Props) {
           </button>
           <button
             className="promotion-arrow right"
-            onClick={() => scrollBy(320)}
+            onClick={() => scrollBy(isMobile ? 320 : 640)}
             aria-label="เลื่อนไปทางขวา"
             disabled={!canScrollRight()}
             tabIndex={0}
@@ -125,7 +129,7 @@ export default function PromotionClient({ limit }: Props) {
                       src={promo.image}
                       alt={promo.title}
                       width={375}
-                      height={450}                      
+                      height={450}
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="promotion-image"
                     />

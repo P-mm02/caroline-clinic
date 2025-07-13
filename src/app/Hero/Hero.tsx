@@ -10,7 +10,7 @@ export default function Hero() {
       <div className="hero-overlay">
         <div className="hero-heading-wrapper">
           <Image
-            src="/Caroline-Clinic-Logo-noBG-Text-min.png"
+            src="/Caroline-Clinic-Logo-noBG-Text-new.png"
             alt="Caroline Clinic Logo"
             width={1024}
             height={128}

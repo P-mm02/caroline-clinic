@@ -108,7 +108,7 @@
   font-weight: 600;
   text-decoration: none;
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-  margin-top: 2rem;
+  margin: 0 0 2rem 0;
 }
 .promotion-more-button:hover {
   background-color: #db2777;

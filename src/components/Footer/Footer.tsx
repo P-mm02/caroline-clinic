@@ -2,6 +2,7 @@
 
 import './Footer.css'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -9,28 +10,62 @@ export default function Footer() {
       <div className="footer-inner">
         {/* Column 1: Logo & tagline */}
         <div className="footer-column">
-          <h2 className="footer-logo">Caroline Clinic</h2>
+          <Link href="/" className="footer-logo">
+            <Image
+              src="/Caroline-Clinic-Logo-noBG-min.png"
+              alt="Caroline Clinic Logo"
+              className="footer-logo-img"
+              width={180}
+              height={180}
+            />
+          </Link>
           <p className="footer-tagline">ความงามที่มั่นใจ ปลอดภัยทุกขั้นตอน</p>
         </div>
 
-        {/* Column 2: Quick links */}
+        {/* Column 2: Socials */}
         <div className="footer-column">
-          <h3 className="footer-title">ลิงก์ด่วน</h3>
-          <ul className="footer-links">
-            <li><a href="#services">บริการ</a></li>
-            <li><a href="#about">เกี่ยวกับเรา</a></li>
-            <li><a href="#review">รีวิว</a></li>
-            <li><a href="#promotion">โปรโมชั่น</a></li>
-            <li><a href="#contact">ติดต่อ</a></li>
-          </ul>
+          <h3 className="footer-title">Social Media</h3>
+          <div className="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=61557946943788" target="_blank" rel="noopener noreferrer">
+              <Image
+                src="/icons/Facebook_logo.png"
+                alt="Facdbook Logo"
+                className="footer-facdbook-logo"
+                width={100}
+                height={100}
+              />
+            </a>
+            <a href="https://www.instagram.com/caroline.clinic" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/icons/Instagram_logo.png"
+                  alt="Instagram Logo"
+                  className="footer-instagram-logo"
+                  width={100}
+                  height={100}
+              />
+            </a>
+            <a href="https://line.me/R/ti/p/@104jsghy" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/icons/Line_logo.png"
+                  alt="Line Logo"
+                  className="footer-line-logo"
+                  width={100}
+                  height={100}
+              />
+            </a>
+          </div>
         </div>
 
-        {/* Column 3: Contact Info */}
+        {/* Column 3: Contact */}
         <div className="footer-column">
           <h3 className="footer-title">ติดต่อเรา</h3>
-          <p>โทร: <a href="tel:0951234567">095-123-4567</a></p>
-          <p>LINE: <a href="https://line.me/R/ti/p/@carolineclinic" target="_blank">@carolineclinic</a></p>
-          <p>เปิดทุกวัน 11.00 - 19.30</p>
+          <p>โทร: <a href="tel:0647762422">064-776-2422</a></p>
+          <p>LINE ID: <a href="https://line.me/R/ti/p/@104jsghy" target="_blank" rel="noopener noreferrer">@Caroline.Clinic</a></p>
+            <a href="https://goo.gl/maps/your-map" target="_blank" rel="noopener noreferrer" >
+              <p >88/26 ถ.เชียงรากน้อย ต.คลองหนึ่ง อ.คลองหลวง จ.ปทุมธานี</p>              
+            </a>
+          
+          <p>เปิดให้บริการ 12:00-20:00 (หยุดวันจันทร์)</p>
         </div>
       </div>
 

@@ -1,5 +1,11 @@
 import PageClient from './PageClient'
+import PromotionList from './PromotionList/PromotionList'
 
 export default function PromotionPage() {
-  return <PageClient />
+  return (
+    <div>
+      <PageClient />      
+      <PromotionList />
+    </div>
+  )
 }

@@ -3,13 +3,9 @@
   .promotion-arrow {
     display: none;
   }
-  .promotion-card {
+  .promotion-image {
     min-width: 85vw;
-    max-width: 90vw;
-    padding: 1rem;
-  }
-  .promotion-list {
-    gap: 1rem;
+    max-width: 85vw;
   }
   .promotion-slider-container {
     margin-left: -1rem;

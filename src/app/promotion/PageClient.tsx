@@ -53,14 +53,23 @@ export default function PromotionClient({ limit }: Props) {
     const container = scrollRef.current
     if (!container) return
 
-    const scrollStep = 320
+    const scrollStep = 54 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+
     const handle = setInterval(() => {
       const maxScroll = container.scrollWidth - container.clientWidth
-      const atStart = container.scrollLeft <= 0
-      const atEnd = container.scrollLeft >= maxScroll - 10
+      const atStart = container.scrollLeft <= 16
+      const atEnd = container.scrollLeft >= maxScroll - 16
 
-      if (atEnd) setDirection(-1)
-      else if (atStart) setDirection(1)
+      console.log('container.scrollLeft:'+container.scrollLeft);
+
+      if (atEnd) {
+        console.log('atEnd');
+        setDirection(-1)
+      }
+      else if (atStart) {
+        console.log('atStart');
+        setDirection(1)
+      }
 
       container.scrollBy({
         left: scrollStep * direction,

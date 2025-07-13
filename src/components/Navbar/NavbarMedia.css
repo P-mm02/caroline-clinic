@@ -1,60 +1,48 @@
 @media (max-width: 1536px) {
   .navbar-logo {
-    top: -10rem;
-    height: 26rem;
-    width: 26rem;
+    left: -1rem;
+    top: 0rem;
+    height: 18rem;
+    width: 18rem;
   }
   .navbar-logo-img {
-    height: 16rem;
-  }
-  .navbar-Logo-mirage{
-    width: 26rem;
+    height: 17rem;
   }
 }
 
 @media (max-width: 1440px) {
   .navbar-logo {
-    left: 0;
-    top: -10rem;
-    height: 24rem;
-    width: 24rem;
+    left: -1rem;
+    top: 0rem;
+    height: 17rem;
+    width: 17rem;
   }
   .navbar-logo-img {
-    height: 14rem;
-  }
-  .navbar-Logo-mirage{
-    width: 24rem;
+    height: 16rem;
   }
 }
 
 @media (max-width: 1280px) {
   .navbar-logo {
-    left: 0;
-    top: -10rem;
-    height: 22rem;
-    width: 22rem;
+    left: -1rem;
+    top: 0rem;
+    height: 16rem;
+    width: 16rem;
   }
   .navbar-logo-img {
-    height: 12rem;
-  }
-  .navbar-Logo-mirage{
-    width: 22rem;
+    height: 15rem;
   }
 }
 
 @media (max-width: 1024px) {
   .navbar-logo {
-    left: 0;
-    top: -10rem;
-    height: 20rem;
-    width: 20rem;
+    left: -1rem;
+    top: 0rem;
+    height: 15rem;
+    width: 15rem;
   }
   .navbar-logo-img {
-    height: 10rem;
-    padding: 0.5rem;
-  }
-  .navbar-Logo-mirage{
-    width: 20rem;
+    height: 14rem;
   }
 }
 
@@ -74,16 +62,12 @@
   }
 
   .navbar-logo {
-    left: 0;
-    top: -10rem;
-    height: 20rem;
-    width: 20rem;
+    left: -1rem;
+    top: 0rem;
+    height: 14rem;
+    width: 14rem;
   }
   .navbar-logo-img {
-    height: 10rem;
-    padding: 0rem;
-  }
-  .navbar-Logo-mirage{
-    width: 20rem;
+    height: 13rem;
   }
 }

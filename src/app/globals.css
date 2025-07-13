@@ -81,7 +81,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth; /* 🔁 Smooth scroll for anchor links */
   background-color: white;
-
 }
 
 /* 🧹 Reset box model and spacing */

@@ -30,9 +30,8 @@ export default function ArticleClient() {
                   src={article.image}
                   alt={article.title}
                   width={360}
-                  height={220}
+                  height={360}
                   className="article-card-image"
-                  sizes="(max-width: 600px) 100vw, 360px"
                 />
               </div>
               <div className="article-card-meta">

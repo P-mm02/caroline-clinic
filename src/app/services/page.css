@@ -1,6 +1,6 @@
 .services-section {
   position: relative;
-  padding: 6rem 1rem 2rem 1rem;
+  padding: 4rem 1rem 2rem 1rem;
   background: transparent;
   color: #333;
   margin-top: 1rem;
@@ -10,7 +10,7 @@
   display: block;
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3rem;
+  height: 1rem;
   background:
     linear-gradient(
       to bottom,

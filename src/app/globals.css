@@ -80,7 +80,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth; /* 🔁 Smooth scroll for anchor links */
-  background-color: white;
+  background-color: #ffeafd;
 }
 
 /* 🧹 Reset box model and spacing */

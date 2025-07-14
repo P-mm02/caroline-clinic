@@ -3,6 +3,7 @@
 import './Hero.css'
 import './HeroMedia.css'
 import Image from 'next/image'
+import CarolineLoading from "@/lib/loading/caroline";
 
 export default function Hero() {
   return (
@@ -24,6 +25,8 @@ export default function Hero() {
         alt="Caroline Clinic Hero"
         className="hero-image"
       />
-    </section>
+<div className="hero-wave">
+</div>
+  </section>
   )
 }

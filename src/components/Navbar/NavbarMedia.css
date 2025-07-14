@@ -1,9 +1,7 @@
 @media (max-width: 1536px) {
   .navbar-logo {
-    left: -1rem;
-    top: 0rem;
-    height: 18rem;
-    width: 18rem;
+    height: 17rem;
+    width: 17rem;
   }
   .navbar-logo-img {
     height: 17rem;
@@ -12,10 +10,8 @@
 
 @media (max-width: 1440px) {
   .navbar-logo {
-    left: -1rem;
-    top: 0rem;
-    height: 17rem;
-    width: 17rem;
+    height: 16rem;
+    width: 16rem;
   }
   .navbar-logo-img {
     height: 16rem;
@@ -24,10 +20,8 @@
 
 @media (max-width: 1280px) {
   .navbar-logo {
-    left: -1rem;
-    top: 0rem;
-    height: 16rem;
-    width: 16rem;
+    height: 15rem;
+    width: 15rem;
   }
   .navbar-logo-img {
     height: 15rem;
@@ -36,10 +30,8 @@
 
 @media (max-width: 1024px) {
   .navbar-logo {
-    left: -1rem;
-    top: 0rem;
-    height: 15rem;
-    width: 15rem;
+    height: 14rem;
+    width: 14rem;
   }
   .navbar-logo-img {
     height: 14rem;
@@ -57,15 +49,9 @@
     align-items: center;
   }
 
-  .navbar-menu-mobile {
-    padding: 1.5rem 2rem;
-  }
-
   .navbar-logo {
-    left: -1rem;
-    top: 0rem;
-    height: 14rem;
-    width: 14rem;
+    height: 13rem;
+    width: 13rem;
   }
   .navbar-logo-img {
     height: 13rem;

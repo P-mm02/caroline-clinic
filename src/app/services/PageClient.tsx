@@ -3,11 +3,17 @@
 import './page.css'
 import './pageMedia.css'
 import './linear-gradient-border.css'
+import '@/styles/apearFrom.css'
 import categorizedServices from './data.json'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRef } from 'react'
+import appearFromBottom from '@/lib/appearFrom/bottom'
 
 export default function ServicesClient() {
+  const fromBottomRefs = useRef<Array<HTMLDivElement | null>>([])
+
+  appearFromBottom(fromBottomRefs.current, 'show', 0.15)
   return (
     <section id="services" className="services-section">
       <div className="services-container">
@@ -19,7 +25,13 @@ export default function ServicesClient() {
         </p>
         <div className="services-category-container">
           {categorizedServices.map((section, index) => (
-            <div key={index} className="services-category">
+            <div
+              key={index}
+              className="services-category appear-from-bottom"
+              ref={(el) => {
+                fromBottomRefs.current[index] = el
+              }}
+            >
               <Link
                 href={`/services#category-${section.category
                   .replace(/\s+/g, '-')

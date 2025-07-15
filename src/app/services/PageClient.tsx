@@ -21,11 +21,13 @@ export default function ServicesClient() {
           {categorizedServices.map((section, index) => (
             <div key={index} className="services-category">
               <Link
-                href={`/services#category-${section.category.toLowerCase().replace(/\s+/g, '-').toLowerCase()}`}
+                href={`/services#category-${section.category
+                  .replace(/\s+/g, '-')
+                  .toLowerCase()}`}
                 className="category-title"
               >
                 <Image
-                  src={section.image}
+                  src={section.image || '/default-category.png'}
                   alt={section.category}
                   width={150}
                   height={150}

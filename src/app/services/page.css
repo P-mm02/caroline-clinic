@@ -25,10 +25,41 @@
       rgba(236, 72, 153, 0.2) 80%,
       rgba(236, 72, 153, 0.1) 95%,
       transparent 100%
+    ),
+    linear-gradient(
+      110deg,
+      transparent 0%,
+
+      /* More bright bands! */
+      rgba(255,255,255,0.7) 12%,
+      rgba(255,255,255,0.9) 18%,
+      rgba(255,255,255,1) 22%,
+      rgba(255,255,255,0.93) 27%,
+
+      rgba(255,255,255,0.7) 33%,
+      rgba(255,255,255,0.9) 38%,
+      rgba(255,255,255,1) 43%,
+      rgba(255,255,255,0.93) 49%,
+
+      rgba(255,255,255,0.8) 56%,
+      rgba(255,255,255,0.7) 64%,
+      rgba(255,255,255,0.5) 77%,
+      transparent 100%
     );
+  background-size: 100% 100%, 200% 100%;
+  background-position: 0% 0%, -200% 0%;
+  background-repeat: no-repeat;
+  animation: shine-move 2s cubic-bezier(.6,0,.4,1) infinite;
   opacity: 1;
   z-index: 2;
 }
+
+@keyframes shine-move {
+  0%   { background-position: 0% 0%, -200% 0%; }
+  100% { background-position: 0% 0%, 200% 0%; }
+}
+
+
 
 
 

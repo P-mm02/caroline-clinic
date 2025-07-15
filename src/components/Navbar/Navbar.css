@@ -48,16 +48,30 @@
   top: 1rem;
   height: 18rem;
   width: 18rem;
-  background-color: #ffeeff;
+  background: radial-gradient(circle at 40% 35%, #fff9f7 0%, #ffdef8 60%, #e4a5c9 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
   z-index: 55;
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 0;
   animation: navbarFloat 3s ease-in-out 1s infinite alternate;
+}
+
+.navbar-logo::before {
+  content: '';
+  position: absolute;
+  top: 2.2rem;
+  left: 3rem;
+  width: 7rem;
+  height: 3.2rem;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
+  z-index: 1;
 }
 
 @keyframes navbarFloat {

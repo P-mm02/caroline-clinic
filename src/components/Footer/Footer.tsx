@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="footer-column">
           <Link href="/" className="footer-logo">
             <Image
-              src="/Caroline-Clinic-Logo-noBG-min.png"
+              src="/Caroline-Clinic-Logo.svg"
               alt="Caroline Clinic Logo"
               className="footer-logo-img"
               width={180}
@@ -26,7 +26,11 @@ export default function Footer() {
         <div className="footer-column">
           <h3 className="footer-title">Social Media</h3>
           <div className="footer-socials">
-            <a href="https://www.facebook.com/profile.php?id=61557946943788" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.facebook.com/profile.php?id=61557946943788"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="/icons/Facebook_logo.png"
                 alt="Facdbook Logo"
@@ -35,22 +39,30 @@ export default function Footer() {
                 height={100}
               />
             </a>
-            <a href="https://www.instagram.com/caroline.clinic" target="_blank" rel="noopener noreferrer">
-                <Image
-                  src="/icons/Instagram_logo.png"
-                  alt="Instagram Logo"
-                  className="footer-instagram-logo"
-                  width={100}
-                  height={100}
+            <a
+              href="https://www.instagram.com/caroline.clinic"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/icons/Instagram_logo.png"
+                alt="Instagram Logo"
+                className="footer-instagram-logo"
+                width={100}
+                height={100}
               />
             </a>
-            <a href="https://line.me/R/ti/p/@104jsghy" target="_blank" rel="noopener noreferrer">
-                <Image
-                  src="/icons/Line_logo.png"
-                  alt="Line Logo"
-                  className="footer-line-logo"
-                  width={100}
-                  height={100}
+            <a
+              href="https://line.me/R/ti/p/@104jsghy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/icons/Line_logo.png"
+                alt="Line Logo"
+                className="footer-line-logo"
+                width={100}
+                height={100}
               />
             </a>
           </div>
@@ -59,12 +71,27 @@ export default function Footer() {
         {/* Column 3: Contact */}
         <div className="footer-column">
           <h3 className="footer-title">ติดต่อเรา</h3>
-          <p>โทร: <a href="tel:0647762422">064-776-2422</a></p>
-          <p>LINE ID: <a href="https://line.me/R/ti/p/@104jsghy" target="_blank" rel="noopener noreferrer">@Caroline.Clinic</a></p>
-            <a href="https://goo.gl/maps/your-map" target="_blank" rel="noopener noreferrer" >
-              <p >88/26 ถ.เชียงรากน้อย ต.คลองหนึ่ง อ.คลองหลวง จ.ปทุมธานี</p>              
+          <p>
+            โทร: <a href="tel:0647762422">064-776-2422</a>
+          </p>
+          <p>
+            LINE ID:{' '}
+            <a
+              href="https://line.me/R/ti/p/@104jsghy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @Caroline.Clinic
             </a>
-          
+          </p>
+          <a
+            href="https://goo.gl/maps/your-map"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p>88/26 ถ.เชียงรากน้อย ต.คลองหนึ่ง อ.คลองหลวง จ.ปทุมธานี</p>
+          </a>
+
           <p>เปิดให้บริการ 12:00-20:00 (หยุดวันจันทร์)</p>
         </div>
       </div>
@@ -72,7 +99,9 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="footer-bottom">
         <div className="footer-bar-gradient" />
-        <p>© {new Date().getFullYear()} Caroline Clinic. All rights reserved.</p>
+        <p>
+          © {new Date().getFullYear()} Caroline Clinic. All rights reserved.
+        </p>
       </div>
     </footer>
   )

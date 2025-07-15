@@ -2,6 +2,7 @@
 
 import './page.css'
 import './pageMedia.css'
+import './linear-gradient-border.css'
 import categorizedServices from './data.json'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -20,12 +21,12 @@ export default function ServicesClient() {
           {categorizedServices.map((section, index) => (
             <div key={index} className="services-category">
               <Link
-                href={`/services#category-${section.category}`}
+                href={`/services#category-${section.category.toLowerCase().replace(/\s+/g, '-').toLowerCase()}`}
                 className="category-title"
               >
                 <Image
                   src={section.image}
-                  alt="Caroline Clinic service example"
+                  alt={section.category}
                   width={150}
                   height={150}
                   className="services-example"

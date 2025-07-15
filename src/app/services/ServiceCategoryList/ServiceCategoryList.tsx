@@ -10,7 +10,7 @@ export default function ServiceCategoryList() {
       {categorizedServices.map((section, index) => (
         <div
           key={index}
-          id={`category-${section.category.toLowerCase().replace(/\s+/g, '-')}`}
+          id={`category-${section.category.toLowerCase().replace(/\s+/g, '-').toLowerCase()}`}
           className="services-category-list"
         >
           <div className="category-list-header">

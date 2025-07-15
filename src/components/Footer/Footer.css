@@ -78,13 +78,33 @@ footer {
 
 .footer-bar-gradient {
   height: 4px;
-  background: linear-gradient(90deg, #ea4c89 10%, #fdf2f8 60%, #b81e5d 100%);
+  /* Only keep ONE background property */
+  background: linear-gradient(
+    90deg,
+    #fddbee 0%,
+    #ea4c89 25%,
+    #fddbee 50%,
+    #b81e5d 100%
+  );
   border-radius: 2px 2px 0 0;
   width: 100vw;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 1px 4px 0 rgba(236, 72, 153, 0.12);
+
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  animation: footer-gradient-move 4s linear infinite;
+}
+
+@keyframes footer-gradient-move {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
 }
 
 .footer-bottom p {

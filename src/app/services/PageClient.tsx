@@ -9,8 +9,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef } from 'react'
 import appearFromBottom from '@/lib/appearFrom/bottom'
+import { useTranslation } from 'react-i18next';
 
 export default function ServicesClient() {
+  const { t } = useTranslation();
   const fromBottomRefs = useRef<Array<HTMLDivElement | null>>([])
 
   appearFromBottom(fromBottomRefs.current, 'show', 0.15)

@@ -13,17 +13,19 @@
 📄 package-lock.json
 📄 package.json
 📁 public
-  📄 Caroline-Clinic-Logo-noBG-min.png
-  📄 Caroline-Clinic-Logo-noBG-Text-min.png
   📁 icons
-    📄 example.png
+    📄 Facebook_logo.png
+    📄 image2.png
+    📄 Instagram_logo.png
+    📄 Line_logo.png
     📄 Promotion_Example.png
   📁 images
     📁 about
       📄 Caroline_Team-min.png
     📁 Hero
-      📄 HeroImage-min.png
-      📄 HeroImage2-min.png
+      📄 HeroImage.JPG
+      📄 HeroImage3.png
+      📄 HeroImage5.png
     📁 promotion
       📄 Caroline_Clinic_Promotion_1.png
       📄 Caroline_Clinic_Promotion_10.png
@@ -32,12 +34,12 @@
       📄 Caroline_Clinic_Promotion_13.png
       📄 Caroline_Clinic_Promotion_14.png
       📄 Caroline_Clinic_Promotion_15.png
-      📄 Caroline_Clinic_Promotion_16.JPG
-      📄 Caroline_Clinic_Promotion_17.JPG
-      📄 Caroline_Clinic_Promotion_18.JPG
-      📄 Caroline_Clinic_Promotion_19.JPG
+      📄 Caroline_Clinic_Promotion_16.jpg
+      📄 Caroline_Clinic_Promotion_17.jpg
+      📄 Caroline_Clinic_Promotion_18.jpg
+      📄 Caroline_Clinic_Promotion_19.jpg
       📄 Caroline_Clinic_Promotion_2.png
-      📄 Caroline_Clinic_Promotion_20.JPG
+      📄 Caroline_Clinic_Promotion_20.jpg
       📄 Caroline_Clinic_Promotion_21.png
       📄 Caroline_Clinic_Promotion_22.png
       📄 Caroline_Clinic_Promotion_23.png
@@ -65,6 +67,25 @@
       📄 Caroline_Clinic_Review_7.png
       📄 Caroline_Clinic_Review_8.png
       📄 Caroline_Clinic_Review_9.png
+    📁 services
+      📄 Service_Acne2.png
+      📄 Service_FacialCare.png
+      📄 Service_Filler.png
+      📄 Service_Health2.png
+      📄 Service_Lazer.png
+  📁 locales
+    📁 en
+      📄 translation.json
+    📁 ja
+      📄 translation.json
+    📁 th
+      📄 translation.json
+    📁 zh
+      📄 translation.json
+  📁 logo
+    📄 Caroline-Clinic-Logo-noBG-Text.svg
+    📄 Caroline-Clinic-Logo.svg
+    📄 caroline-logo-loading.svg
 📄 README.md
 📁 scripts
   📄 file-structure.txt
@@ -76,6 +97,7 @@
       📄 page.tsx
       📄 PageClient.tsx
     📁 article
+      📄 data.json
       📄 page.css
       📄 page.tsx
       📄 PageClient.tsx
@@ -99,6 +121,7 @@
       📄 page.tsx
       📄 PageClient.tsx
       📄 pageMedia.css
+      📁 PromotionList
     📁 review
       📄 data.json
       📄 page.css
@@ -107,6 +130,7 @@
       📄 pageMedia.css
     📁 services
       📄 data.json
+      📄 linear-gradient-border.css
       📄 page.css
       📄 page.tsx
       📄 PageClient.tsx
@@ -120,6 +144,16 @@
       📄 Navbar.css
       📄 Navbar.tsx
       📄 NavbarMedia.css
+  📄 i18n.js
   📁 lib
-    📄 scrolling.ts
+    📁 appearFrom
+      📄 bottom.ts
+      📄 left.ts
+      📄 right.ts
+      📄 top.ts
+    📁 loading
+      📄 caroline.tsx
+    📄 slowScrollBy.ts
+  📁 styles
+    📄 apearFrom.css
 📄 tsconfig.json

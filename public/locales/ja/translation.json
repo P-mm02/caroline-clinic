@@ -1,0 +1,85 @@
+{
+  "navbar": {
+    "home": "ホーム",
+    "services": "サービス",
+    "about": "当院について",
+    "review": "レビュー",
+    "promotion": "プロモーション",
+    "article": "ブログ",
+    "contact": "お問い合わせ"
+  },
+  "hero": {
+    "headline": "あなたらしい美しさを引き出す",
+    "subtitle": "専門医と最新技術による美と健康のクリニック",
+    "cta": "予約する"
+  },
+  "welcome": "キャロラインクリニックへようこそ！",
+  "sectionTitles": {
+    "services": "サービス一覧",
+    "about": "当院について",
+    "review": "お客様の声",
+    "promotion": "プロモーション",
+    "article": "おすすめ記事",
+    "contact": "お問い合わせ"
+  },
+  "services": {
+    "acne": {
+      "title": "ニキビ治療",
+      "desc": "最新技術によるパーソナルなニキビ対策"
+    },
+    "facial": {
+      "title": "フェイシャルケア",
+      "desc": "ディープクレンジング＆リフレッシュ"
+    },
+    "filler": {
+      "title": "フィラー・ボトックス",
+      "desc": "専門医による安全で自然な仕上がり"
+    },
+    "laser": {
+      "title": "レーザー治療",
+      "desc": "美白やシミ取りのための先進レーザー"
+    },
+    "health": {
+      "title": "健康管理",
+      "desc": "心身のためのホリスティックプログラム"
+    }
+  },
+  "reviews": {
+    "headline": "お客様の声",
+    "empty": "まだレビューがありません。最初のご感想をお寄せください！"
+  },
+  "promotions": {
+    "headline": "最新プロモーション",
+    "see_all": "すべてのプロモーションを見る",
+    "cta": "この特典を受け取る"
+  },
+  "articles": {
+    "headline": "美容と健康のブログ",
+    "see_all": "さらに記事を見る"
+  },
+  "about": {
+    "headline": "キャロラインクリニックについて",
+    "description": "キャロラインクリニックは、専門医と最新技術による総合美容・健康サービスを提供します。",
+    "team": "スタッフ紹介"
+  },
+  "contact": {
+    "headline": "お問い合わせ",
+    "phone": "電話番号",
+    "email": "メール",
+    "address": "住所",
+    "send_message": "メッセージを送信",
+    "success": "メッセージが送信されました。",
+    "error": "送信に失敗しました。再度お試しください。"
+  },
+  "footer": {
+    "copyright": "© 2025 キャロラインクリニック",
+    "privacy_policy": "プライバシーポリシー",
+    "terms_of_service": "利用規約"
+  },
+  "common": {
+    "load_more": "さらに見る",
+    "submit": "送信",
+    "cancel": "キャンセル",
+    "close": "閉じる"
+  }
+}

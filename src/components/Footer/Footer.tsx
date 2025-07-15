@@ -3,6 +3,7 @@
 import './Footer.css'
 import Link from 'next/link'
 import Image from 'next/image'
+import LanguageSwitcher from '../Navbar/LanguageSwitcher'
 
 export default function Footer() {
   return (
@@ -12,7 +13,7 @@ export default function Footer() {
         <div className="footer-column">
           <Link href="/" className="footer-logo">
             <Image
-              src="/Caroline-Clinic-Logo.svg"
+              src="/logo/Caroline-Clinic-Logo.svg"
               alt="Caroline Clinic Logo"
               className="footer-logo-img"
               width={180}
@@ -95,7 +96,7 @@ export default function Footer() {
           <p>เปิดให้บริการ 12:00-20:00 (หยุดวันจันทร์)</p>
         </div>
       </div>
-
+      <LanguageSwitcher />
       {/* Bottom bar */}
       <div className="footer-bottom">
         <div className="footer-bar-gradient" />

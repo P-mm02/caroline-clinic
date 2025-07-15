@@ -1,0 +1,85 @@
+{
+  "navbar": {
+    "home": "首页",
+    "services": "服务项目",
+    "about": "关于我们",
+    "review": "评价",
+    "promotion": "优惠活动",
+    "article": "博客",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "headline": "展现最美的自己",
+    "subtitle": "专家医生与现代科技成就美丽与健康",
+    "cta": "预约服务"
+  },
+  "welcome": "欢迎来到Caroline Clinic！",
+  "sectionTitles": {
+    "services": "我们的服务",
+    "about": "关于我们",
+    "review": "客户评价",
+    "promotion": "优惠活动",
+    "article": "推荐文章",
+    "contact": "联系我们"
+  },
+  "services": {
+    "acne": {
+      "title": "祛痘护理",
+      "desc": "采用最新技术的个性化祛痘方案"
+    },
+    "facial": {
+      "title": "面部护理",
+      "desc": "深层清洁与焕肤护理"
+    },
+    "filler": {
+      "title": "玻尿酸&肉毒素",
+      "desc": "专业医生安全自然的注射"
+    },
+    "laser": {
+      "title": "激光疗程",
+      "desc": "先进激光，美白祛斑"
+    },
+    "health": {
+      "title": "健康管理",
+      "desc": "身心健康整体调理方案"
+    }
+  },
+  "reviews": {
+    "headline": "客户评价",
+    "empty": "暂无评价，欢迎您率先留言！"
+  },
+  "promotions": {
+    "headline": "最新优惠",
+    "see_all": "查看全部优惠",
+    "cta": "领取此优惠"
+  },
+  "articles": {
+    "headline": "美丽与健康博客",
+    "see_all": "查看更多文章"
+  },
+  "about": {
+    "headline": "关于Caroline Clinic",
+    "description": "Caroline Clinic 提供由专家医生和最新科技支持的全方位美丽与健康服务。",
+    "team": "我们的团队"
+  },
+  "contact": {
+    "headline": "联系我们",
+    "phone": "电话",
+    "email": "邮箱",
+    "address": "地址",
+    "send_message": "发送信息",
+    "success": "您的信息已成功发送。",
+    "error": "发送失败，请重试。"
+  },
+  "footer": {
+    "copyright": "© 2025 Caroline Clinic 版权所有",
+    "privacy_policy": "隐私政策",
+    "terms_of_service": "服务条款"
+  },
+  "common": {
+    "load_more": "加载更多",
+    "submit": "提交",
+    "cancel": "取消",
+    "close": "关闭"
+  }
+}

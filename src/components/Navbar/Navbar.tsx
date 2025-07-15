@@ -1,20 +1,24 @@
 'use client'
 
+import '@/i18n';
 import { useState } from 'react'
 import Link from 'next/link'
 import './Navbar.css'
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const navItems = [
-  { label: 'หน้าแรก', href: '/' },
-  { label: 'บริการ', href: '/services' },
-  { label: 'เกี่ยวกับเรา', href: '/about' },
-  { label: 'รีวิว', href: '/review' },
-  { label: 'โปรโมชั่น', href: '/promotion' },
-  { label: 'บทความ', href: '/article' },
-  { label: 'ติดต่อ', href: '/contact' },
+  { label: 'home', href: '/' },
+  { label: 'services', href: '/services' },
+  { label: 'about', href: '/about' },
+  { label: 'review', href: '/review' },
+  { label: 'promotion', href: '/promotion' },
+  { label: 'article', href: '/article' },
+  { label: 'contact', href: '/contact' },
 ]
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false)
 
   
@@ -27,7 +31,7 @@ export default function Navbar() {
           className={`navbar-logo ${menuOpen ? 'hidden-move-up' : 'visible'}`}
         >
           <img
-            src="/Caroline-Clinic-Logo.svg"
+            src="/logo/Caroline-Clinic-Logo.svg"
             alt="Caroline Clinic Logo"
             className="navbar-logo-img"
           />
@@ -38,10 +42,11 @@ export default function Navbar() {
           {navItems.map(({ label, href }) => (
             <li key={href}>
               <a href={href} className="navbar-link">
-                {label}
+                {t(`navbar.${label}`)}
               </a>
             </li>
           ))}
+          <LanguageSwitcher />
         </ul>
 
         {/* Hamburger Icon */}
@@ -66,11 +71,12 @@ export default function Navbar() {
                 className="navbar-link"
                 onClick={() => setMenuOpen(false)}
               >
-                {label}
+                {t(`navbar.${label}`)}
               </a>
             </li>
           ))}
-        </ul>
+        <LanguageSwitcher />
+        </ul>        
       )}
     </header>
   )

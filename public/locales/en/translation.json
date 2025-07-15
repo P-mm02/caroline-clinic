@@ -1,0 +1,85 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "review": "Reviews",
+    "promotion": "Promotion",
+    "article": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "headline": "Reveal Your Best Self",
+    "subtitle": "Beauty and wellness by expert physicians and modern technology.",
+    "cta": "Book an Appointment"
+  },
+  "welcome": "Welcome to Caroline Clinic!",
+  "sectionTitles": {
+    "services": "Our Services",
+    "about": "About Us",
+    "review": "Customer Reviews",
+    "promotion": "Promotion",
+    "article": "Recommended Articles",
+    "contact": "Contact Us"
+  },
+  "services": {
+    "acne": {
+      "title": "Acne Treatment",
+      "desc": "Personalized acne solutions using the latest technology."
+    },
+    "facial": {
+      "title": "Facial Care",
+      "desc": "Deep cleansing and rejuvenating facials."
+    },
+    "filler": {
+      "title": "Filler & Botox",
+      "desc": "Safe, natural enhancements by certified doctors."
+    },
+    "laser": {
+      "title": "Laser Treatments",
+      "desc": "Advanced laser for skin brightening and spot removal."
+    },
+    "health": {
+      "title": "Wellness & Health",
+      "desc": "Holistic health programs for body and mind."
+    }
+  },
+  "reviews": {
+    "headline": "What Our Customers Say",
+    "empty": "No reviews yet. Be the first to leave feedback!"
+  },
+  "promotions": {
+    "headline": "Current Promotions",
+    "see_all": "View All Promotions",
+    "cta": "Claim This Offer"
+  },
+  "articles": {
+    "headline": "Beauty & Wellness Blog",
+    "see_all": "Read More Articles"
+  },
+  "about": {
+    "headline": "About Caroline Clinic",
+    "description": "Caroline Clinic offers full-range beauty and health services by expert physicians and the latest technology.",
+    "team": "Meet Our Team"
+  },
+  "contact": {
+    "headline": "Get In Touch",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "send_message": "Send Message",
+    "success": "Your message has been sent successfully.",
+    "error": "Failed to send your message. Please try again."
+  },
+  "footer": {
+    "copyright": "© 2025 Caroline Clinic. All rights reserved.",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service"
+  },
+  "common": {
+    "load_more": "Load More",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "close": "Close"
+  }
+}

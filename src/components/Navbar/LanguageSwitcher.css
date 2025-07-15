@@ -1,0 +1,36 @@
+.language-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.language-switcher-button {
+  padding: 4px 14px;
+  border-radius: 10px;
+  border: 1px solid #fbeaff;
+  background: #fff;
+  color: #b81e5d;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: all 0.16s;
+  cursor: pointer;
+  outline: none;
+}
+
+.language-switcher-button[disabled] {
+  background: linear-gradient(90deg, #fdf2f8 0%, #ffeafd 100%);
+  color: #d01264;
+  border: 1.5px solid #ea4c89;
+  opacity: 0.7;
+  cursor: not-allowed;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.language-switcher-button:not([disabled]):hover {
+  background: #fdf2f8;
+  color: #d01264;
+  border: 1.5px solid #ea4c89;
+}

@@ -23,6 +23,11 @@
   position: relative;
 }
 
+.navbar-menu{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
 /* === Logo Wrapper === */
 /* .navbar-logo {
   position: absolute;

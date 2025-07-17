@@ -10,25 +10,25 @@ export default function AdminDashboard() {
       label: 'Articles',
       value: articles.length,
       icon: '📄',
-      link: '/admin/articles',
+      link: '/admin/article',
     },
     {
       label: 'Promotions',
       value: promotions.length,
       icon: '🎉',
-      link: '/admin/promotions',
+      link: '/admin/promotion',
     },
     {
       label: 'Reviews',
       value: reviews.length,
       icon: '⭐',
-      link: '/admin/reviews',
+      link: '/admin/review',
     },
     {
       label: 'Services',
       value: services.length,
       icon: '💉',
-      link: '/admin/services',
+      link: '/admin/service',
     },
   ]
 

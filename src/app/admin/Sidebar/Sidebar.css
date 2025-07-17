@@ -11,6 +11,7 @@
   position: fixed;
   left: 0;
   top: 0;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
 }
 
 .admin-brand {
@@ -57,11 +58,35 @@
   color: #fff;
 }
 
-
+.sidebar-toggle-btn {
+  color: #22223b;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 999;
+  background: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-size: 2rem;
+  width: 4rem;
+  height: 4rem;
+  box-shadow: 0 2px 8px #0001;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidebar-toggle-btn:hover {
+  background: #ffeafd;
+}
 /* Mobile responsive */
 @media (max-width: 768px) {
   .admin-sidebar {
-    display: none;
+    transform: translateX(-100%);
     width: 90vw;
+  }
+  .admin-sidebar.show{
+    transform: translateX(0);
   }
 }

@@ -24,7 +24,44 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 1.2rem;
+  font-size: 1.5rem;
+  color: #b81e5d;
+  text-align: center;
 }
+
+.footer-column a {
+  color: #ce35ba;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;      /* remove default */
+  transition: color 0.18s, text-shadow 0.18s;
+}
+
+.footer-column a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #f64fe0 30%, #ffd6fa 100%);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(.68,-0.6,.32,1.6);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.footer-column a:hover{
+  color: #f64fe0;
+  text-shadow: 0 2px 12px #fbcfe8;
+}
+
+.footer-column a:hover::after{
+  transform: scaleX(1);
+}
+
 
 .footer-logo {
   display: flex;
@@ -89,13 +126,6 @@ footer {
 
 
 
-
-.footer-column {
-  font-size: 1.5rem;
-  color: #b81e5d;
-  text-align: center;
-}
-
 .footer-bottom {
   background: transparent;
   text-align: center;
@@ -120,7 +150,7 @@ footer {
 
   background-size: 200% 100%;
   background-position: 0% 0%;
-  animation: footer-gradient-move 4s linear infinite;
+  animation: footer-gradient-move 2s linear infinite;
 }
 
 @keyframes footer-gradient-move {

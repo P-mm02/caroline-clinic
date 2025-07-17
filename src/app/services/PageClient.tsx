@@ -47,7 +47,7 @@ export default function ServicesClient() {
                   height={150}
                   className="services-example"
                 />
-                {section.category}
+                <span>{section.category}</span>
               </Link>
             </div>
           ))}

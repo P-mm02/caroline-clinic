@@ -86,7 +86,7 @@ export default function Footer() {
             </a>
           </p>
           <a
-            href="https://goo.gl/maps/your-map"
+            href="https://maps.app.goo.gl/VxFkESDBwmqgr8Jh6"
             target="_blank"
             rel="noopener noreferrer"
           >

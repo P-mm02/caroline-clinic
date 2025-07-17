@@ -80,7 +80,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth; /* 🔁 Smooth scroll for anchor links */
-  background-color: #ffeafd;
+  background: linear-gradient(135deg, #ffeafd 0%, #fbeaff 20%, #e9f6ff 40%, #e3fff9 60%, #fffdda 80%, #ffeede 100%);
 }
 
 /* 🧹 Reset box model and spacing */

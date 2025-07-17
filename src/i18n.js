@@ -24,7 +24,7 @@ i18n
       zh: { translation: zh }
     },
     detection: {
-      order: ['localStorage', 'cookie', 'navigator', 'querystring', 'htmlTag'],
+      order: ['localStorage', 'cookie', 'querystring', 'htmlTag'],
       caches: ['localStorage', 'cookie'],
       lookupQuerystring: 'lng',
       lookupCookie: 'i18next',

@@ -57,7 +57,9 @@ export default function AdminDashboard() {
     {
       type: 'Service',
       action: 'Updated',
-      title: services[0]?.title || services[0]?.name || 'New Service',
+      // Use first service item's name if available, or fallback to the category or default
+      title:
+        services[0]?.items?.[0]?.name || services[0]?.category || 'New Service',
       time: '5 hours ago',
       icon: '💉',
     },

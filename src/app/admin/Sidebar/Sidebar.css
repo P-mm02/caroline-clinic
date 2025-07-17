@@ -49,7 +49,7 @@
   font-weight: 600;
   padding: 0.4rem 1.1rem;
   border-radius: 0.7rem;
-  box-shadow: 0 1px 6px #ffbaba1a;
+  box-shadow: 0 4px 8px #c1505029;
   transition: all 0.3s;
 }
 .admin-logout:hover {
@@ -63,10 +63,5 @@
   .admin-sidebar {
     display: none;
     width: 90vw;
-  }
-  .admin-brand {
-  }
-  .admin-nav-link,
-  .admin-logout {
   }
 }

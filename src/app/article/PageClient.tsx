@@ -5,8 +5,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import articles from './data.json'
 
+type Props = {
+  limit?: number
+}
 
-export default function ArticleClient() {
+export default function ArticleClient({ limit }: Props) {
+  // Only show [limit] articles if limit is given, otherwise show all
+  const visibleArticles = limit ? articles.slice(0, limit) : articles
+
   return (
     <section id="article" className="article-section">
       <div className="article-container">
@@ -18,7 +24,7 @@ export default function ArticleClient() {
         </p>
 
         <div className="article-list">
-          {articles.map((article) => (
+          {visibleArticles.map((article) => (
             <Link
               key={article.id}
               href={article.href}
@@ -39,7 +45,7 @@ export default function ArticleClient() {
                   {new Date(article.date).toLocaleDateString('th-TH', {
                     year: 'numeric',
                     month: 'short',
-                    day: 'numeric'
+                    day: 'numeric',
                   })}
                 </span>
                 <span className="article-card-author">{article.author}</span>
@@ -47,13 +53,22 @@ export default function ArticleClient() {
               <h3 className="article-card-title">{article.title}</h3>
               <p className="article-card-desc">{article.description}</p>
               <div className="article-card-tags">
-                {article.tags.map(tag => (
-                  <span key={tag} className="article-card-tag">{tag}</span>
+                {article.tags.map((tag: string) => (
+                  <span key={tag} className="article-card-tag">
+                    {tag}
+                  </span>
                 ))}
               </div>
             </Link>
           ))}
         </div>
+        {limit && articles.length > limit && (
+          <div className="article-more-wrapper">
+            <Link href="/article" className="article-more-button">
+              ดูบทความทั้งหมด
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )

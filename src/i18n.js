@@ -12,8 +12,9 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    lng: 'th', // Default language
-    fallbackLng: 'en',
+    fallbackLng: 'th',
+    supportedLngs: ['en', 'th', 'ja', 'zh'],
+    nonExplicitSupportedLngs: true,    
     debug: process.env.NODE_ENV === 'development',
     interpolation: { escapeValue: false },
     resources: {
@@ -23,8 +24,8 @@ i18n
       zh: { translation: zh }
     },
     detection: {
-      order: ['navigator', 'cookie', 'localStorage', 'querystring', 'htmlTag'],
-      caches: ['cookie', 'localStorage'],
+      order: ['localStorage', 'cookie', 'navigator', 'querystring', 'htmlTag'],
+      caches: ['localStorage', 'cookie'],
       lookupQuerystring: 'lng',
       lookupCookie: 'i18next',
       lookupLocalStorage: 'i18nextLng'

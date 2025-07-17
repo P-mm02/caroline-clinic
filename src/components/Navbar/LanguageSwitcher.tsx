@@ -11,6 +11,8 @@ export default function LanguageSwitcher() {
     { code: 'zh', label: 'ZH' },
   ];
 
+  const currentBaseLng = i18n.language.split('-')[0];
+
   return (
     <div className="language-switcher">
       {languages.map(lang => (
@@ -18,7 +20,7 @@ export default function LanguageSwitcher() {
           key={lang.code}
           className="language-switcher-button"
           onClick={() => i18n.changeLanguage(lang.code)}
-          disabled={i18n.language === lang.code}
+          disabled={currentBaseLng === lang.code}
         >
           {lang.label}
         </button>

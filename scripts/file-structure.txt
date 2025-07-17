@@ -8,6 +8,7 @@
   📄 state.json
   📁 v1
     📁 functions
+📄 middleware.ts
 📄 next-env.d.ts
 📄 next.config.ts
 📄 package-lock.json
@@ -93,50 +94,33 @@
   📄 generate-tree.js
 📁 src
   📁 app
-    📁 about
-      📄 page.css
+    📁 (site)
+      📁 about
+      📁 article
+      📁 contact
+      📁 Hero
+      📄 layout.tsx
+      📄 page.module.css
       📄 page.tsx
       📄 PageClient.tsx
-    📁 article
-      📄 data.json
+      📁 promotion
+      📁 review
+      📁 services
+    📁 admin
+      📁 article
+      📄 layout.css
+      📄 layout.tsx
+      📁 login
+      📁 Navbar
       📄 page.css
       📄 page.tsx
-      📄 PageClient.tsx
-    📁 contact
-      📄 page.css
-      📄 page.tsx
-      📄 PageClient.tsx
-    📄 favicon.ico
-    📄 globals.css
-    📁 Hero
-      📄 Hero.css
-      📄 Hero.tsx
-      📄 HeroMedia.css
+      📁 promotion
+      📁 review
+      📁 service
+      📁 Sidebar
+    📁 api
+      📁 admin-auth
     📄 layout.tsx
-    📄 page.module.css
-    📄 page.tsx
-    📄 PageClient.tsx
-    📁 promotion
-      📄 data.json
-      📄 page.css
-      📄 page.tsx
-      📄 PageClient.tsx
-      📄 pageMedia.css
-      📁 PromotionList
-    📁 review
-      📄 data.json
-      📄 page.css
-      📄 page.tsx
-      📄 PageClient.tsx
-      📄 pageMedia.css
-    📁 services
-      📄 data.json
-      📄 linear-gradient-border.css
-      📄 page.css
-      📄 page.tsx
-      📄 PageClient.tsx
-      📄 pageMedia.css
-      📁 ServiceCategoryList
   📁 components
     📁 Footer
       📄 Footer.css
@@ -154,9 +138,11 @@
       📄 left.ts
       📄 right.ts
       📄 top.ts
+    📄 cookies.ts
     📁 loading
       📄 caroline.tsx
     📄 slowScrollBy.ts
   📁 styles
     📄 apearFrom.css
+    📄 globals.css
 📄 tsconfig.json

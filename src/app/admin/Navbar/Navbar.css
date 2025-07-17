@@ -1,0 +1,84 @@
+.admin-navbar {
+  width: 100%;
+  height: 4rem;
+  background: #232346;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  box-shadow: 0 2px 8px rgba(52, 0, 80, 0.07);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+.admin-navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.admin-navbar-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ff99cc;
+}
+
+.admin-navbar-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 18px;
+  background: #2a2a49;
+  transition: background 0.2s;
+}
+
+.admin-navbar-user:hover {
+  background: #373764;
+}
+
+.admin-navbar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+}
+
+.admin-navbar-username {
+  font-size: 1.04rem;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .admin-navbar {
+    padding: 0 0.7rem;
+    height: 48px;
+  }
+  .admin-navbar-logo {
+    font-size: 1rem;
+  }
+  .admin-navbar-avatar {
+    width: 26px;
+    height: 26px;
+  }
+  .admin-navbar-username {
+    display: none;
+  }
+}

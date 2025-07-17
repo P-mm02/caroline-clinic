@@ -1,0 +1,173 @@
+.admin-dashboard-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.admin-dashboard-branding {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.admin-dashboard-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(236,72,153,0.08);
+}
+.admin-dashboard-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ec4899;
+  letter-spacing: 1px;
+}
+.admin-dashboard-welcome {
+  color: #666;
+  font-size: 1.05rem;
+}
+.admin-dashboard-status {
+  color: #2ecc40;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.online-dot {
+  width: 10px;
+  height: 10px;
+  background: #21d127;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Quick Actions */
+.admin-dashboard-actions {
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.admin-dashboard-action-card {
+  min-width: 12rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(236, 72, 153, 0.07);
+  padding: 1rem 2rem;
+  text-align: center;
+  color: #22223b;
+  font-weight: 500;
+  transition: box-shadow 0.22s, transform 0.16s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.admin-dashboard-action-card:hover {
+  box-shadow: 0 6px 22px rgba(236, 72, 153, 0.12);
+  transform: translateY(-4px) scale(1.04);
+  color: #ec4899;
+}
+.admin-dashboard-action-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.3rem;
+}
+.admin-dashboard-action-value {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #d94696;
+  line-height: 1;
+}
+.admin-dashboard-action-label {
+  font-size: 1.5rem;
+  color: #444;
+  font-weight: 600;
+}
+
+/* Main area split: activity and help/info */
+.admin-dashboard-main {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.admin-dashboard-activity,
+.admin-dashboard-help {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(236, 72, 153, 0.06);
+  padding: 1.4rem 1.3rem;
+  flex: 1 1 320px;
+  min-width: 270px;
+}
+
+.admin-dashboard-activity h3,
+.admin-dashboard-help h3 {
+  margin-top: 0;
+  margin-bottom: 1em;
+  color: #ed4e85;
+  font-size: 1.16rem;
+  font-weight: 700;
+}
+
+.admin-dashboard-activity ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.admin-dashboard-activity li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #f5e0ee;
+  font-size: 1.01rem;
+  color: #444;
+}
+.admin-dashboard-activity li:last-child {
+  border-bottom: none;
+}
+.activity-type {
+  font-size: 1.3rem;
+}
+.activity-label {
+  flex: 1;
+}
+.activity-time {
+  color: #b18aa8;
+  font-size: 0.96rem;
+}
+
+/* Help/Info section */
+.admin-dashboard-help ul {
+  margin: 0;
+  padding-left: 1.2em;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.admin-dashboard-help a {
+  color: #ec4899;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .admin-dashboard-main {
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 1.6rem;
+  }
+}

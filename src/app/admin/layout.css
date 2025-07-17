@@ -1,0 +1,42 @@
+/* === Admin Layout Root === */
+.admin-root {
+  min-height: 100vh;
+  width: 100vw;
+  background: #f6f7fb;
+}
+
+/* Main area (content beside the sidebar) */
+.admin-main {
+  background: #f6f7fb;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.admin-main section{
+  width: calc(100% - 20rem);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Page section header inside main */
+.admin-header {
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin: 2rem 0;
+  letter-spacing: 1px;
+  color: #22223b;
+}
+
+/* Responsive: stack sidebar and main vertically for mobile */
+@media (max-width: 768px) {
+  .admin-root {
+    flex-direction: column;
+  }
+  .admin-main section{
+    width: 100%;
+}
+}

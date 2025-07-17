@@ -1,9 +1,4 @@
-import './globals.css'
-import Navbar from '@/components/Navbar/Navbar'
-import '@/components/Navbar/Navbar.css'
-import '@/components/Navbar/NavbarMedia.css'
-import Footer from '@/components/Footer/Footer'
-import '@/components/Footer/Footer.css'
+// src/app/layout.tsx
 
 export default function RootLayout({
   children,
@@ -12,11 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="th">
-      <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

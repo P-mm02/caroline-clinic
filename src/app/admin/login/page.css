@@ -1,0 +1,77 @@
+/* Container for centering */
+.admin-login-container {
+  height: calc(100vh - 4rem);
+  background: linear-gradient(135deg, #ffeafd 0%, #e3fff9 100%);
+  justify-content: center;
+}
+
+/* The form box */
+.admin-login-form {
+  background: #fff;
+  margin-top: -2rem;
+  padding: 2.4rem 2.2rem 1.8rem 2.2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 32px rgba(44,62,80,0.08), 0 1.5px 8px rgba(101,163,13,0.12);
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.admin-login-form h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  color: #7c54c7;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.admin-login-form input[type="text"],
+.admin-login-form input[type="password"] {
+    color:rgb(56, 0, 124);
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.8rem;
+  border: 1.5px solid #ede9fe;
+  outline: none;
+  background: #f7f6fa;
+  transition: border-color 0.2s;
+}
+
+.admin-login-form input:focus {
+  border-color: #b79af7;
+}
+
+.admin-login-form button[type="submit"] {
+  background: linear-gradient(90deg, #a98cf7 0%, #6a71e9 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 0.8rem;
+  padding: 0.8rem 0;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.admin-login-form button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-login-form .admin-login-error {
+  color: #e53e3e;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .admin-login-form {
+    padding: 1.2rem 0.7rem;
+    max-width: 97vw;
+    border-radius: 1.1rem;
+  }
+}

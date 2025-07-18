@@ -15,11 +15,13 @@ export default function AdminSidebar() {
       {/* Sidebar Toggle Button */}
       <button
         className="sidebar-toggle-btn"
-        aria-label={isOpenSidebar ? 'Close sidebar' : 'Open sidebar'}
+        aria-label={'isOpenSidebar'}
         onClick={toggleSidebar}
       >
         {isOpenSidebar ? '✖' : '☰'}
       </button>
+        <div className={`sidebar-overlay${isOpenSidebar ? ' show' : ''}`} onClick={toggleSidebar}></div>
+
       <aside className={`admin-sidebar${isOpenSidebar ? ' show' : ''}`}>
         <div className="admin-brand">Caroline Admin</div>
         <nav className="admin-nav">

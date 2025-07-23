@@ -10,8 +10,8 @@
   width: 4rem;
   height: 3rem;
   border-radius: 10px;
-  border: 1.5px solid #fbeaff;
-  background: rgb(255, 255, 255, 0.5);
+  border: 2px solid #fbeaff;
+  background: transparent;
   transition: all 0.16s;
   cursor: pointer;
   outline: none;
@@ -23,13 +23,12 @@
 }
 
 .language-switcher-button[disabled] {
-  border: 1.5px solid #ea4c89;
+  border: 2px solid #d01264b8;
   opacity: 0.7;
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .language-switcher-button:not([disabled]):hover {
-  color: #d01264;
-  border: 1.5px solid #ea4c89;
+  border: 2px solid #d01264b8;
 }

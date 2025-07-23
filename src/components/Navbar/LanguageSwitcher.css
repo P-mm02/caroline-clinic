@@ -9,26 +9,29 @@
 .language-switcher-button {
   width: 4rem;
   height: 3rem;
-  border-radius: 10px;
-  border: 2px solid #fbeaff;
-  background: transparent;
+  border-radius: 0.5rem;
+  border: none;
   transition: all 0.16s;
   cursor: pointer;
   outline: none;
   box-shadow: 0 2px 8px 0 rgba(40, 38, 70, 0.10);
+  overflow: hidden;
 }
 .language-switcher-button img{
   width: 100%;
   height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .language-switcher-button[disabled] {
-  border: 2px solid #d01264b8;
-  opacity: 0.7;
+  border: 2px solid #d01264;
+  opacity: 0.4;
   cursor: not-allowed;
   pointer-events: none;
+  transform: scale(1.1);
 }
 
 .language-switcher-button:not([disabled]):hover {
-  border: 2px solid #d01264b8;
+  transform: scale(1.1) translateY(-0.5rem);
 }

@@ -19,9 +19,7 @@ const navItems = [
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
-  const [menuOpen, setMenuOpen] = useState(false)
-
-  
+  const [menuOpen, setMenuOpen] = useState(false)  
 
   return (
     <header className="navbar">

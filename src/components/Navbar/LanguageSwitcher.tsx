@@ -5,26 +5,26 @@ export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   const languages = [
-    { code: 'en', label: 'EN' },
-    { code: 'th', label: 'TH' },
-    { code: 'ja', label: 'JA' },
-    { code: 'zh', label: 'ZH' },
-  ];
+    { code: 'en', label: 'EN', image: '/flags/en-USA.svg' },
+    { code: 'th', label: 'TH', image: '/flags/th-Thailand.svg' },
+    { code: 'ja', label: 'JA', image: '/flags/ja-Japan.svg' },
+    { code: 'zh', label: 'ZH', image: '/flags/zh-China.svg' },
+  ]
 
   const currentBaseLng = i18n.language.split('-')[0];
 
   return (
     <div className="language-switcher">
-      {languages.map(lang => (
+      {languages.map((lang) => (
         <button
           key={lang.code}
           className="language-switcher-button"
           onClick={() => i18n.changeLanguage(lang.code)}
           disabled={currentBaseLng === lang.code}
         >
-          {lang.label}
+          <img src={lang.image} alt={lang.image} />
         </button>
       ))}
     </div>
-  );
+  )
 }

@@ -2,20 +2,11 @@
 
 import { useState } from 'react'
 import './AdminArticleTable.css'
-
-type Article = {
-  id: string
-  title: string
-  description: string
-  image: string
-  date: string
-  author: string
-  tags: string[]
-  href: string
-}
+import type { ArticleType } from '@/types/ArticleType'
+import Link from 'next/link'
 
 type Props = {
-  articles: Article[]
+  articles: (ArticleType & { _id: string })[]
 }
 
 type SortKey = 'title' | 'author' | 'date'
@@ -65,7 +56,7 @@ export default function AdminArticleTable({ articles: articlesRaw }: Props) {
               Title{getArrow('title')}
             </th>
             <th
-              className="sortable-th"
+              className="sortable-th DW768-display-none"
               onClick={() => handleSort('author')}
               style={{ cursor: 'pointer' }}
             >
@@ -78,30 +69,23 @@ export default function AdminArticleTable({ articles: articlesRaw }: Props) {
             >
               Date{getArrow('date')}
             </th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {articles.map((a, i) => (
-            <tr key={i + 1}>
+            <tr
+              key={a._id}
+              className="admin-article-row"
+              style={{ cursor: 'pointer' }}
+              onClick={() =>
+                (window.location.href = `/admin/articles/edit/${a._id}`)
+              }
+              title="Edit article"
+            >
               <td>{i + 1}</td>
-              <td>{a.title}</td>
-              <td>{a.author}</td>
+              <td className="text-left">{a.title}</td>
+              <td className="DW768-display-none text-left">{a.author}</td>
               <td>{new Date(a.date).toLocaleDateString('th-TH')}</td>
-              <td>
-                <a
-                  href={`/admin/articles/edit/${a.id}`}
-                  className="admin-article-action"
-                >
-                  Edit
-                </a>
-                <a
-                  href="#"
-                  className="admin-article-action admin-article-action-danger"
-                >
-                  Delete
-                </a>
-              </td>
             </tr>
           ))}
         </tbody>

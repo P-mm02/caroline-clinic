@@ -20,28 +20,55 @@ export default function AdminSidebar() {
       >
         {isOpenSidebar ? '✖' : '☰'}
       </button>
-        <div className={`sidebar-overlay${isOpenSidebar ? ' show' : ''}`} onClick={toggleSidebar}></div>
+      <div
+        className={`sidebar-overlay${isOpenSidebar ? ' show' : ''}`}
+        onClick={toggleSidebar}
+      ></div>
 
       <aside className={`admin-sidebar${isOpenSidebar ? ' show' : ''}`}>
-        <div className="admin-brand">Caroline Admin</div>
+        <div className="admin-brand">Admin Panel</div>
         <nav className="admin-nav">
-          <Link href="/admin" className="admin-nav-link">
+          <Link
+            href="/admin"
+            className="admin-nav-link"
+            onClick={toggleSidebar}
+          >
             Home
           </Link>
-          <Link href="/admin/article" className="admin-nav-link">
+          <Link
+            href="/admin/article"
+            className="admin-nav-link"
+            onClick={toggleSidebar}
+          >
             Articles
           </Link>
-          <Link href="/admin/review" className="admin-nav-link">
+          <Link
+            href="/admin/review"
+            className="admin-nav-link"
+            onClick={toggleSidebar}
+          >
             Reviews
           </Link>
-          <Link href="/admin/promotion" className="admin-nav-link">
+          <Link
+            href="/admin/promotion"
+            className="admin-nav-link"
+            onClick={toggleSidebar}
+          >
             Promotions
           </Link>
-          <Link href="/admin/service" className="admin-nav-link">
+          <Link
+            href="/admin/service"
+            className="admin-nav-link"
+            onClick={toggleSidebar}
+          >
             Services
           </Link>
           <div className="admin-nav-separator" />
-          <Link href="/admin/logout" className="admin-logout">
+          <Link
+            href="/admin/logout"
+            className="admin-logout"
+            onClick={toggleSidebar}
+          >
             Logout
           </Link>
         </nav>

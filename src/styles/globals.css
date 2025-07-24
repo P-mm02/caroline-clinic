@@ -55,7 +55,7 @@ html {
   html {
     font-size: 13px !important; /* 1rem = 14px on tablets */
   }
-  .DW760-display-none {
+  .DW768-display-none {
     display: none !important;
   }
   .display-grid-column{
@@ -103,6 +103,9 @@ a {
 /* 🎯 Utility classes */
 .text-center {
   text-align: center !important;
+}
+.text-left {
+  text-align: left !important;
 }
 
 /* 📧 Wrap long text like email or address */

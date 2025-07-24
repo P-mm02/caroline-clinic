@@ -1,16 +1,17 @@
-.admin-article-list {
-}
 .admin-article-title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #ec4899;
   margin-bottom: 0.5rem;
 }
 .admin-article-desc {
   color: #666;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
+
+
 .admin-article-table-wrap {
+  width: 100%;
   border-radius: 8px;
   margin-bottom: 2rem;
 }
@@ -21,12 +22,13 @@
   box-shadow: 0 1px 8px rgba(236, 72, 153, 0.05);
 }
 .admin-article-table th, .admin-article-table td {
-  padding: 0.85em 1em;
+  padding: 1rem 0.2rem;
   border-bottom: 1px solid #f2d4e3;
   text-align: left;
-  font-size: 1.02rem;
+  font-size: 1.4rem;
 }
 .admin-article-table th {
+  text-align: center;
   background: #fae9f3;
   color: #ae2d6d;
   font-weight: 600;
@@ -46,17 +48,12 @@
 .admin-article-action:hover {
   color: #ec4899;
 }
-.admin-article-action-danger {
-  color: #d94646;
-}
-.admin-article-action-danger:hover {
-  color: #ec4899;
-}
 .admin-article-add-btn {
-  padding: 0.7em 1.4em;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
   background: #ec4899;
   color: #fff;
-  border-radius: 6px;
+  border-radius: 0.5rem;
   font-weight: 600;
   margin: 2rem 0;
   box-shadow: 0 1px 8px rgba(236, 72, 153, 0.08);
@@ -75,15 +72,25 @@
   text-decoration: underline;
 }
 
+.admin-article-row {  
+  cursor: pointer;
+  box-shadow: 0 1px 12px rgba(236,72,153,0.10);
+  transition: background 0.16s, box-shadow 0.16s;
+}
+.admin-article-row:hover,
+.admin-article-row:focus {
+  background: #fff0f7;
+  box-shadow: 0 4px 12px rgba(236,72,153,0.10);
+  outline: none;
+}
+.admin-article-row:active {
+  background: #fae1ee;
+}
+
 
 /* Mobile */
 @media (max-width: 768px) {
-  .admin-article-title {
-    font-size: 1.15rem;
-  }
-  .admin-article-table th,
-  .admin-article-table td {
-    padding: 0.62em 0.5em;
-    font-size: 0.98rem;
+  .admin-article-list {
+    padding: 0.5rem !important;
   }
 }

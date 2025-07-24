@@ -23,7 +23,6 @@ export default function PageClient() {
   const [loading, setLoading] = useState(false) // Submission loading state
   const [error, setError] = useState('') // For displaying error messages
   const [success, setSuccess] = useState('') // For displaying success messages
-  const [imgError, setImgError] = useState(false) // For failed image preview
 
   const router = useRouter() // Next.js hook for navigation
 
@@ -108,7 +107,6 @@ export default function PageClient() {
               value={contentImg}
               onChange={(e) => {
                 setContentImg(e.target.value) // update image input value
-                setImgError(false) // reset preview error if typing again
               }}
             />
             <textarea
@@ -126,8 +124,7 @@ export default function PageClient() {
                   contentImg,
                   contentText,
                   setContentImg,
-                  setContentText,
-                  setImgError
+                  setContentText
                 )
               }
               disabled={!contentImg && !contentText} // disable if both fields are empty
@@ -135,19 +132,7 @@ export default function PageClient() {
               Add Row
             </button>
           </div>
-          {/* Show image preview if image URL provided and no error */}
-          {contentImg && !imgError && (
-            <img
-              src={contentImg}
-              alt="Preview"
-              className="content-img-preview"
-              onError={() => setImgError(true)} // Set error if image fails to load
-            />
-          )}
-          {/* If preview failed, show error */}
-          {imgError && (
-            <div className="form-error">Image preview failed to load.</div>
-          )}
+          
           {/* Show list of added content rows */}
           {form.contents.length > 0 && (
             <ul className="content-list">

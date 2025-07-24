@@ -24,8 +24,7 @@ export function handleAddContent(
   contentImg: string,
   contentText: string,
   setContentImg: (v: string) => void,
-  setContentText: (v: string) => void,
-  setImgError: (v: boolean) => void
+  setContentText: (v: string) => void
 ) {
   if (!contentImg && !contentText) return // Do nothing if both fields empty
 
@@ -36,7 +35,6 @@ export function handleAddContent(
   })
   setContentImg('')
   setContentText('')
-  setImgError(false) // Clear any preview error
 }
 
 /**

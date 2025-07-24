@@ -22,7 +22,7 @@ export default function AdminSidebar() {
       </button>
       <div
         className={`sidebar-overlay${isOpenSidebar ? ' show' : ''}`}
-        onClick={toggleSidebar}
+        onClick={() => setIsOpenSidebar(false)}
       ></div>
 
       <aside className={`admin-sidebar${isOpenSidebar ? ' show' : ''}`}>
@@ -31,35 +31,35 @@ export default function AdminSidebar() {
           <Link
             href="/admin"
             className="admin-nav-link"
-            onClick={toggleSidebar}
+            onClick={() => setIsOpenSidebar(false)}
           >
             Home
           </Link>
           <Link
             href="/admin/article"
             className="admin-nav-link"
-            onClick={toggleSidebar}
+            onClick={() => setIsOpenSidebar(false)}
           >
             Articles
           </Link>
           <Link
             href="/admin/review"
             className="admin-nav-link"
-            onClick={toggleSidebar}
+            onClick={() => setIsOpenSidebar(false)}
           >
             Reviews
           </Link>
           <Link
             href="/admin/promotion"
             className="admin-nav-link"
-            onClick={toggleSidebar}
+            onClick={() => setIsOpenSidebar(false)}
           >
             Promotions
           </Link>
           <Link
             href="/admin/service"
             className="admin-nav-link"
-            onClick={toggleSidebar}
+            onClick={() => setIsOpenSidebar(false)}
           >
             Services
           </Link>
@@ -67,7 +67,7 @@ export default function AdminSidebar() {
           <Link
             href="/admin/logout"
             className="admin-logout"
-            onClick={toggleSidebar}
+            onClick={() => setIsOpenSidebar(false)}
           >
             Logout
           </Link>

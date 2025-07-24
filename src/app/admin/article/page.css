@@ -32,6 +32,7 @@
   font-weight: 600;
 }
 .admin-article-table td {
+  text-align: center;
   color: #333;
 }
 .admin-article-action {

@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   )
   if (user) {
     const response = NextResponse.json({ ok: true, role: user.role })
-    setAuthCookie(response, 'authenticated', user.role, 60 * 5)
+    setAuthCookie(response, 'authenticated', user.role, 60 * 60)
     return response
   }
   return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })

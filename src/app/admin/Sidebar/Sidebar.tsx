@@ -4,7 +4,7 @@ import { useState } from 'react'
 import './Sidebar.css'
 
 export default function AdminSidebar() {
-  const [isOpenSidebar, setIsOpenSidebar] = useState(true)
+  const [isOpenSidebar, setIsOpenSidebar] = useState(false)
 
   function toggleSidebar() {
     setIsOpenSidebar((prev) => !prev)

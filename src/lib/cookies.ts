@@ -5,7 +5,7 @@ export function setAuthCookie(
   response: NextResponse,
   value: string,
   role: string | null,
-  maxAge: number = 60 * 5 // default 5 min
+  maxAge: number = 60 * 60 // 1hr
 ) {
   // Set or remove the login cookie
   response.cookies.set('admin-login', value, {

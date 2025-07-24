@@ -29,7 +29,7 @@
 }
 
 .article-card {
-  max-width: 100vw;
+  max-width: 94vw;
   width: 40rem;
   background: #fff;
   border-radius: 1.7rem;
@@ -89,23 +89,6 @@
   font-size: 1.2rem;
 }
 
-.article-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin: 1rem;
-}
-
-.article-card-tag {
-  display: inline-block;
-  background: linear-gradient(90deg, #fce7f3 80%, #fff);
-  color: #ea4c89;
-  font-size: 1.2rem;
-  border-radius: 1.3rem;
-  padding: 0.2rem 1rem;
-  font-weight: 500;
-  border: 1px solid #fad6ee;
-}
 
 .article-more-wrapper{
   margin: 2rem 0;

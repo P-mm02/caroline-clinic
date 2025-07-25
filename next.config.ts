@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   images: {
     domains: [
       'images.unsplash.com',
-      'images.pexels.com', // ← Add this line
+      'images.pexels.com',
+      'res.cloudinary.com', // ✅ Allow Cloudinary images
     ],
   },
 }

@@ -16,17 +16,26 @@
 .admin-sidebar {
   width: 20rem;
   height: 100vh;
+  overflow: auto;
   background: #22223b;
   color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 8rem 0rem;
+  padding: 8rem 0 1rem 0;
   gap: 2rem;
   position: fixed;
   left: 0;
   top: 0;
   z-index: 50;
   transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+.admin-sidebar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.admin-sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
 }
 
 .admin-brand {
@@ -65,7 +74,8 @@
   background: #ff2f2f;
   font-weight: 600;
   font-size: 2rem;
-  padding: 0.4rem 1.1rem;
+  padding: 0.5rem 1rem;
+  margin: 0 1rem;
   border-radius: 0.7rem;
   box-shadow: 0 4px 8px #c1505029;
   transition: all 0.3s;

@@ -41,29 +41,12 @@ footer {
   transition: color 0.18s, text-shadow 0.18s;
 }
 
-.footer-column a::after {
-  content: "";
-  position: absolute;
-  left: 0; bottom: -2px;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #f64fe0 30%, #ffd6fa 100%);
-  border-radius: 2px;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s cubic-bezier(.68,-0.6,.32,1.6);
-  opacity: 0.5;
-  pointer-events: none;
-}
 
 .footer-column a:hover{
   color: #f64fe0;
   text-shadow: 0 2px 12px #fbcfe8;
 }
 
-.footer-column a:hover::after{
-  transform: scaleX(1);
-}
 
 
 .footer-logo {
@@ -94,7 +77,7 @@ footer {
   z-index: 1;
 }
 
-.footer-logo-img:hover {
+.footer-logo:hover {
   box-shadow: 0 14px 24px rgba(0,0,0,0.15);
   transform: scale(1.05) translateY(-4px);
   transition: box-shadow 0.25s, transform 0.25s;

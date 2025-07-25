@@ -1,22 +1,19 @@
 import { NextResponse } from 'next/server'
-import Article from '@/models/Article'
 import { connectToDB } from '@/lib/mongoose'
+import Article from '@/models/Article'
 
 export async function GET(
   _req: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  try {
-    await connectToDB()
-    const article = await Article.findById(params.id).lean()
+  const { id } = await context.params
 
-    if (!article) {
-      return NextResponse.json({ error: 'Not found' }, { status: 404 })
-    }
+  await connectToDB()
+  const article = await Article.findById(id).lean()
 
-    return NextResponse.json(article)
-  } catch (err) {
-    console.error('API Error:', err)
-    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+  if (!article) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
   }
+
+  return NextResponse.json(article)
 }

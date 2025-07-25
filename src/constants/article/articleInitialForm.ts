@@ -1,11 +1,10 @@
-import type { ArticleType } from '@/types/ArticleType'
+import type { ArticleFormStateWithFile } from '@/types/ArticleFormState'
 
-export const articleInitialForm: Omit<ArticleType, 'href'> & { href?: string } =
-  {
-    title: '',
-    description: '',
-    image: '',
-    date: '',
-    author: '',
-    contents: [],
-  }
+export const articleInitialForm: ArticleFormStateWithFile = {
+  title: '',
+  description: '',
+  image: '',
+  date: '',
+  author: '',
+  contents: [{ image: '', text: '', file: null }],
+}

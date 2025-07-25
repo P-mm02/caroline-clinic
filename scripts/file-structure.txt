@@ -1,3 +1,4 @@
+📄 .env.local
 📄 .gitignore
 📁 .netlify
   📁 blobs-serve
@@ -13,6 +14,11 @@
 📄 package-lock.json
 📄 package.json
 📁 public
+  📁 flags
+    📄 en-USA.svg
+    📄 ja-Japan.svg
+    📄 th-Thailand.svg
+    📄 zh-China.svg
   📁 icons
     📄 Facebook_logo.png
     📄 image2.png
@@ -22,6 +28,7 @@
   📁 images
     📁 about
       📄 Caroline_Team-min.png
+    📁 contact
     📁 Hero
       📄 HeroImage.JPG
       📄 HeroImage3.png
@@ -34,12 +41,12 @@
       📄 Caroline_Clinic_Promotion_13.png
       📄 Caroline_Clinic_Promotion_14.png
       📄 Caroline_Clinic_Promotion_15.png
-      📄 Caroline_Clinic_Promotion_16.jpg
-      📄 Caroline_Clinic_Promotion_17.jpg
-      📄 Caroline_Clinic_Promotion_18.jpg
-      📄 Caroline_Clinic_Promotion_19.jpg
+      📄 Caroline_Clinic_Promotion_16.JPG
+      📄 Caroline_Clinic_Promotion_17.JPG
+      📄 Caroline_Clinic_Promotion_18.JPG
+      📄 Caroline_Clinic_Promotion_19.JPG
       📄 Caroline_Clinic_Promotion_2.png
-      📄 Caroline_Clinic_Promotion_20.jpg
+      📄 Caroline_Clinic_Promotion_20.JPG
       📄 Caroline_Clinic_Promotion_21.png
       📄 Caroline_Clinic_Promotion_22.png
       📄 Caroline_Clinic_Promotion_23.png
@@ -113,9 +120,14 @@
       📁 Navbar
       📄 page.css
       📄 page.tsx
+      📁 promotion
+      📁 review
+      📁 service
       📁 Sidebar
     📁 api
       📁 admin
+      📁 article
+      📁 test
     📄 layout.tsx
   📁 components
     📁 Footer
@@ -127,6 +139,11 @@
       📄 Navbar.css
       📄 Navbar.tsx
       📄 NavbarMedia.css
+  📁 constants
+    📁 article
+      📄 articleInitialForm.ts
+  📁 data
+    📄 article.json
   📄 i18n.js
   📁 lib
     📁 appearFrom
@@ -137,9 +154,16 @@
     📄 cookies.ts
     📁 loading
       📄 caroline.tsx
+    📄 mongoose.ts
     📄 slowScrollBy.ts
   📄 middleware.ts
+  📁 models
+    📄 Article.ts
   📁 styles
     📄 apearFrom.css
     📄 globals.css
+  📁 types
+    📄 ArticleFormState.ts
+    📄 ArticleType.ts
+    📄 utils.ts
 📄 tsconfig.json

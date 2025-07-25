@@ -7,18 +7,17 @@ import './page.css' // Import page-specific CSS
 import { articleInitialForm } from '@/constants/article/articleInitialForm' // Initial form state (constant object)
 import {
   handleChange,
-  handleAddContent,
   handleRemoveContent,
   handleSubmit,
+  addContentInputRow,
+  handleContentChange,
+  handleUploadContentImage,
 } from './function' // Import external handler functions for form logic
 
 export default function PageClient() {
   // ---- STATE HOOKS ----
   const [form, setForm] = useState(articleInitialForm)
   // Main form state (title, description, image, date, author, contents)
-
-  const [contentImg, setContentImg] = useState('') // For new content row image input
-  const [contentText, setContentText] = useState('') // For new content row text input
 
   const [loading, setLoading] = useState(false) // Submission loading state
   const [error, setError] = useState('') // For displaying error messages
@@ -35,17 +34,7 @@ export default function PageClient() {
       <form
         onSubmit={(e) =>
           // Custom submit handler from ./function, pass all required states and setters
-          handleSubmit(
-            e,
-            form,
-            setError,
-            setSuccess,
-            setLoading,
-            setForm,
-            setContentImg,
-            setContentText,
-            router
-          )
+          handleSubmit(e, form, setError, setSuccess, setLoading, router)
         }
         className="admin-article-form"
       >
@@ -55,11 +44,11 @@ export default function PageClient() {
           <input
             name="title"
             value={form.title}
-            // handleChange returns an onChange function, tied to the current form/setForm
             onChange={handleChange(form, setForm)}
             required
           />
         </label>
+
         <label>
           Description
           <textarea
@@ -81,6 +70,7 @@ export default function PageClient() {
         <label>
           Date
           <input
+            className="article-date-input"
             name="date"
             value={form.date}
             onChange={handleChange(form, setForm)}
@@ -100,61 +90,60 @@ export default function PageClient() {
         {/* ---- CONTENT ROWS (Dynamic List) ---- */}
         <div className="content-input">
           <strong>Add Contents (image + text)</strong>
-          <div className="content-input-row">
-            {/* Temporary inputs for a single content row */}
-            <input
-              placeholder="Content Image URL"
-              value={contentImg}
-              onChange={(e) => {
-                setContentImg(e.target.value) // update image input value
-              }}
-            />
-            <textarea
-              placeholder="Content Text"
-              value={contentText}
-              onChange={(e) => setContentText(e.target.value)} // update text input value
-            />
-            <button
-              type="button"
-              // Add the new row using the external handler, passing all current state/setters
-              onClick={() =>
-                handleAddContent(
-                  form,
-                  setForm,
-                  contentImg,
-                  contentText,
-                  setContentImg,
-                  setContentText
-                )
-              }
-              disabled={!contentImg && !contentText} // disable if both fields are empty
-            >
-              Add Row
-            </button>
-          </div>
-          
-          {/* Show list of added content rows */}
-          {form.contents.length > 0 && (
-            <ul className="content-list">
-              {form.contents.map((c, i) => (
-                <li key={i} className="content-list-item">
-                  <span className="content-label">Img:</span>{' '}
-                  {c.image || '(none)'}
-                  <span className="content-sep" />
-                  <span className="content-label">Text:</span>{' '}
-                  {c.text || '(none)'}
-                  <button
-                    type="button"
-                    className="remove-content-btn"
-                    // Remove the content row using handler
-                    onClick={() => handleRemoveContent(form, setForm, i)}
-                  >
-                    Remove
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+          {form.contents.map((c, i) => (
+            <div key={i} className="content-input-row">
+              {c.file ? (
+                <img
+                  src={URL.createObjectURL(c.file)}
+                  className="content-image-preview"
+                  alt="Preview"
+                />
+              ) : (
+                <img
+                  src={c.image || '/logo/caroline-logo-loading.svg'}
+                  className="content-image-preview"
+                  alt="Fallback"
+                />
+              )}
+
+              <input
+                className="content-image-input"
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0]
+                  if (!file) return
+
+                  const updated = [...form.contents]
+                  updated[i].file = file
+                  setForm({ ...form, contents: updated })
+                }}
+              />
+              <textarea
+                placeholder="Content Text"
+                value={c.text}
+                onChange={(e) =>
+                  handleContentChange(form, setForm, i, 'text', e.target.value)
+                }
+              />
+              <button
+                type="button"
+                className="remove-content-btn"
+                // Remove the content row using handler
+                onClick={() => handleRemoveContent(form, setForm, i)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="add-content-btn"
+            // Add the new row using the external handler, passing all current state/setters
+            onClick={() => addContentInputRow(form, setForm)}
+          >
+            Add Row
+          </button>
         </div>
 
         {/* ---- ERROR AND SUCCESS FEEDBACK ---- */}
@@ -169,7 +158,7 @@ export default function PageClient() {
           </div>
         )}
         {/* ---- SUBMIT BUTTON ---- */}
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="save-aricle-btn" disabled={loading}>
           {loading ? 'Saving...' : 'Save Article'}
         </button>
       </form>

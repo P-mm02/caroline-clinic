@@ -52,8 +52,8 @@ export default function ArticleClient({ limit }: Props) {
           <div className="article-list">
             {visibleArticles.map((article, idx) => (
               <Link
-                key={article.href || idx}
-                href={article.href || '#'}
+                key={article.title || idx}
+                href={'/article/'+article._id || '#'}
                 className="article-card"
                 aria-label={`อ่าน ${article.title}`}
               >

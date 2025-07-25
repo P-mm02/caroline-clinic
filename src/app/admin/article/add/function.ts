@@ -1,111 +1,138 @@
-import { articleInitialForm } from '@/constants/article/articleInitialForm'
+// src/app/admin/article/add/function.ts
 
-/**
- * Handles all input changes for the main article form fields.
- * - Returns a function compatible with input/textarea onChange.
- * - Updates the form state based on input name and value.
- */
+// Handles input change for standard fields (title, author, etc.)
 export function handleChange(form: any, setForm: (form: any) => void) {
   return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // Spread the existing form and update the field based on the name attribute.
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 }
 
-/**
- * Adds a new content row (image+text) to the article's contents array.
- * - If both inputs are empty, does nothing.
- * - Resets contentImg/contentText state after adding.
- * - Resets imgError in case user wants to try again after a preview fail.
- */
-export function handleAddContent(
-  form: any,
-  setForm: (form: any) => void,
-  contentImg: string,
-  contentText: string,
-  setContentImg: (v: string) => void,
-  setContentText: (v: string) => void
-) {
-  if (!contentImg && !contentText) return // Do nothing if both fields empty
-
-  // Add new object to contents array and reset temporary inputs.
+// Adds a new content row with default empty fields
+export function addContentInputRow(form: any, setForm: (form: any) => void) {
   setForm({
     ...form,
-    contents: [...form.contents, { image: contentImg, text: contentText }],
+    contents: [...form.contents, { image: '', text: '', file: null }],
   })
-  setContentImg('')
-  setContentText('')
 }
 
-/**
- * Removes a content row from the article's contents array by index.
- */
+// Updates either the 'image' or 'text' field of a specific content row by index
+export function handleContentChange(
+  form: any,
+  setForm: (form: any) => void,
+  index: number,
+  field: 'image' | 'text',
+  value: string
+) {
+  const updatedContents = [...form.contents] // Clone the contents array
+  updatedContents[index][field] = value // Modify the specific field
+  setForm({ ...form, contents: updatedContents }) // Update the form
+}
+
+// Removes a content row from the form by index
 export function handleRemoveContent(
   form: any,
   setForm: (form: any) => void,
   idx: number
 ) {
-  // Filter out the item with the matching index.
   setForm({
     ...form,
-    contents: form.contents.filter((_: any, i: number) => i !== idx),
+    contents: form.contents.filter((_row: any, i: number) => i !== idx),
   })
 }
 
-/**
- * Handles the full form submission.
- * - Prevents default submit behavior.
- * - Clears error/success, sets loading state.
- * - Generates the href for the article (slug from title).
- * - Makes a POST request to /api/article.
- * - On success: shows success, resets form and temp fields, then redirects after a short delay.
- * - On error: displays the error and stops loading.
- */
+// Uploads a single image file for a content row (immediate upload version)
+export async function handleUploadContentImage(
+  e: React.ChangeEvent<HTMLInputElement>,
+  index: number,
+  form: any,
+  setForm: (form: any) => void
+) {
+  const file = e.target.files?.[0]
+  if (!file) return
+
+  const formData = new FormData()
+  formData.append('file', file)
+
+  try {
+    const res = await fetch('/api/upload/image', {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (!res.ok) throw new Error('Upload failed')
+    const data = await res.json()
+    const imageUrl = data.url
+
+    // Set uploaded URL directly in contents[index].image
+    handleContentChange(form, setForm, index, 'image', imageUrl)
+  } catch (err) {
+    console.error('Image upload error:', err)
+  }
+}
+
+// Handles full form submission including delayed image uploads
 export async function handleSubmit(
   e: React.FormEvent,
   form: any,
   setError: (v: string) => void,
   setSuccess: (v: string) => void,
   setLoading: (v: boolean) => void,
-  setForm: (f: any) => void,
-  setContentImg: (v: string) => void,
-  setContentText: (v: string) => void,
   router: any
 ) {
-  e.preventDefault() // Prevent browser form submission
-
-  setError('') // Clear old errors
-  setSuccess('') // Clear old success message
-  setLoading(true) // Set loading flag (disable form)
-
-  // Generate a slug-like href based on the title (for linking to this article)
-  const generatedHref =
-    '/article/' +
-    encodeURIComponent(form.title.replace(/\s+/g, '-').toLowerCase())
+  e.preventDefault()
+  setError('')
+  setSuccess('')
+  setLoading(true)
 
   try {
-    // Send POST request to your API route with all form data
-    const res = await fetch('/api/article', {
+    // Upload each file in contents[] (if provided), and replace with image URLs
+    const uploadedContents = await Promise.all(
+      form.contents.map(async (c: any) => {
+        if (c.file) {
+          const formData = new FormData()
+          formData.append('file', c.file)
+
+          const res = await fetch('/api/upload/image', {
+            method: 'POST',
+            body: formData,
+          })
+
+          const data = await res.json()
+          return {
+            image: data.url,
+            text: c.text,
+          }
+        }
+        return { image: c.image, text: c.text }
+      })
+    )
+
+    // Generate slug-like href from title
+    const generatedHref =
+      '/article/' +
+      encodeURIComponent(form.title.replace(/\s+/g, '-').toLowerCase())
+
+    // Send final article data to the API
+    const res = await fetch('/api/article/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...form, href: generatedHref }),
+      body: JSON.stringify({
+        ...form,
+        href: generatedHref,
+        contents: uploadedContents,
+      }),
     })
 
     if (!res.ok) throw new Error('Failed to add article')
 
-    // On success: notify, reset form and content inputs
     setSuccess('Article added successfully!')
     setLoading(false)
-    setForm(articleInitialForm) // Reset main form
-    setContentImg('') // Reset content row input
-    setContentText('') // Reset content row input
 
-    // Redirect to articles admin after a brief delay (so user sees success message)
+    // Redirect to admin article list after short delay
     setTimeout(() => {
       router.push('/admin/article')
     }, 1200)
   } catch (err: any) {
-    // On error: show error message, stop loading
     setError(err.message || 'Unknown error')
     setLoading(false)
   }

@@ -30,6 +30,7 @@
 
 .admin-article-form input,
 .admin-article-form textarea {
+  width: 100%;
   color: #5c217e;
   font-size: 1.2rem;
   border: 1.2px solid #efefef;
@@ -48,32 +49,13 @@
 }
 
 .admin-article-form textarea {
-  min-height: 68px;
+  min-height: 90px;
   max-width: 100%;
   resize: vertical;
 }
 
 .admin-article-form hr {
-  border-bottom: 1px solid #f2d4e3;
-}
-
-.admin-article-form button[type="submit"] {
-  background: #ec4899;
-  color: #fff;
-  padding: 0.7rem 1.2rem;
-  border-radius: 7px;
-  border: none;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-top: 1rem;
-  box-shadow: 0 1px 8px rgba(236, 72, 153, 0.08);
-  cursor: pointer;
-  transition: background 0.18s, box-shadow 0.13s;
-}
-
-.admin-article-form button[type="submit"]:hover {
-  background: #ae2d6d;
-  box-shadow: 0 2px 12px rgba(236, 72, 153, 0.16);
+  border-bottom: 1px solid #00000020;
 }
 
 .admin-article-form button[disabled] {
@@ -92,86 +74,75 @@
   color: #5c217e;
 }
 
-.admin-article-form li button {
-  background: none;
-  border: none;
-  color: #ec4899;
-  font-size: 0.95em;
-  margin-left: 0.7em;
-  cursor: pointer;
-  transition: color 0.14s;
-  font-weight: 600;
-  padding: 2px 5px;
-  border-radius: 3px;
-}
 
-.admin-article-form li button:hover {
-  color: #ae2d6d;
-  background: #fbeaf7;
-}
 
 /* ----------- Content input area and content list styling ------------ */
 .content-input{
+  padding: 1rem 0;
   font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid #00000020;
 }
 
 .content-input-row {
+  width: 100%;
   display: flex;
-  gap: 8px;
-  margin: 8px 0;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
   flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid #00000020;
 }
 
-@media (max-width: 768px) {
-}
-
-/* Preview image for content input */
-.content-img-preview {
-  height: 36px;
-  margin: 6px 0;
-  border-radius: 4px;
-}
-
-/* List for article content rows */
-.content-list {
-  font-size: 1.2rem;
-  margin: 0;
-  padding-left: 18px;
-}
-
-/* Content list item */
-.content-list-item {
-  font-size: 1.2rem;
-  margin-bottom: 2px;
-}
-
-
-/* Remove content button */
-.remove-content-btn {
-  margin-left: 10px;
-  color: #e00;
-  background: none;
+.remove-content-btn,
+.add-content-btn,
+.save-aricle-btn {
+  width: fit-content;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #2563eb; /* blue-600 */
   border: none;
-  font-size: 0.95em;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
   cursor: pointer;
-  font-weight: 600;
-  padding: 2px 5px;
-  border-radius: 3px;
-  transition: color 0.14s, background 0.13s;
-}
-.remove-content-btn:hover {
-  color: #ae2d6d;
-  background: #fbeaf7;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
-/* For bold labels and margin in content list */
-.content-label {
-  font-weight: 600;
+.remove-content-btn {
+  background-color: #dc2626; /* red-600 */
 }
-.content-sep {
-  margin: 0 8px;
-  display: inline-block;
+
+.remove-content-btn:hover {
+  background-color: #b91c1c; /* red-700 */
+  transform: scale(1.03);
 }
+
+.add-content-btn:hover {
+  background-color: #1e40af; /* blue-800 */
+  transform: scale(1.03);
+}
+
+.save-aricle-btn {
+  margin-top: 2rem;
+  background: #16a34a; /* green-600 */
+  color: #fff;
+  align-self: center;
+}
+
+.save-aricle-btn:hover {
+  background: #166534; /* green-800 */
+  transform: scale(1.03);
+}
+
+
+
 
 /* Error and success message styling */
 .form-error {
@@ -192,4 +163,39 @@
 
 .admin-article-form input[type="date"] {
   max-width: 12rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  font-size: 2rem;
+  background-color: #c61e72b4;           /* pink background */
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  background-color: #c61e72;
+  transform: scale(1.1);
+}
+
+.content-image-preview {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+.content-image-input {
+  padding: 0.4rem 0;
+  color: #5c217e;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
 }

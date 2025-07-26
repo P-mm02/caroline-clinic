@@ -23,9 +23,9 @@ export function handleContentChange(
   field: 'image' | 'text',
   value: string
 ) {
-  const updatedContents = [...form.contents] // Clone the contents array
-  updatedContents[index][field] = value // Modify the specific field
-  setForm({ ...form, contents: updatedContents }) // Update the form
+  const updatedContents = [...form.contents]
+  updatedContents[index][field] = value
+  setForm({ ...form, contents: updatedContents })
 }
 
 // Removes a content row from the form by index
@@ -63,14 +63,13 @@ export async function handleUploadContentImage(
     const data = await res.json()
     const imageUrl = data.url
 
-    // Set uploaded URL directly in contents[index].image
     handleContentChange(form, setForm, index, 'image', imageUrl)
   } catch (err) {
     console.error('Image upload error:', err)
   }
 }
 
-// Handles full form submission including delayed image uploads
+// Handles full form submission including image uploads
 export async function handleSubmit(
   e: React.FormEvent,
   form: any,
@@ -85,7 +84,23 @@ export async function handleSubmit(
   setLoading(true)
 
   try {
-    // Upload each file in contents[] (if provided), and replace with image URLs
+    // Upload cover image if exists
+    let coverImageUrl = form.image
+    if (form.coverFile) {
+      const coverFormData = new FormData()
+      coverFormData.append('file', form.coverFile)
+
+      const coverRes = await fetch('/api/upload/image', {
+        method: 'POST',
+        body: coverFormData,
+      })
+
+      if (!coverRes.ok) throw new Error('Cover image upload failed')
+      const coverData = await coverRes.json()
+      coverImageUrl = coverData.url
+    }
+
+    // Upload each content image if needed
     const uploadedContents = await Promise.all(
       form.contents.map(async (c: any) => {
         if (c.file) {
@@ -97,29 +112,27 @@ export async function handleSubmit(
             body: formData,
           })
 
+          if (!res.ok) throw new Error('Failed to upload content image')
           const data = await res.json()
-          return {
-            image: data.url,
-            text: c.text,
-          }
+          return { image: data.url, text: c.text }
         }
         return { image: c.image, text: c.text }
       })
     )
 
-    // Generate slug-like href from title
     const generatedHref =
       '/article/' +
       encodeURIComponent(form.title.replace(/\s+/g, '-').toLowerCase())
 
-    // Send final article data to the API
     const res = await fetch('/api/article/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         ...form,
-        href: generatedHref,
+        image: coverImageUrl,
+        coverFile: undefined,
         contents: uploadedContents,
+        href: generatedHref,
       }),
     })
 
@@ -128,7 +141,6 @@ export async function handleSubmit(
     setSuccess('Article added successfully!')
     setLoading(false)
 
-    // Redirect to admin article list after short delay
     setTimeout(() => {
       router.push('/admin/article')
     }, 1200)

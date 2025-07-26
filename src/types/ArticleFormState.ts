@@ -7,6 +7,7 @@ export type ArticleFormState = DeepRequired<
 
 // Enhanced version with local-only "file"
 export type ArticleFormStateWithFile = Omit<ArticleFormState, 'contents'> & {
+  coverFile?: File | null // ← add this line
   contents: (ArticleFormState['contents'][number] & {
     file?: File | null
   })[]

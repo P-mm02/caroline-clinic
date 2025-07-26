@@ -59,12 +59,28 @@ export default function PageClient() {
           />
         </label>
         <label>
-          Cover Image URL
+          Cover Image
+          {form.coverFile ? (
+            <img
+              src={URL.createObjectURL(form.coverFile)}
+              alt="Cover Preview"
+              className="content-image-preview"
+            />
+          ) : form.image ? (
+            <img
+              src={form.image}
+              alt="Cover Preview"
+              className="content-image-preview"
+            />
+          ) : null}
           <input
-            name="image"
-            value={form.image}
-            onChange={handleChange(form, setForm)}
-            placeholder="https://..."
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files?.[0]
+              if (!file) return
+              setForm({ ...form, coverFile: file })
+            }}
           />
         </label>
         <label>

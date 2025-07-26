@@ -11,7 +11,7 @@ import {
   handleSubmit,
   addContentInputRow,
   handleContentChange,
-  handleUploadContentImage,
+  compressImage,
 } from './function' // Import external handler functions for form logic
 
 export default function PageClient() {
@@ -76,10 +76,12 @@ export default function PageClient() {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => {
+            onChange={async (e) => {
+              // now you can use await inside!
               const file = e.target.files?.[0]
               if (!file) return
-              setForm({ ...form, coverFile: file })
+              const compressedFile = await compressImage(file)
+              setForm({ ...form, coverFile: compressedFile })
             }}
           />
         </label>
@@ -126,12 +128,13 @@ export default function PageClient() {
                 className="content-image-input"
                 type="file"
                 accept="image/*"
-                onChange={(e) => {
+                onChange={async (e) => {
                   const file = e.target.files?.[0]
                   if (!file) return
-
+                  // Compress right after selection
+                  const compressedFile = await compressImage(file)
                   const updated = [...form.contents]
-                  updated[i].file = file
+                  updated[i].file = compressedFile
                   setForm({ ...form, contents: updated })
                 }}
               />

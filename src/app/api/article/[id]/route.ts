@@ -15,5 +15,6 @@ export async function GET(
     return NextResponse.json({ error: 'Not found' }, { status: 404 })
   }
 
-  return NextResponse.json(article)
+  // Wrap the article in an object with an 'article' property
+  return NextResponse.json({ article })
 }

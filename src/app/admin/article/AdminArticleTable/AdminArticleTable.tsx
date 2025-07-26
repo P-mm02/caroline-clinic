@@ -78,7 +78,7 @@ export default function AdminArticleTable({ articles: articlesRaw }: Props) {
               className="admin-article-row"
               style={{ cursor: 'pointer' }}
               onClick={() =>
-                (window.location.href = `/admin/articles/edit/${a._id}`)
+                (window.location.href = `/admin/article/add/${a._id}/edit`)
               }
               title="Edit article"
             >

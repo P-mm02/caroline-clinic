@@ -1,5 +1,8 @@
 // src/app/admin/article/add/function.ts
 
+import imageCompression from 'browser-image-compression'
+
+
 // Handles input change for standard fields (title, author, etc.)
 export function handleChange(form: any, setForm: (form: any) => void) {
   return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -50,10 +53,17 @@ export async function handleUploadContentImage(
   const file = e.target.files?.[0]
   if (!file) return
 
-  const formData = new FormData()
-  formData.append('file', file)
-
   try {
+    // ✅ Compress the image
+    const compressedFile = await imageCompression(file, {
+      maxSizeMB: 2,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    })
+
+    const formData = new FormData()
+    formData.append('file', compressedFile)
+
     const res = await fetch('/api/upload/image', {
       method: 'POST',
       body: formData,
@@ -63,6 +73,7 @@ export async function handleUploadContentImage(
     const data = await res.json()
     const imageUrl = data.url
 
+    // Set compressed & uploaded URL in form
     handleContentChange(form, setForm, index, 'image', imageUrl)
   } catch (err) {
     console.error('Image upload error:', err)
@@ -107,7 +118,7 @@ export async function handleSubmit(
           const formData = new FormData()
           formData.append('file', c.file)
 
-          const res = await fetch('/api/upload/image', {
+          const res = await fetch('/api/upload/article', {
             method: 'POST',
             body: formData,
           })

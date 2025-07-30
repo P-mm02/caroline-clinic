@@ -15,17 +15,20 @@ export default function Hero() {
             width={1080}
             height={1350}
             className="hero-heading"
+            priority
           />
         </div>
         {/* <p className="hero-subheading">ความงามที่มั่นใจ ปลอดภัยทุกขั้นตอน</p> */}
       </div>
-      <img
+      <Image
         src="/images/Hero/HeroImage5.png"
         alt="Caroline Clinic Hero"
         className="hero-image"
+        width={1920}
+        height={1920}
+        priority
       />
-<div className="hero-wave">
-</div>
-  </section>
+      <div className="hero-wave"></div>
+    </section>
   )
 }

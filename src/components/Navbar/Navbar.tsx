@@ -1,12 +1,12 @@
 'use client'
 
-import '@/i18n';
-import { useState } from 'react'
+import '@/i18n'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import './Navbar.css'
-import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from './LanguageSwitcher'
 import Image from 'next/image'
+import './Navbar.css'
 
 const navItems = [
   { label: 'home', href: '/' },
@@ -19,8 +19,15 @@ const navItems = [
 ]
 
 export default function Navbar() {
-  const { t, i18n } = useTranslation();
-  const [menuOpen, setMenuOpen] = useState(false)  
+  const { t } = useTranslation()
+  const [mounted, setMounted] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null // Prevent hydration errors
 
   return (
     <header className="navbar">
@@ -55,7 +62,7 @@ export default function Navbar() {
         {/* Hamburger Icon */}
         <button
           className="navbar-toggle mobile-only"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => setMenuOpen((prev) => !prev)}
           aria-label="Toggle menu"
         >
           <span className="hamburger" />
@@ -63,7 +70,6 @@ export default function Navbar() {
           <span className="hamburger" />
         </button>
       </nav>
-
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
         <ul className="navbar-menu-mobile mobile-only">

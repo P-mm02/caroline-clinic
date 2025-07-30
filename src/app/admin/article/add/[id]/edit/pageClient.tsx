@@ -103,42 +103,22 @@ export default function PageClient() {
       setError('')
 
       try {
-        // Log the article ID being fetched for debugging
-        console.log('Fetching article with ID:', articleId)
-
         // Make API call to fetch article data
         const res = await fetch(`/api/article/${articleId}`)
-        console.log('API Response status:', res.status, res.statusText)
 
         // Parse the JSON response
         const data = await res.json()
-        console.log('API Response data:', data)
 
         // Check if the request was successful
         if (!res.ok) throw new Error(data.error || 'Failed to load article')
 
         // Handle the nested article structure from API response
-        let article = data.article
-
-        /**
-         * Handle potential double-wrapping issue in API response
-         * Sometimes the API returns { article: { article: {...} } }
-         * This unwraps it to get the actual article data
-         */
-        if (article && typeof article === 'object' && article.article) {
-          console.log('Detected double-wrapped article, unwrapping...')
-          article = article.article
-        }
-
-        console.log('Final article data:', article)
+        let article = data
 
         // Validate that we have a valid article object
         if (!article) {
           throw new Error(`Article not found with ID: ${articleId}`)
         }
-
-        // Debug log to see the final article structure
-        console.log('Fetched article:', article)
 
         // Double-check validation (redundant but safe)
         if (!article) {
@@ -359,12 +339,6 @@ export default function PageClient() {
         }}
       >
         <h2>Edit Article</h2>
-
-        {/* Delete button component - allows deleting the current article */}
-        <DeleteButton
-          articleId={articleId}
-          articleTitle={form.title || 'this article'} // Fallback title for confirmation dialog
-        />
       </div>
 
       {/* ========== MAIN FORM ========== */}
@@ -582,6 +556,12 @@ export default function PageClient() {
           {loading ? 'Saving...' : 'Save Changes'} {/* Dynamic button text */}
         </button>
       </form>
+
+      {/* Delete button component - allows deleting the current article */}
+      <DeleteButton
+        articleId={articleId}
+        articleTitle={form.title || 'this article'} // Fallback title for confirmation dialog
+      />
     </section>
   )
 }

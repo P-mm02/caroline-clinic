@@ -30,6 +30,8 @@ export default function PageClient({ id }: { id: string }) {
 
         const data = await res.json()
         setArticle(data)
+        console.log(data)
+        
       } catch (err) {
         console.error('Failed to fetch article:', err)
       } finally {
@@ -56,8 +58,8 @@ export default function PageClient({ id }: { id: string }) {
             <Image
               src={article.image}
               alt={article.title}
-              width={960}
-              height={480}
+              width={1920}
+              height={1920}
               className="article-detail-img"
               priority
             />
@@ -73,8 +75,8 @@ export default function PageClient({ id }: { id: string }) {
                 <Image
                   src={item.image}
                   alt={`content-${i}`}
-                  width={720}
-                  height={360}
+                  width={1920}
+                  height={1920}
                   className="article-detail-img"
                 />
               </div>

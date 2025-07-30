@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import './DeleteButton.css'
+
 
 interface DeleteButtonProps {
   articleId: string
@@ -62,13 +64,22 @@ export default function DeleteButton({
         disabled={isDeleting}
         className={`delete-btn ${className}`}
       >
-        {isDeleting ? 'Deleting...' : 'Delete'}
+        {isDeleting ? 'Deleting...' : 'Delete This Article'}
       </button>
 
       {/* Confirmation Modal */}
       {showConfirm && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div
+          className="modal-overlay"
+          onClick={() => {
+            setShowConfirm(false)
+            setError('')
+          }}
+        >
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()} // ← ADD THIS LINE
+          >
             <div className="modal-header">
               <h3>Delete Article</h3>
               <p>This action cannot be undone.</p>
@@ -110,128 +121,6 @@ export default function DeleteButton({
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        .delete-btn {
-          background-color: #dc2626;
-          color: white;
-          border: none;
-          padding: 8px 16px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 14px;
-          transition: background-color 0.2s;
-        }
-
-        .delete-btn:hover:not(:disabled) {
-          background-color: #b91c1c;
-        }
-
-        .delete-btn:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(0, 0, 0, 0.5);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 1000;
-          padding: 16px;
-        }
-
-        .modal-content {
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-          max-width: 400px;
-          width: 100%;
-          padding: 24px;
-        }
-
-        .modal-header h3 {
-          margin: 0 0 8px 0;
-          font-size: 18px;
-          font-weight: 600;
-        }
-
-        .modal-header p {
-          margin: 0 0 16px 0;
-          color: #666;
-          font-size: 14px;
-        }
-
-        .modal-body {
-          margin-bottom: 20px;
-        }
-
-        .modal-body p {
-          margin: 0;
-          line-height: 1.5;
-        }
-
-        .modal-actions {
-          display: flex;
-          justify-content: flex-end;
-          gap: 12px;
-        }
-
-        .cancel-btn {
-          background-color: #f3f4f6;
-          color: #374151;
-          border: none;
-          padding: 8px 16px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 14px;
-          transition: background-color 0.2s;
-        }
-
-        .cancel-btn:hover:not(:disabled) {
-          background-color: #e5e7eb;
-        }
-
-        .cancel-btn:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .confirm-delete-btn {
-          background-color: #dc2626;
-          color: white;
-          border: none;
-          padding: 8px 16px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 14px;
-          transition: background-color 0.2s;
-        }
-
-        .confirm-delete-btn:hover:not(:disabled) {
-          background-color: #b91c1c;
-        }
-
-        .confirm-delete-btn:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .form-error {
-          background-color: #fef2f2;
-          border: 1px solid #fecaca;
-          color: #dc2626;
-          padding: 12px;
-          border-radius: 4px;
-          margin: 16px 0;
-          font-size: 14px;
-        }
-      `}</style>
     </>
   )
 }

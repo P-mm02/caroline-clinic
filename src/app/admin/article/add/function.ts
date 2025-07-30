@@ -84,9 +84,11 @@ export function handleChange(form: any, setForm: (form: any) => void) {
 export async function compressImage(file: File): Promise<File> {
   try {
     return await imageCompression(file, {
-      maxSizeMB: 2, // Maximum file size in megabytes
-      maxWidthOrHeight: 1920, // Maximum dimension (maintains aspect ratio)
+      maxSizeMB: 4, // Maximum file size in megabytes
+      maxWidthOrHeight: 3840, // Maximum dimension (maintains aspect ratio)
       useWebWorker: true, // Use web worker for non-blocking compression
+      fileType: 'image/webp',
+      initialQuality: 1,
     })
   } catch (error) {
     // If compression fails, log error but return original file

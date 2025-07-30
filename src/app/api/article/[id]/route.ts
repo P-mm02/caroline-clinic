@@ -16,5 +16,5 @@ export async function GET(
   }
 
   // Wrap the article in an object with an 'article' property
-  return NextResponse.json({ article })
+  return NextResponse.json(article)
 }

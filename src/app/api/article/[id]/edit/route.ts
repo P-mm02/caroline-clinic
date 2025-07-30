@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server'
 import { connectToDB } from '@/lib/mongoose'
 import Article from '@/models/Article'
+import {
+  collectImageChanges,
+  ImageChange,
+} from '@/utils/imageHelpers'
 
 export async function PUT(
   req: Request,
@@ -30,7 +34,6 @@ export async function PUT(
       author,
       contents,
       href,
-      coverFile, // This should be undefined as per frontend logic
       ...otherFields
     } = body
 
@@ -70,8 +73,26 @@ export async function PUT(
       ...otherFields,
     }
 
-    // Remove any undefined or file-related fields that shouldn't be saved
-    delete updateData.coverFile
+    // === IMAGE CHANGES SECTION (what you requested) ===
+    const imageChanges: ImageChange[] = collectImageChanges(
+      existingArticle,
+      updateData
+    )
+    if (imageChanges.length > 0) {
+      // Send to the delete route (POST)
+      // Use request headers for current domain
+      const protocol = req.headers.get('x-forwarded-proto') || 'http'
+      const host = req.headers.get('host')
+      const apiUrl = `${protocol}://${host}/api/article/${id}/delete`
+
+      await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ changes: imageChanges }),
+      })
+      // Note: You might want to handle the response (optional)
+    }
+    // ================================================
 
     // Update the article in the database
     const updatedArticle = await Article.findByIdAndUpdate(id, updateData, {

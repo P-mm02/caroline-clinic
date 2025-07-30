@@ -6,6 +6,7 @@ import Link from 'next/link'
 import './Navbar.css'
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
+import Image from 'next/image'
 
 const navItems = [
   { label: 'home', href: '/' },
@@ -28,13 +29,18 @@ export default function Navbar() {
           href="/"
           className={`navbar-logo ${menuOpen ? 'hidden-move-up' : 'visible'}`}
         >
-          <img
+          <Image
             src="/logo/Caroline-Clinic-Logo.svg"
             alt="Caroline Clinic Logo"
             className="navbar-logo-img"
+            width={300}
+            height={300}
+            priority
           />
         </Link>
-        <div className={`navbar-Logo-mirage ${menuOpen ? 'display-none' : ''}`}></div>
+        <div
+          className={`navbar-Logo-mirage ${menuOpen ? 'display-none' : ''}`}
+        ></div>
         {/* Desktop Menu */}
         <ul className="navbar-menu desktop-only">
           {navItems.map(({ label, href }) => (
@@ -46,7 +52,6 @@ export default function Navbar() {
           ))}
           <LanguageSwitcher />
         </ul>
-
         {/* Hamburger Icon */}
         <button
           className="navbar-toggle mobile-only"
@@ -73,8 +78,8 @@ export default function Navbar() {
               </a>
             </li>
           ))}
-        <LanguageSwitcher />
-        </ul>        
+          <LanguageSwitcher />
+        </ul>
       )}
     </header>
   )

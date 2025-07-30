@@ -1,0 +1,106 @@
+.delete-btn {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 2rem 0rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: background-color 0.2s;
+}
+.delete-btn:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+.delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.modal-content {
+  position: fixed;
+  top: 50%;                /* Center vertically */
+  left: 50%;               /* Center horizontally */
+  transform: translate(-50%, -50%); /* Offset to actual center */
+  z-index: 1000;
+  background: white;
+  color: #b91c1c;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 40rem;
+  padding: 2rem;
+  overflow: auto; /* Prevent content overflow */
+}
+.modal-header h3 {
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+}
+.modal-body p {
+  margin: 0;
+  line-height: 1.5;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.cancel-btn {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+.cancel-btn:hover:not(:disabled) {
+  background-color: #e5e7eb;
+}
+.cancel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.confirm-delete-btn {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+.confirm-delete-btn:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+.confirm-delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.form-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 16px 0;
+  font-size: 14px;
+}

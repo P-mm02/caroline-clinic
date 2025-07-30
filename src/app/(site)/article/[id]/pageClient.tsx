@@ -58,7 +58,8 @@ export default function PageClient({ id }: { id: string }) {
             <Image
               src={article.image}
               alt={article.title}
-              fill
+              width={1920}
+              height={1920}
               className="article-detail-img"
               priority
             />
@@ -74,7 +75,8 @@ export default function PageClient({ id }: { id: string }) {
                 <Image
                   src={item.image}
                   alt={`content-${i}`}
-                  fill
+                  width={1440}
+                  height={1440}
                   className="article-detail-img"
                 />
               </div>

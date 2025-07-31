@@ -1,14 +1,12 @@
 'use client'
 import './page.css'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 export default function AdminLoginPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
@@ -22,7 +20,7 @@ export default function AdminLoginPage() {
     setLoading(false)
     if (res.ok) {
       console.log('res.ok')      
-      router.push('/admin')
+      window.location.href = '/admin'
     } else {
       setError('Invalid credentials')
     }

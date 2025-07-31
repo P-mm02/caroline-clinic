@@ -21,6 +21,7 @@ export default function AdminLoginPage() {
     })
     setLoading(false)
     if (res.ok) {
+      console.log('res.ok')      
       router.push('/admin')
     } else {
       setError('Invalid credentials')

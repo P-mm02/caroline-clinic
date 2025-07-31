@@ -7,7 +7,7 @@ export default function AdminLogoutPage() {
 
   useEffect(() => {
     // Remove cookies by hitting an API route
-    fetch('/api/admin-logout', { method: 'POST' }).then(() => {
+    fetch('/api/admin/logout', { method: 'POST' }).then(() => {
       router.replace('/admin/login')
     })
   }, [router])

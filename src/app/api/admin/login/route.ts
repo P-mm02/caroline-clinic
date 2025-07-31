@@ -2,11 +2,14 @@ import { NextResponse } from 'next/server'
 import { setAuthCookie } from '@/lib/cookies'
 
 const USERS = [
+  { username: 'admin', password: process.env.ADMIN_PASSWORD, role: 'admin' },
+]
+/* const USERS = [
   { username: 'admin', password: 'admin', role: 'admin' },
   { username: 'staff', password: 'staff', role: 'staff' },
   { username: 'operator', password: 'operator', role: 'operator' },
 ]
-
+ */
 export async function POST(request: Request) {
   const { username, password } = await request.json()
   const user = USERS.find(

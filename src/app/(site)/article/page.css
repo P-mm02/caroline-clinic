@@ -29,6 +29,7 @@
 }
 
 .article-card {
+  padding-bottom: 1rem;
   max-width: 94vw;
   width: 40rem;
   background: #fff;
@@ -91,7 +92,7 @@
 
 
 .article-more-wrapper{
-  margin: 2rem 0;
+  margin: 4rem 0 2rem 0;
 }
 
 .article-more-button {

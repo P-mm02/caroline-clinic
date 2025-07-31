@@ -4,12 +4,15 @@ import './page.css'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import type { ArticleType } from '@/types/ArticleType'
+import { useTranslation } from 'react-i18next'
+
 
 type Props = {
   limit?: number
 }
 
 export default function ArticleClient({ limit }: Props) {
+  const { t } = useTranslation()
   const [articles, setArticles] = useState<ArticleType[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -36,12 +39,8 @@ export default function ArticleClient({ limit }: Props) {
     <section id="article" className="article-section">
       <div className="article-container">
         <span className="section-title-en">BLOG</span>
-        <h2 className="section-title-th">บทความแนะนำ</h2>
-        <p className="article-description">
-          ติดตามบทความเกี่ยวกับความงาม การดูแลผิวพรรณ
-          และเทคโนโลยีความงามล่าสุดจากแพทย์ผู้เชี่ยวชาญของเรา
-        </p>
-
+        <h2 className="section-title-th">{t(`articles.headline`)}</h2>
+        <p className="article-description">{t(`articles.desc`)}</p>
         {loading ? (
           <div className="article-list-loading">Loading...</div>
         ) : error ? (
@@ -53,7 +52,7 @@ export default function ArticleClient({ limit }: Props) {
             {visibleArticles.map((article, idx) => (
               <Link
                 key={article.title || idx}
-                href={'/article/'+article._id || '#'}
+                href={'/article/' + article._id || '#'}
                 className="article-card"
                 aria-label={`อ่าน ${article.title}`}
               >
@@ -90,7 +89,7 @@ export default function ArticleClient({ limit }: Props) {
         {limit && articles.length > limit && (
           <div className="article-more-wrapper">
             <Link href="/article" className="article-more-button">
-              ดูบทความทั้งหมด
+              {t(`articles.see_all`)}
             </Link>
           </div>
         )}

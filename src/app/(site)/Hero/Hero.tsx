@@ -12,8 +12,8 @@ export default function Hero() {
           <Image
             src="/logo/Caroline-Clinic-Logo-noBG-Text.svg"
             alt="Caroline Clinic Logo"
-            width={1080}
-            height={1350}
+            width={1200}
+            height={630}
             className="hero-heading"
             priority
           />

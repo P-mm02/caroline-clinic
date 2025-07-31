@@ -6,9 +6,12 @@ import Image from 'next/image'
 import appearFromRight from '@/lib/appearFrom/right'
 import appearFromLeft from '@/lib/appearFrom/left'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 
 export default function AboutClient() {
+  const { t } = useTranslation()
+
   const fromRightRefsDiv = useRef<Array<HTMLDivElement | null>>([])
   const fromRightRefsSpan = useRef<Array<HTMLSpanElement | null>>([])
   const fromLeftRefsSpan = useRef<Array<HTMLSpanElement | null>>([])
@@ -37,7 +40,7 @@ export default function AboutClient() {
                 fromRightRefsSpan.current[0] = el
               }}
             >
-              เกี่ยวกับเรา
+              {t(`about.headline`)}
             </h2>
             <p
               className="about-description appear-from-left"
@@ -45,11 +48,7 @@ export default function AboutClient() {
                 fromLeftRefsSpan.current[1] = el
               }}
             >
-              Caroline Clinic
-              คือคลินิกความงามที่มุ่งเน้นการให้บริการด้วยความปลอดภัย
-              มาตรฐานระดับสากล เรามีทีมแพทย์ผู้เชี่ยวชาญ และเทคโนโลยีที่ทันสมัย
-              ครบครันสำหรับการดูแลผิวพรรณ ปรับรูปหน้า ฟื้นฟูความงาม
-              และให้คำปรึกษาอย่างใกล้ชิด
+              {t(`about.description`)}
             </p>
             <p
               className="about-description appear-from-left"
@@ -57,9 +56,7 @@ export default function AboutClient() {
                 fromLeftRefsSpan.current[2] = el
               }}
             >
-              ด้วยบรรยากาศที่เป็นกันเอง Caroline Clinic
-              มุ่งเน้นการสร้างความมั่นใจให้กับลูกค้าทุกคน
-              เพื่อให้คุณรู้สึกดีที่สุดในแบบของตัวเอง
+              {t(`about.description2`)}
             </p>
           </div>
           <div
@@ -74,7 +71,6 @@ export default function AboutClient() {
               width={400}
               height={600}
               className="about-image"
-              priority
               blurDataURL="/images/about/Caroline_Team-min-blur.png" // If you generate one
             />
           </div>

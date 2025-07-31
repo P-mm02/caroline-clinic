@@ -4,8 +4,11 @@ import './Footer.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import LanguageSwitcher from '../Navbar/LanguageSwitcher'
+import { useTranslation } from 'react-i18next'
+
 
 export default function Footer() {
+  const { t } = useTranslation()
   return (
     <footer>
       <div className="footer-inner">
@@ -20,7 +23,7 @@ export default function Footer() {
               height={180}
             />
           </Link>
-          <p className="footer-tagline">ความงามที่มั่นใจ ปลอดภัยทุกขั้นตอน</p>
+          <p className="footer-tagline">{t(`footer.logo_desc`)}</p>
         </div>
 
         {/* Column 2: Socials */}
@@ -71,9 +74,9 @@ export default function Footer() {
 
         {/* Column 3: Contact */}
         <div className="footer-column">
-          <h3 className="footer-title">ติดต่อเรา</h3>
+          <h3 className="footer-title">{t(`contact.headline`)}</h3>
           <p>
-            โทร: <a href="tel:0647762422">064-776-2422</a>
+            {t(`contact.phone`)}: <a href="tel:0647762422">064-776-2422</a>
           </p>
           <p>
             LINE ID:{' '}
@@ -90,10 +93,10 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <p>88/26 ถ.เชียงรากน้อย ต.คลองหนึ่ง อ.คลองหลวง จ.ปทุมธานี</p>
+            <p>{t(`contact.addressInfo`)}</p>
           </a>
 
-          <p>เปิดให้บริการ 12:00-20:00 (หยุดวันจันทร์)</p>
+          <p> {t(`contact.open_time_`)}</p>
         </div>
       </div>
       <LanguageSwitcher />

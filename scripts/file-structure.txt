@@ -14,6 +14,7 @@
 📄 package-lock.json
 📄 package.json
 📁 public
+  📄 favicon.ico
   📁 flags
     📄 en-USA.svg
     📄 ja-Japan.svg
@@ -93,6 +94,7 @@
     📄 Caroline-Clinic-Logo-noBG-Text.svg
     📄 Caroline-Clinic-Logo.svg
     📄 caroline-logo-loading.svg
+  📄 og-image.png
 📄 README.md
 📁 scripts
   📄 file-structure.txt
@@ -128,6 +130,8 @@
       📁 admin
       📁 article
       📁 test
+      📁 upload
+    📄 head.tsx
     📄 layout.tsx
   📁 components
     📁 Footer
@@ -166,4 +170,6 @@
     📄 ArticleFormState.ts
     📄 ArticleType.ts
     📄 utils.ts
+  📁 utils
+    📄 imageHelpers.ts
 📄 tsconfig.json

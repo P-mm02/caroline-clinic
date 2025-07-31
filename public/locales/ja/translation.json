@@ -1,19 +1,10 @@
 {
-  "navbar": {
-    "home": "ホーム",
-    "services": "サービス",
-    "about": "当院について",
-    "review": "レビュー",
-    "promotion": "プロモーション",
-    "article": "ブログ",
-    "contact": "お問い合わせ"
-  },
+  "welcome": "Caroline Clinicへようこそ！",
   "hero": {
-    "headline": "あなたらしい美しさを引き出す",
-    "subtitle": "専門医と最新技術による美と健康のクリニック",
-    "cta": "予約する"
+    "headline": "あなたらしい魅力を引き出す",
+    "subtitle": "専門医と最新技術による美と健康のサービス",
+    "cta": "ご予約はこちら"
   },
-  "welcome": "キャロラインクリニックへようこそ！",
   "sectionTitles": {
     "services": "サービス一覧",
     "about": "当院について",
@@ -22,62 +13,77 @@
     "article": "おすすめ記事",
     "contact": "お問い合わせ"
   },
+  "navbar": {
+    "home": "ホーム",
+    "services": "サービス",
+    "about": "当院について",
+    "review": "レビュー",
+    "promotion": "プロモーション",
+    "article": "記事",
+    "contact": "お問い合わせ"
+  },
   "services": {
+    "subtitle": "Caroline Clinicは、専門医と最新設備による総合的な美容サービスを提供しています。",
     "acne": {
       "title": "ニキビ治療",
-      "desc": "最新技術によるパーソナルなニキビ対策"
+      "desc": "最新技術を用いたピンポイントなニキビケア"
     },
     "facial": {
       "title": "フェイシャルケア",
-      "desc": "ディープクレンジング＆リフレッシュ"
+      "desc": "ディープクレンジングと肌のリフレッシュ"
     },
     "filler": {
-      "title": "フィラー・ボトックス",
-      "desc": "専門医による安全で自然な仕上がり"
+      "title": "フェイスライン調整",
+      "desc": "専門医による自然な美しさの追求"
     },
     "laser": {
       "title": "レーザー治療",
-      "desc": "美白やシミ取りのための先進レーザー"
+      "desc": "透明感のある肌とシミ・くすみ対策のレーザー治療"
     },
     "health": {
-      "title": "健康管理",
-      "desc": "心身のためのホリスティックプログラム"
+      "title": "ウェルネス",
+      "desc": "心と体のための総合的な健康プログラム"
     }
+  },
+  "about": {
+    "headline": "当院について",
+    "description": "Caroline Clinicは、安全性と国際基準を重視した美容クリニックです。経験豊富な専門医と最新の技術で、スキンケア・フェイスライン調整・美の回復・個別カウンセリングをトータルでご提供します。\n\nリラックスできる雰囲気の中、すべてのお客様が自分らしく輝けるようサポートいたします。",
+    "description2": "リラックスできる雰囲気の中、すべてのお客様が自分らしく輝けるようサポートいたします。"
   },
   "reviews": {
     "headline": "お客様の声",
-    "empty": "まだレビューがありません。最初のご感想をお寄せください！"
+    "desc": "Caroline Clinicをご利用いただいたお客様からのリアルな声",
+    "all": "すべてのレビューを見る"
   },
   "promotions": {
-    "headline": "最新プロモーション",
-    "see_all": "すべてのプロモーションを見る",
-    "cta": "この特典を受け取る"
+    "headline": "特別プロモーション",
+    "all": "プロモーション一覧",
+    "desc": "Caroline Clinicのお客様のためのお得な美容プロモーション",
+    "see_all": "すべてのプロモーションを見る"
   },
   "articles": {
-    "headline": "美容と健康のブログ",
-    "see_all": "さらに記事を見る"
-  },
-  "about": {
-    "headline": "キャロラインクリニックについて",
-    "description": "キャロラインクリニックは、専門医と最新技術による総合美容・健康サービスを提供します。",
-    "team": "スタッフ紹介"
+    "headline": "最新記事",
+    "desc": "専門医による美容・スキンケア・最新美容技術に関する記事をチェック",
+    "see_all": "すべての記事を見る"
   },
   "contact": {
     "headline": "お問い合わせ",
-    "phone": "電話番号",
+    "desc": "ご質問やご予約は、Caroline Clinicまでお気軽にご連絡ください。",
+    "phone": "電話",
     "email": "メール",
     "address": "住所",
-    "send_message": "メッセージを送信",
-    "success": "メッセージが送信されました。",
-    "error": "送信に失敗しました。再度お試しください。"
+    "addressInfo": "88/26 チエンラクノイ通り, クローンヌン, クローンルアン, パトゥムターニー",
+    "open_time": "営業時間",
+    "open_time_": "営業時間 12:00〜20:00（月曜日定休）"
   },
   "footer": {
-    "copyright": "© 2025 キャロラインクリニック",
+    "copyright": "© 2025 Caroline Clinic. All rights reserved.",
+    "logo_desc": "自信を持てる美しさ、安全なすべてのステップ",
     "privacy_policy": "プライバシーポリシー",
     "terms_of_service": "利用規約"
   },
   "common": {
-    "load_more": "さらに見る",
+    "load_more": "さらに表示",
     "submit": "送信",
     "cancel": "キャンセル",
     "close": "閉じる"

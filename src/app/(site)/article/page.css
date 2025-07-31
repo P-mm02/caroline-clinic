@@ -23,7 +23,7 @@
 .article-list {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 2rem;
 }
@@ -77,14 +77,14 @@
 }
 
 .article-card-title {
-  margin: 1rem 0;
+  margin: 1rem 1rem 0rem 1rem;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #b81e5d;
 }
 
 .article-card-desc {
-  margin: 1rem;
+  margin: 0 1rem;
   color: #393939;
   font-size: 1.2rem;
 }

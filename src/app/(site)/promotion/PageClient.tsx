@@ -5,6 +5,7 @@ import './pageMedia.css'
 import Image from 'next/image'
 import promotions from './data.json'
 import { useEffect, useRef, useState, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   limit?: number
@@ -15,6 +16,7 @@ export default function PromotionClient({ limit }: Props) {
   const [autoScrollActive, setAutoScrollActive] = useState(false)
   const [direction, setDirection] = useState(1)
   const [isMobile, setIsMobile] = useState(false)
+  const { t } = useTranslation()
 
   // Detect mobile
   useEffect(() => {
@@ -93,10 +95,8 @@ export default function PromotionClient({ limit }: Props) {
     <section id="promotion" className="promotion-section">
       <div className="promotion-container">
         <span className="section-title-en">PROMOTION</span>
-        <h2 className="section-title-th">โปรโมชั่นพิเศษ</h2>
-        <p className="promotion-description">
-          โปรโมชั่นเสริมความงามราคาสุดคุ้ม สำหรับลูกค้า Caroline Clinic
-        </p>
+        <h2 className="section-title-th">{t(`promotions.headline`)}</h2>
+        <p className="promotion-description">{t(`promotions.desc`)}</p>
         <div className="promotion-slider-container">
           <button
             className="promotion-arrow left"
@@ -142,7 +142,7 @@ export default function PromotionClient({ limit }: Props) {
         {limit && (
           <div>
             <a href="/promotion" className="promotion-more-button">
-              ดูโปรโมชั่นทั้งหมด
+              {t(`promotions.see_all`)}
             </a>
           </div>
         )}

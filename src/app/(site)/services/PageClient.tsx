@@ -20,11 +20,8 @@ export default function ServicesClient() {
     <section id="services" className="services-section">
       <div className="services-container">
         <span className="section-title-en">SERVICE</span>
-        <h2 className="section-title-th">บริการของเรา</h2>
-        <p className="services-description">
-          Caroline Clinic offers a full range of beauty services provided by
-          expert physicians and modern equipment.
-        </p>
+        <h2 className="section-title-th">{t(`sectionTitles.services`)}</h2>
+        <p className="services-description">{t(`services.subtitle`)} </p>
         <div className="services-category-container">
           {categorizedServices.map((section, index) => (
             <div
@@ -47,7 +44,9 @@ export default function ServicesClient() {
                   height={150}
                   className="services-example"
                 />
-                <span>{section.category}</span>
+                <span>
+                  {t(`services.${section.key}.title`)}
+                </span>
               </Link>
             </div>
           ))}

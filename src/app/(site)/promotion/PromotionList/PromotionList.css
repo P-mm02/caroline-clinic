@@ -6,6 +6,12 @@
   align-items: center;
   margin-top: 2rem;
   padding: 1rem;
+}
+.promotion-list-container-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   color: #ec4899;
 }
 

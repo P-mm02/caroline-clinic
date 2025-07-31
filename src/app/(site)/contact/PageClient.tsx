@@ -1,30 +1,28 @@
 'use client'
 
 import './page.css'
+import { useTranslation } from 'react-i18next'
 
 export default function ContactClient() {
+  const { t } = useTranslation()
   return (
     <section id="contact" className="contact-section">
       <div className="contact-container">
         <span className="section-title-en">CONTACT</span>
-        <h2 className="section-title-th">ติดต่อเรา</h2>
-        <p className="contact-description">
-          สามารถติดต่อ Caroline Clinic
-          เพื่อสอบถามข้อมูลหรือจองคิวล่วงหน้าได้ทุกวัน
-        </p>
+        <h2 className="section-title-th">{t(`contact.desc`)}</h2>
+        <p className="contact-description"></p>
         <div className="contact-info">
           <p>
-            <strong>โทร:</strong> 064-776-2422
+            <strong>{t(`contact.phone`)}:</strong> 064-776-2422
           </p>
           <p>
             <strong>LINE:</strong> @Caroline.Clinic
           </p>
           <p>
-            <strong>ที่อยู่:</strong> 88/26 ถ.เชียงรากน้อย ต.คลองหนึ่ง
-            อ.คลองหลวง จ.ปทุมธานี
+            <strong>{t(`contact.address`)}:</strong> {t(`contact.addressInfo`)}
           </p>
           <p>
-            <strong>เวลาทำการ:</strong> 12:00-20:00 (หยุดวันจันทร์)
+            <strong>{t(`contact.open_time`)}:</strong> {t(`contact.open_time_`)}
           </p>
         </div>
 

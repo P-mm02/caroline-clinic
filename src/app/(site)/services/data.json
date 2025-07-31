@@ -2,6 +2,7 @@
   {
     "category": "รักษาสิว",
     "image": "/images/services/Service_Acne2.png",
+    "key": "acne",
     "items": [
       {
         "name": "รักษาสิว",
@@ -32,6 +33,7 @@
   },
   {
     "category": "บำรุงผิวหน้า",
+    "key": "facial",
     "image": "/images/services/Service_FacialCare.png",
     "items": [
       {
@@ -53,6 +55,7 @@
   },
   {
     "category": "ปรับรูปหน้า",
+    "key": "filler",
     "image": "/images/services/Service_Filler.png",
     "items": [
       {
@@ -89,6 +92,7 @@
   },
   {
     "category": "เลเซอร์",
+    "key": "laser",
     "image": "/images/services/Service_Lazer.png",
     "items": [
       {
@@ -105,6 +109,7 @@
   },
   {
     "category": "ดูแลสุขภาพ",
+    "key": "health",
     "image": "/images/services/Service_Health2.png",
     "items": [
       {

@@ -1,19 +1,10 @@
 {
-  "navbar": {
-    "home": "首页",
-    "services": "服务项目",
-    "about": "关于我们",
-    "review": "评价",
-    "promotion": "优惠活动",
-    "article": "博客",
-    "contact": "联系我们"
-  },
+  "welcome": "欢迎来到 Caroline Clinic！",
   "hero": {
-    "headline": "展现最美的自己",
-    "subtitle": "专家医生与现代科技成就美丽与健康",
-    "cta": "预约服务"
+    "headline": "展现你的独特魅力",
+    "subtitle": "由专家医师和现代技术带来的美丽与健康",
+    "cta": "立即预约"
   },
-  "welcome": "欢迎来到Caroline Clinic！",
   "sectionTitles": {
     "services": "我们的服务",
     "about": "关于我们",
@@ -22,62 +13,77 @@
     "article": "推荐文章",
     "contact": "联系我们"
   },
+  "navbar": {
+    "home": "首页",
+    "services": "服务",
+    "about": "关于我们",
+    "review": "评价",
+    "promotion": "优惠",
+    "article": "文章",
+    "contact": "联系"
+  },
   "services": {
+    "subtitle": "Caroline Clinic 提供由专家医生和现代设备支持的全方位美容服务。",
     "acne": {
-      "title": "祛痘护理",
-      "desc": "采用最新技术的个性化祛痘方案"
+      "title": "祛痘",
+      "desc": "采用最新技术针对性护理痘痘问题"
     },
     "facial": {
       "title": "面部护理",
-      "desc": "深层清洁与焕肤护理"
+      "desc": "深层清洁与皮肤焕新"
     },
     "filler": {
-      "title": "玻尿酸&肉毒素",
-      "desc": "专业医生安全自然的注射"
+      "title": "面部塑形",
+      "desc": "由专业医师打造自然美"
     },
     "laser": {
-      "title": "激光疗程",
-      "desc": "先进激光，美白祛斑"
+      "title": "激光治疗",
+      "desc": "激光美肤，改善暗沉及斑点"
     },
     "health": {
       "title": "健康管理",
-      "desc": "身心健康整体调理方案"
+      "desc": "身心全面健康管理方案"
     }
+  },
+  "about": {
+    "headline": "关于我们",
+    "description": "Caroline Clinic 是一家致力于安全和国际标准的美容诊所。我们拥有经验丰富的专家医师团队和先进技术，提供全面的皮肤护理、面部塑形、美容修复及个性化咨询服务。\n\n在温馨舒适的氛围中，Caroline Clinic 致力于为每一位顾客建立自信，让你以最好的状态展现自己。",
+    "description2": "在温馨舒适的氛围中，Caroline Clinic 致力于为每一位顾客建立自信，让你以最好的状态展现自己。"
   },
   "reviews": {
     "headline": "客户评价",
-    "empty": "暂无评价，欢迎您率先留言！"
+    "desc": "来自 Caroline Clinic 客户的真实反馈",
+    "all": "查看全部评价"
   },
   "promotions": {
-    "headline": "最新优惠",
-    "see_all": "查看全部优惠",
-    "cta": "领取此优惠"
+    "headline": "特别优惠",
+    "all": "全部优惠",
+    "desc": "为 Caroline Clinic 客户提供的超值美容优惠",
+    "see_all": "查看所有优惠"
   },
   "articles": {
-    "headline": "美丽与健康博客",
-    "see_all": "查看更多文章"
-  },
-  "about": {
-    "headline": "关于Caroline Clinic",
-    "description": "Caroline Clinic 提供由专家医生和最新科技支持的全方位美丽与健康服务。",
-    "team": "我们的团队"
+    "headline": "最新文章",
+    "desc": "阅读专家医师带来的美容、护肤与前沿美容科技相关内容",
+    "see_all": "查看全部文章"
   },
   "contact": {
     "headline": "联系我们",
+    "desc": "欢迎随时联系 Caroline Clinic 咨询或预约。",
     "phone": "电话",
     "email": "邮箱",
     "address": "地址",
-    "send_message": "发送信息",
-    "success": "您的信息已成功发送。",
-    "error": "发送失败，请重试。"
+    "addressInfo": "88/26 清叻诺伊路，孔能区，孔銮县，巴吞他尼府",
+    "open_time": "营业时间",
+    "open_time_": "营业时间：12:00-20:00（周一休息）"
   },
   "footer": {
-    "copyright": "© 2025 Caroline Clinic 版权所有",
+    "copyright": "© 2025 Caroline Clinic. 保留所有权利。",
+    "logo_desc": "每一步都安全，自信展现美丽",
     "privacy_policy": "隐私政策",
     "terms_of_service": "服务条款"
   },
   "common": {
-    "load_more": "加载更多",
+    "load_more": "查看更多",
     "submit": "提交",
     "cancel": "取消",
     "close": "关闭"

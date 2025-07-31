@@ -8,12 +8,15 @@ import Image from 'next/image'
 import reviews from './data.json'
 import { useRef } from 'react'
 import appearFromBottom from '@/lib/appearFrom/bottom'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   limit?: number
 }
 
 export default function ReviewClient({ limit }: Props) {
+  const { t } = useTranslation()
+
   const visibleReviews = limit ? reviews.slice(0, limit) : reviews
 
   const fromBottomRefsDiv = useRef<Array<HTMLDivElement | null>>([])
@@ -23,10 +26,8 @@ export default function ReviewClient({ limit }: Props) {
     <section id="review" className="review-section">
       <div className="review-container">
         <span className="section-title-en">REVIEWS</span>
-        <h2 className="review-title">รีวิวจากลูกค้า</h2>
-        <p className="review-description">
-          เสียงตอบรับจากลูกค้าผู้ใช้บริการจริงที่ Caroline Clinic
-        </p>
+        <h2 className="review-title">{t(`reviews.headline`)}</h2>
+        <p className="review-description">{t(`reviews.desc`)}</p>
         <div className="review-grid-container">
           {visibleReviews.map((review, index) => (
             <div
@@ -53,7 +54,7 @@ export default function ReviewClient({ limit }: Props) {
         {limit && (
           <div>
             <a href="/review" className="review-more-button">
-              ดูรีวิวทั้งหมด
+              {t(`reviews.all`)}
             </a>
           </div>
         )}

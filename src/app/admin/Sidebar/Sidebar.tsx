@@ -71,6 +71,13 @@ export default function AdminSidebar() {
           >
             Logout
           </Link>
+          <Link
+            href="/"
+            className="admin-nav-link"
+            onClick={() => setIsOpenSidebar(false)}
+          >
+            Website
+          </Link>
         </nav>
       </aside>
     </>

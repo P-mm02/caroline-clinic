@@ -1,5 +1,5 @@
 export type ArticleType = {
-  _id: string // ← Add this
+  _id: string
   title: string
   description: string
   image: string

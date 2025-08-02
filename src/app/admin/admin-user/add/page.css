@@ -1,0 +1,101 @@
+.admin-user-form {
+  background: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-user-form-title {
+  color: darkblue;
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.admin-user-form-input {
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  box-sizing: border-box;
+}
+
+.admin-user-form-checkbox-label {
+  color: darkgreen;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0 2rem 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.admin-user-form-checkbox {
+  transform: scale(2);   /* Makes the checkbox 1.5x bigger */
+  accent-color: darkgreen;   /* Optional: modern browsers, changes check color */
+}
+
+.admin-user-form-avatar-wrap{
+    padding-top: 2rem;
+  border-top: 1px solid lightgray;
+}
+.admin-user-form-avatar-title{
+    color: darkblue;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.admin-user-form-avatar {
+  background-color: #f3f4f6;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.04);
+  border: 2px solid #d1d5db;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  display: inline-block;
+  transition: all 0.18s;
+}
+.admin-user-form-avatar:hover, .admin-user-form-avatar:focus {
+  box-shadow: 0 4px 12px 0 rgba(37,99,235,0.13);
+  border-color: darkgray;
+  transform: scale(1.025);
+}
+
+.admin-user-form-actions {
+    border-top: 1px solid lightgray;
+    margin-top: 2rem;
+    padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.admin-user-form-actions button {
+  padding: 0.5rem 1.1rem;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  border: none;
+  background: #f3f4f6;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.admin-user-form-actions button.save {
+  background: #2563eb;
+  color: #fff;
+}
+.admin-user-form-actions button.cancel {
+  background: #e5e7eb;
+  color: #111;
+}

@@ -1,10 +1,12 @@
 'use client'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import './Sidebar.css'
 
 export default function AdminSidebar() {
   const [isOpenSidebar, setIsOpenSidebar] = useState(false)
+  const pathname = usePathname()
 
   function toggleSidebar() {
     setIsOpenSidebar((prev) => !prev)
@@ -63,14 +65,23 @@ export default function AdminSidebar() {
           >
             Services
           </Link>
-          <div className="admin-nav-separator" />
           <Link
-            href="/admin/logout"
-            className="admin-logout"
+            href="/admin/admin-user"
+            className="admin-nav-link"
             onClick={() => setIsOpenSidebar(false)}
           >
-            Logout
+            Member
           </Link>
+          <div className="admin-nav-separator" />
+          {pathname !== '/admin/login' && (
+            <Link
+              href="/admin/logout"
+              className="admin-logout"
+              onClick={() => setIsOpenSidebar(false)}
+            >
+              Logout
+            </Link>
+          )}
           <Link
             href="/"
             className="admin-nav-link"

@@ -1,7 +1,7 @@
 'use client'
 // Next.js directive: makes this a client-side component
 
-import { useState } from 'react' // React hook for local state
+import { useState, useEffect } from 'react' // React hook for local state
 import { useRouter } from 'next/navigation' // Next.js router for programmatic navigation (e.g. redirect)
 import './page.css' // Import page-specific CSS
 import { articleInitialForm } from '@/constants/article/articleInitialForm' // Initial form state (constant object)
@@ -14,6 +14,8 @@ import {
   compressImage,
 } from './function' // Import external handler functions for form logic
 
+import UploadImageStatus from '@/loading/UploadImageStatus/UploadImageStatus'
+
 export default function PageClient() {
   // ---- STATE HOOKS ----
   const [form, setForm] = useState(articleInitialForm)
@@ -25,10 +27,27 @@ export default function PageClient() {
 
   const router = useRouter() // Next.js hook for navigation
 
+  const [imageLoading, setImageLoading] = useState(false)
+  const [imageLoadingMsg, setImageLoadingMsg] = useState('Uploading...')
+
+  useEffect(() => {
+    if (loading) {
+      setImageLoading(true)
+      setImageLoadingMsg('Saving...')
+    } else {
+      setImageLoading(false)
+    }
+  }, [loading])
+
   // ---- RENDER FORM ----
   return (
     <section className="admin-article-add">
       {/* Section for add article form, styled by CSS */}
+      <UploadImageStatus
+        imageLoading={imageLoading}
+        message={error ? 'Uploading failed!' : imageLoadingMsg}
+      />
+
       <h2>+ Add New Article</h2>
 
       <form
@@ -66,22 +85,29 @@ export default function PageClient() {
               alt="Cover Preview"
               className="content-image-preview"
             />
-          ) : form.image ? (
+          ) : (
             <img
-              src={form.image}
-              alt="Cover Preview"
+              src="/icons/Upload-Image-Icon.png"
+              alt="Fallback"
               className="content-image-preview"
+              style={{ padding: '2rem' }}
             />
-          ) : null}
+          )}
           <input
             type="file"
             accept="image/*"
             onChange={async (e) => {
-              // now you can use await inside!
-              const file = e.target.files?.[0]
-              if (!file) return
-              const compressedFile = await compressImage(file)
-              setForm({ ...form, coverFile: compressedFile })
+              setImageLoading(true)
+              try {
+                const file = e.target.files?.[0]
+                if (!file) return
+                setImageLoadingMsg('Compressing...')
+                const compressedFile = await compressImage(file)
+                setForm({ ...form, coverFile: compressedFile })
+              } finally {
+                setImageLoading(false)
+                setImageLoadingMsg('Uploading...')
+              }
             }}
           />
         </label>
@@ -110,34 +136,42 @@ export default function PageClient() {
           <strong>Add Contents (image + text)</strong>
           {form.contents.map((c, i) => (
             <div key={i} className="content-input-row">
-              {c.file ? (
-                <img
-                  src={URL.createObjectURL(c.file)}
-                  className="content-image-preview"
-                  alt="Preview"
+              <label>
+                {c.file ? (
+                  <img
+                    src={URL.createObjectURL(c.file)}
+                    className="content-image-preview"
+                    alt="Preview"
+                  />
+                ) : (
+                  <img
+                    src={'/icons/Upload-Image-Icon.png'}
+                    className="content-image-preview"
+                    alt="Fallback"
+                    style={{ padding: '2rem' }}
+                  />
+                )}
+                <input
+                  className="content-image-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    setImageLoading(true)
+                    try {
+                      const file = e.target.files?.[0]
+                      if (!file) return
+                      setImageLoadingMsg('Compressing...')
+                      const compressedFile = await compressImage(file)
+                      const updated = [...form.contents]
+                      updated[i].file = compressedFile
+                      setForm({ ...form, contents: updated })
+                    } finally {
+                      setImageLoading(false)
+                      setImageLoadingMsg('Uploading...')
+                    }
+                  }}
                 />
-              ) : (
-                <img
-                  src={c.image || '/logo/caroline-logo-loading.svg'}
-                  className="content-image-preview"
-                  alt="Fallback"
-                />
-              )}
-
-              <input
-                className="content-image-input"
-                type="file"
-                accept="image/*"
-                onChange={async (e) => {
-                  const file = e.target.files?.[0]
-                  if (!file) return
-                  // Compress right after selection
-                  const compressedFile = await compressImage(file)
-                  const updated = [...form.contents]
-                  updated[i].file = compressedFile
-                  setForm({ ...form, contents: updated })
-                }}
-              />
+              </label>
               <textarea
                 placeholder="Content Text"
                 value={c.text}

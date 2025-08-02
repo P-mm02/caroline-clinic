@@ -46,7 +46,7 @@ export default function ArticleClient({ limit }: Props) {
         ) : error ? (
           <div className="article-list-error">{error}</div>
         ) : visibleArticles.length === 0 ? (
-          <div className="article-list-empty">ยังไม่มีบทความในขณะนี้</div>
+          <div className="article-list-empty">⚠️ยังไม่มีบทความในขณะนี้</div>
         ) : (
           <div className="article-list">
             {visibleArticles.map((article, idx) => (

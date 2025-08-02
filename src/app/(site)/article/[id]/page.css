@@ -12,7 +12,7 @@
 
 .article-detail-title {
     text-align: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #5c217e;
   margin-bottom: 0.5rem;
@@ -21,7 +21,7 @@
 
 .article-detail-meta {
     text-align: center;
-  font-size: 1.2rem;
+  font-size: 2rem;
   color: #888;
 }
 
@@ -40,10 +40,9 @@
 }
 
 .article-detail-description {
-  font-size: 1.125rem;
-  line-height: 1.8;
+  font-size: 1.6rem;
   color: #444;
-  margin-top: 1rem;
+  align-self: center;
 }
 
 .article-detail-content-row {
@@ -60,8 +59,7 @@
 }
 
 .article-detail-text {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  align-self: center;
+  font-size: 1.6rem;
   color: #333;
-  white-space: pre-wrap;
 }

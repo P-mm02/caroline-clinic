@@ -1,10 +1,10 @@
 .article-section {
   background: transparent;
   padding: 2rem ;
-  min-height: 100vh;
 }
 
 .article-container {
+  color: #9f2352;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -14,12 +14,18 @@
 }
 
 
-.article-description {
-  color: #9f2352;
+.article-description {  
   font-size: 1.4rem;
   margin-bottom: 2rem;
 }
 
+.article-list-empty{
+  width: 100%;  
+  font-size: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid #9f2352;
+  border-bottom: 1px solid #9f2352;
+}
 .article-list {
   display: flex;
   flex-wrap: wrap;

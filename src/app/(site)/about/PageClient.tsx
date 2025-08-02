@@ -66,12 +66,13 @@ export default function AboutClient() {
             }}
           >
             <Image
-              src="/images/about/Caroline_Team-min.png"
+              src="/images/about/S__4956722_0.jpg"
               alt="Caroline Clinic"
               width={400}
               height={600}
               className="about-image"
-              blurDataURL="/images/about/Caroline_Team-min-blur.png" // If you generate one
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAM0lEQVR4nAEoANf/AHZycdDLxM3U5gB0WgDAu6kaEgAATi0AmZSBBBknAGZWJfv56bbL3GdGEeZikxwvAAAAAElFTkSuQmCC"
             />
           </div>
         </div>

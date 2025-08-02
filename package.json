@@ -15,6 +15,7 @@
     "i18next-browser-languagedetector": "^8.2.0",
     "mongoose": "^8.16.4",
     "next": "15.3.5",
+    "plaiceholder": "^3.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.6.0"

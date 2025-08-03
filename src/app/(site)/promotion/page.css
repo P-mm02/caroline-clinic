@@ -84,20 +84,20 @@
   border: none;
   font-size: 2rem;
   padding: 4rem 1rem;
-  margin: 0 5px;
   border-radius: 1rem;
   cursor: pointer;
   transition: background 0.3s;
   z-index: 10;
   box-shadow: 0 2px 10px rgba(0,0,0,0.07);
 }
-.promotion-arrow:hover {
+.promotion-arrow:hover,
+.promotion-arrow:active {
   background: rgba(236, 72, 153, 0.9);
   color: white;
 }
 
-.promotion-arrow.left { left: 0; }
-.promotion-arrow.right { right: 0; }
+.promotion-arrow.left { left: 5px; }
+.promotion-arrow.right { right: 5px; }
 
 .promotion-more-button {
   display: inline-block;

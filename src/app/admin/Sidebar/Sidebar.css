@@ -55,8 +55,6 @@
   font-weight: 500;
   padding: 0.8rem 2.2rem;
   text-align: center;
-  border-top: 1px solid rgba(211, 211, 211, 0.2);
-  box-shadow: 0 2px 8px 0 rgba(37,99,235,0.07);
   transition: background 0.18s, box-shadow 0.18s, outline 0.12s, transform 0.16s;
   cursor: pointer;
 }

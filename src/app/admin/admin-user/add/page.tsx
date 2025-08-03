@@ -11,6 +11,7 @@ export default function AddAdminMemberPage() {
     username: '',
     email: '',
     password: '',
+    confirmPassword: '',
     role: 'viewer',
     active: true,
     avatarFile: null as File | null,
@@ -18,6 +19,7 @@ export default function AddAdminMemberPage() {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
   // Avatar preview
   useEffect(() => {
@@ -41,17 +43,35 @@ export default function AddAdminMemberPage() {
     } else {
       setForm((f) => ({ ...f, [name]: value }))
     }
+
+    // Live password validation
+    if (name === 'confirmPassword' || name === 'password') {
+      const pwd = name === 'password' ? value : form.password
+      const confirm = name === 'confirmPassword' ? value : form.confirmPassword
+      setPasswordError(pwd && confirm && pwd !== confirm ? 'Passwords do not match' : '')
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSaving(true)
     setError('')
+
+    // Final password validation
+    if (form.password !== form.confirmPassword) {
+      setPasswordError('Passwords do not match')
+      setSaving(false)
+      return
+    }
+
+    setSaving(true)
+
     const formData = new FormData()
     Object.entries(form).forEach(([k, v]) => {
+      // Do not submit confirmPassword to backend
       if (k === 'avatarFile' && v) formData.append('avatar', v as File)
-      else if (k !== 'avatarFile') formData.append(k, v as string)
+      else if (k !== 'avatarFile' && k !== 'confirmPassword') formData.append(k, v as string)
     })
+
     const res = await fetch('/api/admin-user/add', {
       method: 'POST',
       body: formData,
@@ -99,8 +119,18 @@ export default function AddAdminMemberPage() {
           onChange={handleFormChange}
           required
           placeholder="Password"
-          autoComplete="new-password"
         />
+        <input
+          className="admin-user-form-input"
+          name="confirmPassword"
+          type="password"
+          value={form.confirmPassword}
+          onChange={handleFormChange}
+          required
+          placeholder="Confirm Password"
+        />
+        {passwordError && <div style={{ color: 'red', fontSize: '2rem'}}>{passwordError}</div>}
+
         <select
           className="admin-user-form-input"
           name="role"

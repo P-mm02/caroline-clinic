@@ -96,6 +96,14 @@
   color: white;
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .promotion-arrow:hover {
+    background: rgba(239, 209, 233, 0.7);
+    color: rgba(0,0,0,0.63);
+  }
+}
+
+
 .promotion-arrow.left { left: 5px; }
 .promotion-arrow.right { right: 5px; }
 

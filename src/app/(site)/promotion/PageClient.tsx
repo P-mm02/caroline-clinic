@@ -57,20 +57,10 @@ const scrollBy = useCallback((amount: number) => {
       { root: null, threshold: 0.1 }
     )
     observer.observe(container)
-
-    container.addEventListener('mouseenter', pause)
-    container.addEventListener('mouseleave', resume)
-    container.addEventListener('touchstart', pause)
-    container.addEventListener('touchend', resume)
-
     return () => {
       observer.disconnect()
-      container.removeEventListener('mouseenter', pause)
-      container.removeEventListener('mouseleave', resume)
-      container.removeEventListener('touchstart', pause)
-      container.removeEventListener('touchend', resume)
     }
-  }, [show, pause, resume])
+  }, [show])
 
   useEffect(() => {
     if (!show) return;
@@ -112,16 +102,16 @@ const canScrollRight = () => {
         <span className="section-title-en">PROMOTION</span>
         <h2 className="section-title-th">{t(`promotions.headline`)}</h2>
         <p className="promotion-description">{t(`promotions.desc`)}</p>
-        {show && (
-          <div className="promotion-slider-container">
+          <div 
+            className="promotion-slider-container" 
+            onMouseEnter={pause}
+            onMouseLeave={resume}>
             <button
               className="promotion-arrow left"
               onClick={() => scrollBy(isMobile ? -320 : -640)}
               aria-label="เลื่อนไปทางซ้าย"
               disabled={!canScrollLeft()}
               tabIndex={0}
-              onMouseEnter={pause}
-              onMouseLeave={resume}
             >
               ◀
             </button>
@@ -131,11 +121,10 @@ const canScrollRight = () => {
               aria-label="เลื่อนไปทางขวา"
               disabled={!canScrollRight()}
               tabIndex={0}
-              onMouseEnter={pause}
-              onMouseLeave={resume}
             >
               ▶
             </button>
+            {show && (
             <div className="promotion-slider-wrapper" ref={scrollRef}>
               <div className="promotion-list">
                 {visiblePromotions.map((promo, index) => (
@@ -154,8 +143,9 @@ const canScrollRight = () => {
                 ))}
               </div>
             </div>
+            )}
+
           </div>
-        )}
 
         {limit && (
           <div>

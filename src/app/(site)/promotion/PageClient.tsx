@@ -42,11 +42,13 @@ export default function PromotionClient({ limit }: Props) {
 
   const visiblePromotions = limit ? promotions.slice(0, limit) : promotions
 
-  const scrollBy = useCallback((amount: number) => {
-    scrollRef.current?.scrollBy({ left: amount, behavior: 'smooth' })
-  }, [])
+const scrollBy = useCallback((amount: number) => {
+  if (!show) return;
+  scrollRef.current?.scrollBy({ left: amount, behavior: 'smooth' });
+}, [show]);
 
   useEffect(() => {
+    if (!show) return;
     const container = scrollRef.current
     if (!container) return
 
@@ -68,9 +70,10 @@ export default function PromotionClient({ limit }: Props) {
       container.removeEventListener('touchstart', pause)
       container.removeEventListener('touchend', resume)
     }
-  }, [pause, resume])
+  }, [show, pause, resume])
 
   useEffect(() => {
+    if (!show) return;
     if (!autoScrollActive) return
     const container = scrollRef.current
     if (!container) return
@@ -94,13 +97,14 @@ export default function PromotionClient({ limit }: Props) {
       })
     }, 2000)
     return () => clearInterval(handle)
-  }, [autoScrollActive, direction, isMobile])
+  }, [show, autoScrollActive, direction, isMobile])
 
-  const canScrollLeft = () => (scrollRef.current?.scrollLeft ?? 0) > 0
-  const canScrollRight = () => {
-    const el = scrollRef.current
-    return el ? el.scrollLeft < el.scrollWidth - el.clientWidth - 10 : false
-  }
+const canScrollLeft = () => show && (scrollRef.current?.scrollLeft ?? 0) > 0
+const canScrollRight = () => {
+  if (!show) return false
+  const el = scrollRef.current
+  return el ? el.scrollLeft < el.scrollWidth - el.clientWidth - 10 : false
+}
 
   return (
     <section id="promotion" className="promotion-section">
@@ -108,30 +112,30 @@ export default function PromotionClient({ limit }: Props) {
         <span className="section-title-en">PROMOTION</span>
         <h2 className="section-title-th">{t(`promotions.headline`)}</h2>
         <p className="promotion-description">{t(`promotions.desc`)}</p>
-        <div className="promotion-slider-container">
-          <button
-            className="promotion-arrow left"
-            onClick={() => scrollBy(isMobile ? -320 : -640)}
-            aria-label="เลื่อนไปทางซ้าย"
-            disabled={!canScrollLeft()}
-            tabIndex={0}
-            onMouseEnter={pause}
-            onMouseLeave={resume}
-          >
-            ◀
-          </button>
-          <button
-            className="promotion-arrow right"
-            onClick={() => scrollBy(isMobile ? 320 : 640)}
-            aria-label="เลื่อนไปทางขวา"
-            disabled={!canScrollRight()}
-            tabIndex={0}
-            onMouseEnter={pause}
-            onMouseLeave={resume}
-          >
-            ▶
-          </button>
-          {show && (
+        {show && (
+          <div className="promotion-slider-container">
+            <button
+              className="promotion-arrow left"
+              onClick={() => scrollBy(isMobile ? -320 : -640)}
+              aria-label="เลื่อนไปทางซ้าย"
+              disabled={!canScrollLeft()}
+              tabIndex={0}
+              onMouseEnter={pause}
+              onMouseLeave={resume}
+            >
+              ◀
+            </button>
+            <button
+              className="promotion-arrow right"
+              onClick={() => scrollBy(isMobile ? 320 : 640)}
+              aria-label="เลื่อนไปทางขวา"
+              disabled={!canScrollRight()}
+              tabIndex={0}
+              onMouseEnter={pause}
+              onMouseLeave={resume}
+            >
+              ▶
+            </button>
             <div className="promotion-slider-wrapper" ref={scrollRef}>
               <div className="promotion-list">
                 {visiblePromotions.map((promo, index) => (
@@ -150,8 +154,9 @@ export default function PromotionClient({ limit }: Props) {
                 ))}
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
         {limit && (
           <div>
             <a href="/promotion" className="promotion-more-button">

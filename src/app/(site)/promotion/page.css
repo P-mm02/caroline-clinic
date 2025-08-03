@@ -90,16 +90,20 @@
   z-index: 10;
   box-shadow: 0 2px 10px rgba(0,0,0,0.07);
 }
-.promotion-arrow:hover,
-.promotion-arrow:active {
+.promotion-arrow:hover {
   background: rgba(236, 72, 153, 0.9);
   color: white;
 }
 
 @media (hover: none) and (pointer: coarse) {
   .promotion-arrow:hover {
+    /* Remove hover effect on mobile */
     background: rgba(239, 209, 233, 0.7);
     color: rgba(0,0,0,0.63);
+  }
+  .promotion-arrow:active {
+    background: rgba(236, 72, 153, 0.9);
+    color: white;
   }
 }
 

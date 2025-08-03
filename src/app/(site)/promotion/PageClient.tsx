@@ -12,6 +12,17 @@ type Props = {
 }
 
 export default function PromotionClient({ limit }: Props) {
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    function onLoad() {
+      setShow(true)
+    }
+    window.addEventListener('load', onLoad)
+    if (document.readyState === 'complete') onLoad()
+    return () => window.removeEventListener('load', onLoad)
+  }, [])
+
   const scrollRef = useRef<HTMLDivElement>(null)
   const [autoScrollActive, setAutoScrollActive] = useState(false)
   const [direction, setDirection] = useState(1)
@@ -120,24 +131,27 @@ export default function PromotionClient({ limit }: Props) {
           >
             ▶
           </button>
-          <div className="promotion-slider-wrapper" ref={scrollRef}>
-            <div className="promotion-list">
-              {visiblePromotions.map((promo, index) => (
-                <div key={index} className="promotion-card snap-start">
-                  <div className="promotion-image-wrapper">
-                    <Image
-                      src={promo.image}
-                      alt={promo.title}
-                      width={375}
-                      height={450}
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="promotion-image"
-                    />
+          {show && (
+            <div className="promotion-slider-wrapper" ref={scrollRef}>
+              <div className="promotion-list">
+                {visiblePromotions.map((promo, index) => (
+                  <div key={index} className="promotion-card snap-start">
+                    <div className="promotion-image-wrapper">
+                      <Image
+                        src={promo.image}
+                        alt={promo.title}
+                        width={375}
+                        height={450}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="promotion-image"
+                        loading="eager"
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
         {limit && (
           <div>

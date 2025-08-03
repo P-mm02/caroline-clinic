@@ -142,7 +142,6 @@ export default function PromotionClient({ limit }: Props) {
                         alt={promo.title}
                         width={375}
                         height={450}
-                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="promotion-image"
                         loading="eager"
                       />

@@ -1,7 +1,6 @@
 
 @media (max-width: 768px) {
   .promotion-arrow {
-    display: none;
   }
   .promotion-image {
     min-width: 85vw;

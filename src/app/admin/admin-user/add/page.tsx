@@ -76,10 +76,11 @@ export default function AddAdminMemberPage() {
       method: 'POST',
       body: formData,
     })
+    const resJson = await res.json()
     if (res.ok) {
       router.push('/admin/admin-user')
     } else {
-      setError('Failed to add user')
+      setError(resJson.error || 'Failed to add user')
       setSaving(false)
     }
   }

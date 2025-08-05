@@ -34,6 +34,7 @@
     📁 about
       📄 Caroline_Team-min.png
       📄 S__4956722_0.jpg
+    📁 contact
     📁 Hero
       📄 HeroImage.JPG
       📄 HeroImage3.png
@@ -46,12 +47,12 @@
       📄 Caroline_Clinic_Promotion_13.png
       📄 Caroline_Clinic_Promotion_14.png
       📄 Caroline_Clinic_Promotion_15.png
-      📄 Caroline_Clinic_Promotion_16.jpg
-      📄 Caroline_Clinic_Promotion_17.jpg
-      📄 Caroline_Clinic_Promotion_18.jpg
-      📄 Caroline_Clinic_Promotion_19.jpg
+      📄 Caroline_Clinic_Promotion_16.JPG
+      📄 Caroline_Clinic_Promotion_17.JPG
+      📄 Caroline_Clinic_Promotion_18.JPG
+      📄 Caroline_Clinic_Promotion_19.JPG
       📄 Caroline_Clinic_Promotion_2.png
-      📄 Caroline_Clinic_Promotion_20.jpg
+      📄 Caroline_Clinic_Promotion_20.JPG
       📄 Caroline_Clinic_Promotion_21.png
       📄 Caroline_Clinic_Promotion_22.png
       📄 Caroline_Clinic_Promotion_23.png
@@ -129,6 +130,9 @@
       📁 Navbar
       📄 page.css
       📄 page.tsx
+      📁 promotion
+      📁 review
+      📁 service
       📁 Sidebar
     📁 api
       📁 admin

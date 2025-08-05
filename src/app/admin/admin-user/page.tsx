@@ -45,7 +45,7 @@ export default function AdminMemberPage() {
                     />
                   ) : (
                     <Image
-                      src={'/icons/Image-Icon.svg'}
+                      src={'/icons/user-icon.svg'}
                       alt={u.username}
                       width={48}
                       height={48}

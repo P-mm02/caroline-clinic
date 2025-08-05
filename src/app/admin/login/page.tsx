@@ -8,23 +8,32 @@ export default function AdminLoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function handleLogin(e: React.FormEvent) {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
-    const res = await fetch('/api/admin/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
-    })
-    setLoading(false)
-    if (res.ok) {
-      console.log('res.ok')      
-      window.location.href = '/admin'
-    } else {
-      setError('Invalid credentials')
-    }
+async function handleLogin(e: React.FormEvent) {
+  e.preventDefault()
+  setError('')
+  setLoading(true)
+  const res = await fetch('/api/admin/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  })
+  setLoading(false)
+  if (res.ok) {
+    const data = await res.json()
+    // Save user info for Navbar (simple: localStorage)
+    localStorage.setItem(
+      'adminUser',
+      JSON.stringify({
+        username: data.username,
+        avatarUrl: data.avatarUrl || '',
+        role: data.role || '',
+      })
+    )
+    window.location.href = '/admin'
+  } else {
+    setError('Invalid credentials')
   }
+}
 
   return (
     <section className="admin-login-container">

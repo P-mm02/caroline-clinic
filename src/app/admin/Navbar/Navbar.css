@@ -28,7 +28,7 @@
   background: #fff;
 }
 
-.admin-navbar-username {
+.admin-navbar-username, .admin-navbar-role {
   font-size: 1.5rem;
   font-weight: 500;
 }

@@ -76,19 +76,21 @@
 }
 
 .admin-member-avatar-wrap {
-  width: 48px;
-  height: 48px;
+  width: 4rem;
+  height: 4rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
+  border: 2px solid #f3f4f6;
+  border-radius: 50%;
 }
 .admin-member-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
   object-fit: cover;
   background: #e5e7eb;
-  border: 2px solid #f3f4f6;
+  border-radius: 50%;
+
 }
 
 .admin-member-card-username {

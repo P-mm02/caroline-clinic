@@ -1,6 +1,7 @@
 import './layout.css'
 import AdminNavbar from './Navbar/Navbar'
 import AdminSidebar from './Sidebar/Sidebar'
+import { Suspense } from 'react'
 
 export default function AdminLayout({
   children,
@@ -9,7 +10,9 @@ export default function AdminLayout({
 }) {
   return (
     <div className="admin-root">
-      <AdminNavbar />
+      <Suspense>
+        <AdminNavbar />
+      </Suspense>
       <main className="admin-main">
         <AdminSidebar />
         {children}

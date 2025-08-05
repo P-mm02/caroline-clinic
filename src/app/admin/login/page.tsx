@@ -1,6 +1,22 @@
 'use client'
 import './page.css'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
+
+function UnauthorizedMessage() {
+  const searchParams = useSearchParams()
+  if (searchParams.get('unauthorized') === '1') {
+    return (
+      <div
+        className="admin-login-error"
+        style={{ marginBottom: 8, color: 'red', fontWeight: 'bold' }}
+      >
+        🚫 You are not authorized to access that page.
+      </div>
+    )
+  }
+  return null
+}
 
 export default function AdminLoginPage() {
   const [username, setUsername] = useState('')
@@ -8,40 +24,43 @@ export default function AdminLoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-async function handleLogin(e: React.FormEvent) {
-  e.preventDefault()
-  setError('')
-  setLoading(true)
-  const res = await fetch('/api/admin/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password }),
-  })
-  setLoading(false)
-  if (res.ok) {
-    const data = await res.json()
-    // Save user info for Navbar (simple: localStorage)
-    localStorage.setItem(
-      'adminUser',
-      JSON.stringify({
-        username: data.username,
-        avatarUrl: data.avatarUrl || '',
-        role: data.role || '',
-      })
-    )
-    window.location.href = '/admin'
-  } else {
-    setError('Invalid credentials')
+  async function handleLogin(e: React.FormEvent) {
+    e.preventDefault()
+    setError('')
+    setLoading(true)
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    })
+    setLoading(false)
+    if (res.ok) {
+      const data = await res.json()
+      localStorage.setItem(
+        'adminUser',
+        JSON.stringify({
+          username: data.username,
+          avatarUrl: data.avatarUrl || '',
+          role: data.role || '',
+        })
+      )
+      window.location.href = '/admin'
+    } else {
+      setError('Invalid credentials')
+    }
   }
-}
 
   return (
     <section className="admin-login-container">
       <form className="admin-login-form" onSubmit={handleLogin}>
         <h1>Admin Login</h1>
+        {/* Suspense boundary for useSearchParams */}
+        <Suspense>
+          <UnauthorizedMessage />
+        </Suspense>
         <input
           value={username}
-          type="text" // ← Use type="text" for username!
+          type="text"
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
           required

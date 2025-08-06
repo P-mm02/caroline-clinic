@@ -107,6 +107,11 @@
   }
 }
 
+.promotion-arrow:disabled {
+  color: #aaa;
+  background: #fafafa;
+  cursor: not-allowed;
+}
 
 .promotion-arrow.left { left: 5px; }
 .promotion-arrow.right { right: 5px; }

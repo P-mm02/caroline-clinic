@@ -23,7 +23,6 @@ export default function AboutClient() {
   const [direction, setDirection] = useState(1)
   const [isMobile, setIsMobile] = useState(false)
 
-  // Detect mobile
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768)
     handleResize()
@@ -43,7 +42,7 @@ export default function AboutClient() {
     '/images/about/S__4956717_0.jpg',
   ]
 
-  // Arrow disable logic based on scroll position
+  // State-driven arrow disables
   const [atStart, setAtStart] = useState(true)
   const [atEnd, setAtEnd] = useState(aboutImages.length <= 1)
   const checkArrows = useCallback(() => {
@@ -59,9 +58,9 @@ export default function AboutClient() {
     checkArrows()
     el.addEventListener('scroll', checkArrows)
     return () => el.removeEventListener('scroll', checkArrows)
-  }, [aboutImages.length, checkArrows])
+  }, [aboutImages.length, checkArrows, show]) // Added show as a dependency
 
-  // Auto scroll logic (optional)
+  // --- Auto scroll logic (optional) ---
   useEffect(() => {
     if (!show) return
     const container = scrollRef.current
@@ -105,6 +104,8 @@ export default function AboutClient() {
   }, [])
   const handlePrev = () => scrollBy(isMobile ? -320 : -640)
   const handleNext = () => scrollBy(isMobile ? 320 : 640)
+
+  // REMOVE canScrollLeft/canScrollRight (use state only!)
 
   return (
     <section id="about" className="about-section">

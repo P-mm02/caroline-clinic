@@ -42,13 +42,30 @@ export default function PromotionClient({ limit }: Props) {
 
   const visiblePromotions = limit ? promotions.slice(0, limit) : promotions
 
-const scrollBy = useCallback((amount: number) => {
-  if (!show) return;
-  scrollRef.current?.scrollBy({ left: amount, behavior: 'smooth' });
-}, [show]);
+  // State for button disables
+  const [atStart, setAtStart] = useState(true)
+  const [atEnd, setAtEnd] = useState(visiblePromotions.length <= 1)
+  const checkArrows = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    setAtStart(el.scrollLeft <= 16)
+    setAtEnd(el.scrollLeft >= el.scrollWidth - el.clientWidth - 16)
+  }, [])
 
   useEffect(() => {
-    if (!show) return;
+    const el = scrollRef.current
+    if (!el) return
+    checkArrows()
+    el.addEventListener('scroll', checkArrows)
+    return () => el.removeEventListener('scroll', checkArrows)
+  }, [visiblePromotions.length, checkArrows, show])
+
+  const scrollBy = useCallback((amount: number) => {
+    scrollRef.current?.scrollBy({ left: amount, behavior: 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    if (!show) return
     const container = scrollRef.current
     if (!container) return
 
@@ -57,13 +74,11 @@ const scrollBy = useCallback((amount: number) => {
       { root: null, threshold: 0.1 }
     )
     observer.observe(container)
-    return () => {
-      observer.disconnect()
-    }
+    return () => observer.disconnect()
   }, [show])
 
   useEffect(() => {
-    if (!show) return;
+    if (!show) return
     if (!autoScrollActive) return
     const container = scrollRef.current
     if (!container) return
@@ -75,7 +90,7 @@ const scrollBy = useCallback((amount: number) => {
       const atStart = container.scrollLeft <= 16
       const atEnd = container.scrollLeft >= maxScroll - 16
 
-      setDirection(dir => {
+      setDirection((dir) => {
         if (atEnd) return -1
         if (atStart) return 1
         return dir
@@ -88,13 +103,6 @@ const scrollBy = useCallback((amount: number) => {
     }, 2000)
     return () => clearInterval(handle)
   }, [show, autoScrollActive, direction, isMobile])
-
-const canScrollLeft = () => show && (scrollRef.current?.scrollLeft ?? 0) > 0
-const canScrollRight = () => {
-  if (!show) return false
-  const el = scrollRef.current
-  return el ? el.scrollLeft < el.scrollWidth - el.clientWidth - 10 : false
-}
 
   return (
     <section id="promotion" className="promotion-section">
@@ -111,7 +119,7 @@ const canScrollRight = () => {
             className="promotion-arrow left"
             onClick={() => scrollBy(isMobile ? -320 : -640)}
             aria-label="เลื่อนไปทางซ้าย"
-            disabled={!canScrollLeft()}
+            disabled={atStart}
             tabIndex={0}
           >
             ◀
@@ -120,7 +128,7 @@ const canScrollRight = () => {
             className="promotion-arrow right"
             onClick={() => scrollBy(isMobile ? 320 : 640)}
             aria-label="เลื่อนไปทางขวา"
-            disabled={!canScrollRight()}
+            disabled={atEnd}
             tabIndex={0}
           >
             ▶
@@ -151,7 +159,6 @@ const canScrollRight = () => {
             </div>
           )}
         </div>
-
         {limit && (
           <div>
             <a href="/promotion" className="promotion-more-button">

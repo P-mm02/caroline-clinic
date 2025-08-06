@@ -131,27 +131,28 @@ export default function AboutClient() {
               >
                 ◀
               </button>
-              <div className="about-slider-track" ref={scrollRef}>
-                {aboutImages.map((img, idx) => (
-                  <div
-                    className="about-slider-img-wrapper"
-                    key={img}
-                    onTouchStart={pause}
-                    onTouchEnd={resume}
-                    onTouchCancel={resume}
-                  >
-                    <Image
-                      src={img}
-                      alt={`About Image ${idx + 1}`}
-                      width={600}
-                      height={1200}
-                      className="about-image"
-                      placeholder="blur"
-                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAM0lEQVR4nAEoANf/AHZycdDLxM3U5gB0WgDAu6kaEgAATi0AmZSBBBknAGZWJfv56bbL3GdGEeZikxwvAAAAAElFTkSuQmCC"
-                    />
-                  </div>
-                ))}
-              </div>
+              {show && (
+                <div className="about-slider-track" ref={scrollRef}>
+                  {aboutImages.map((img, idx) => (
+                    <div
+                      className="about-slider-img-wrapper"
+                      key={img}
+                      onTouchStart={pause}
+                      onTouchEnd={resume}
+                      onTouchCancel={resume}
+                    >
+                      <Image
+                        src={img}
+                        alt={`About Image ${idx + 1}`}
+                        width={600}
+                        height={1200}
+                        className="about-image"
+                        loading="eager"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
               <button
                 className="about-slider-arrow right"
                 onClick={handleNext}

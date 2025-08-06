@@ -1,22 +1,6 @@
 'use client'
 import './page.css'
 import { useState, Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
-
-function UnauthorizedMessage() {
-  const searchParams = useSearchParams()
-  if (searchParams.get('unauthorized') === '1') {
-    return (
-      <div
-        className="admin-login-error"
-        style={{ marginBottom: 8, color: 'red', fontWeight: 'bold' }}
-      >
-        🚫 You are not authorized to access that page.
-      </div>
-    )
-  }
-  return null
-}
 
 export default function AdminLoginPage() {
   const [username, setUsername] = useState('')
@@ -54,10 +38,6 @@ export default function AdminLoginPage() {
     <section className="admin-login-container">
       <form className="admin-login-form" onSubmit={handleLogin}>
         <h1>Admin Login</h1>
-        {/* Suspense boundary for useSearchParams */}
-        <Suspense>
-          <UnauthorizedMessage />
-        </Suspense>
         <input
           value={username}
           type="text"

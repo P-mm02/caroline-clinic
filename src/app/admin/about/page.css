@@ -1,0 +1,88 @@
+.admin-about-main {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.admin-about-form h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.lang-fields {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.lang-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.lang-field label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.lang-field textarea {
+  width: 100%;
+  resize: vertical;
+  border-radius: 0.5rem;
+  border: 1px solid #e0e0e0;
+  padding: 0.5rem;
+  font-size: 1rem;
+  min-height: 60px;
+  background: #fafbfc;
+  transition: border 0.2s;
+}
+
+.lang-field textarea:focus {
+  border: 1.5px solid #3b82f6;
+  outline: none;
+}
+
+input[type="file"] {
+  margin: 1rem 0;
+}
+
+.image-preview-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.image-preview {
+  width: 90px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+button[type="submit"] {
+  margin-top: 2rem;
+  padding: 0.75rem 2.5rem;
+  font-size: 1.1rem;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 8px rgba(59,130,246,0.13);
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, scale 0.2s;
+}
+
+button[type="submit"]:hover, button[type="submit"]:focus {
+  background: #2563eb;
+  scale: 1.04;
+}

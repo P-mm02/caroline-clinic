@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react'
 import '@/styles/globals.css'
 import './Navbar.css'
-import { useSearchParams } from 'next/navigation'
 
 type AdminUserType = {
   username: string
@@ -18,16 +17,6 @@ const roleDisplay: Record<string, string> = {
 }
 
 export default function AdminNavbar() {
-  const searchParams = useSearchParams()
-  const [showUnauthorized, setShowUnauthorized] = useState(false)
-
-  useEffect(() => {
-    if (searchParams.get('unauthorized') === '1') {
-      setShowUnauthorized(true)
-      // Optionally, remove the param after displaying the message
-      // (You can use router.replace for a cleaner URL if you want)
-    }
-  }, [searchParams])
   const [user, setUser] = useState<AdminUserType>({
     username: '',
     avatarUrl: '',
@@ -49,15 +38,7 @@ export default function AdminNavbar() {
 
   return (
     <nav className="admin-navbar">
-{/*       {showUnauthorized && (
-        <div
-          className="alert alert-warning"
-          style={{ color: 'red', fontWeight: 'bold', margin: '1rem 0' }}
-        >
-          🚫 You are not authorized to access that page.
-        </div>
-      )}
- */}      <div className="admin-navbar-user">
+      <div className="admin-navbar-user">
         {user.role && (
           <span className="admin-navbar-role">
             {roleDisplay[user.role] || user.role || '-'}

@@ -38,7 +38,7 @@ if (
   if (!isAuth) {
     const url = request.nextUrl.clone()
     url.pathname = '/admin/admin-user'
-    url.searchParams.set('unauthorized', '1')
+    url.searchParams.set('unauthorized', '2')
     return NextResponse.redirect(url)
   }
 }

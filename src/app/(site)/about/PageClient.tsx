@@ -133,7 +133,13 @@ export default function AboutClient() {
               </button>
               <div className="about-slider-track" ref={scrollRef}>
                 {aboutImages.map((img, idx) => (
-                  <div className="about-slider-img-wrapper" key={img}>
+                  <div
+                    className="about-slider-img-wrapper"
+                    key={img}
+                    onTouchStart={pause}
+                    onTouchEnd={resume}
+                    onTouchCancel={resume}
+                  >
                     <Image
                       src={img}
                       alt={`About Image ${idx + 1}`}

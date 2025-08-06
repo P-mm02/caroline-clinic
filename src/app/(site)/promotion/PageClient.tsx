@@ -102,34 +102,40 @@ const canScrollRight = () => {
         <span className="section-title-en">PROMOTION</span>
         <h2 className="section-title-th">{t(`promotions.headline`)}</h2>
         <p className="promotion-description">{t(`promotions.desc`)}</p>
-          <div 
-            className="promotion-slider-container" 
-            onMouseEnter={pause}
-            onMouseLeave={resume}>
-            <button
-              className="promotion-arrow left"
-              onClick={() => scrollBy(isMobile ? -320 : -640)}
-              aria-label="เลื่อนไปทางซ้าย"
-              disabled={!canScrollLeft()}
-              tabIndex={0}
-            >
-              ◀
-            </button>
-            <button
-              className="promotion-arrow right"
-              onClick={() => scrollBy(isMobile ? 320 : 640)}
-              aria-label="เลื่อนไปทางขวา"
-              disabled={!canScrollRight()}
-              tabIndex={0}
-            >
-              ▶
-            </button>
-            {show && (
+        <div
+          className="promotion-slider-container"
+          onMouseEnter={pause}
+          onMouseLeave={resume}
+        >
+          <button
+            className="promotion-arrow left"
+            onClick={() => scrollBy(isMobile ? -320 : -640)}
+            aria-label="เลื่อนไปทางซ้าย"
+            disabled={!canScrollLeft()}
+            tabIndex={0}
+          >
+            ◀
+          </button>
+          <button
+            className="promotion-arrow right"
+            onClick={() => scrollBy(isMobile ? 320 : 640)}
+            aria-label="เลื่อนไปทางขวา"
+            disabled={!canScrollRight()}
+            tabIndex={0}
+          >
+            ▶
+          </button>
+          {show && (
             <div className="promotion-slider-wrapper" ref={scrollRef}>
               <div className="promotion-list">
                 {visiblePromotions.map((promo, index) => (
                   <div key={index} className="promotion-card snap-start">
-                    <div className="promotion-image-wrapper">
+                    <div
+                      className="promotion-image-wrapper"
+                      onTouchStart={pause}
+                      onTouchEnd={resume}
+                      onTouchCancel={resume}
+                    >
                       <Image
                         src={promo.image}
                         alt={promo.title}
@@ -143,9 +149,8 @@ const canScrollRight = () => {
                 ))}
               </div>
             </div>
-            )}
-
-          </div>
+          )}
+        </div>
 
         {limit && (
           <div>

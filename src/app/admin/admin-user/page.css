@@ -152,7 +152,7 @@
   color: #dc2626;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .admin-member-main {
     max-width: 99vw;
     padding: 0.7rem;

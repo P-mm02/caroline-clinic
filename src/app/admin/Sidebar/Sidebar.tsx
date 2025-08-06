@@ -38,6 +38,13 @@ export default function AdminSidebar() {
             Home
           </Link>
           <Link
+            href="/admin/about"
+            className="admin-nav-link"
+            onClick={() => setIsOpenSidebar(false)}
+          >
+            About
+          </Link>
+          <Link
             href="/admin/article"
             className="admin-nav-link"
             onClick={() => setIsOpenSidebar(false)}

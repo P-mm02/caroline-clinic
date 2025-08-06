@@ -1,33 +1,44 @@
 .admin-about-main {
-  max-width: 700px;
-  margin: 2rem auto;
   padding: 2rem 1rem;
   background: #fff;
-  border-radius: 1.25rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: darkblue;
+}
+.admin-about-main h1{
+  font-size: 2rem;
 }
 
+.admin-about-form{
+  width: 100%;
+}
 .admin-about-form h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .lang-fields {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .lang-field {
-  flex: 1;
+  width: 49%;
   display: flex;
   flex-direction: column;
 }
 
 .lang-field label {
+  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
+
 }
 
 .lang-field textarea {
@@ -85,4 +96,10 @@ button[type="submit"] {
 button[type="submit"]:hover, button[type="submit"]:focus {
   background: #2563eb;
   scale: 1.04;
+}
+
+@media (max-width: 768px){
+  .lang-field{
+    width: 100%;
+  }
 }

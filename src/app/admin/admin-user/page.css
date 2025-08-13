@@ -149,8 +149,25 @@
   background: #dbeafe;
 }
 .admin-member-card-actions button:last-child {
-  color: #dc2626;
+  color: #ff5500;
 }
+
+.admin-member-delete-btn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 1rem;
+}
+
+.admin-member-delete-btn:hover {
+  background: #d9363e;
+}
+
 
 @media (max-width: 768px) {
   .admin-member-main {

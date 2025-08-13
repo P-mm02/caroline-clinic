@@ -31,26 +31,38 @@ export default function AddAdminMemberPage() {
     setAvatarPreview(null)
   }, [form.avatarFile])
 
-  function handleFormChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) {
-    const { name, value, type, checked, files } = e.target as any
-    if (type === 'checkbox') {
-      setForm((f) => ({ ...f, [name]: checked }))
-    } else if (type === 'file') {
-      const file = files[0] ?? null
-      setForm((f) => ({ ...f, avatarFile: file }))
-    } else {
-      setForm((f) => ({ ...f, [name]: value }))
-    }
+function handleFormChange(
+  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+) {
+  const { name, value, type, checked, files } = e.target as any
 
-    // Live password validation
-    if (name === 'confirmPassword' || name === 'password') {
-      const pwd = name === 'password' ? value : form.password
-      const confirm = name === 'confirmPassword' ? value : form.confirmPassword
-      setPasswordError(pwd && confirm && pwd !== confirm ? 'Passwords do not match' : '')
+  if (type === 'checkbox') {
+    setForm((f) => ({ ...f, [name]: checked }))
+  } else if (type === 'file') {
+    const file = files[0] ?? null
+    setForm((f) => ({ ...f, avatarFile: file }))
+  } else {
+    setForm((f) => ({ ...f, [name]: value }))
+  }
+
+  // ✅ Live password validation
+  if (name === 'confirmPassword' || name === 'password') {
+    const pwd = name === 'password' ? value : form.password
+    const confirm = name === 'confirmPassword' ? value : form.confirmPassword
+    setPasswordError(
+      pwd && confirm && pwd !== confirm ? 'Passwords do not match' : ''
+    )
+  }
+
+  // ✅ Live email format check
+  if (name === 'email') {
+    if (value && !/^\S+@\S+\.\S+$/.test(value)) {
+      setError('Invalid email format')
+    } else {
+      setError('')
     }
   }
+}
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -105,15 +117,6 @@ export default function AddAdminMemberPage() {
         />
         <input
           className="admin-user-form-input"
-          name="email"
-          type="email"
-          value={form.email}
-          onChange={handleFormChange}
-          placeholder="Email"
-          autoComplete="off"
-        />
-        <input
-          className="admin-user-form-input"
           name="password"
           type="password"
           value={form.password}
@@ -130,7 +133,9 @@ export default function AddAdminMemberPage() {
           required
           placeholder="Confirm Password"
         />
-        {passwordError && <div style={{ color: 'red', fontSize: '2rem'}}>{passwordError}</div>}
+        {passwordError && (
+          <div style={{ color: 'red', fontSize: '2rem' }}>{passwordError}</div>
+        )}
 
         <select
           className="admin-user-form-input"
@@ -143,6 +148,19 @@ export default function AddAdminMemberPage() {
           <option value="operator">Operator</option>
           <option value="viewer">Viewer</option>
         </select>
+        <input
+          className="admin-user-form-input"
+          name="email"
+          type="email"
+          value={form.email}
+          onChange={handleFormChange}
+          placeholder="Email (optional)"
+          autoComplete="off"
+        />
+        {error === 'Invalid email format' && (
+          <div style={{ color: 'red', fontSize: '1.5rem' }}>{error}</div>
+        )}
+
         <label className="admin-user-form-checkbox-label">
           <input
             className="admin-user-form-checkbox"

@@ -69,6 +69,37 @@ export default function AdminMemberPage() {
                 <button>Edit</button>
                 <button>Disable</button>
               </div>
+              <button
+                className="admin-member-delete-btn"
+                onClick={async () => {
+                  const confirmDelete = window.confirm(
+                    `Are you sure you want to delete ${u.username}?`
+                  )
+                  if (!confirmDelete) return
+
+                  try {
+                    const res = await fetch(`/api/admin-user/${u._id}/delete`, {
+                      method: 'DELETE',
+                    })
+
+                    if (!res.ok) {
+                      const err = await res.json()
+                      alert(err.error || 'Failed to delete user')
+                      return
+                    }
+
+                    // Remove from local state
+                    setUsers((prev) =>
+                      prev.filter((user) => user._id !== u._id)
+                    )
+                  } catch (err) {
+                    alert('Something went wrong while deleting user.')
+                    console.error(err)
+                  }
+                }}
+              >
+                Delete
+              </button>
             </div>
           ))}
         </div>

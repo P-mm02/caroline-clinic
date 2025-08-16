@@ -21,7 +21,7 @@ export default function Hero() {
         {/* <p className="hero-subheading">ความงามที่มั่นใจ ปลอดภัยทุกขั้นตอน</p> */}
       </div>
       <Image
-        src="/images/Hero/HeroImage5.png"
+        src="/images/Hero/HeroImage_BG.png"
         alt="Caroline Clinic Hero"
         className="hero-image"
         width={1920}

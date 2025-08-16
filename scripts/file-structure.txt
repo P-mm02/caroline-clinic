@@ -10,6 +10,7 @@
   📁 v1
     📁 functions
 📄 blurDataURL.txt
+📄 favicon.ico
 📄 next-env.d.ts
 📄 next.config.ts
 📄 package-lock.json
@@ -30,9 +31,13 @@
     📄 Promotion_Example.png
     📄 Upload-Image-Icon-Circle.png
     📄 Upload-Image-Icon.png
+    📄 user-icon.svg
   📁 images
     📁 about
-      📄 Caroline_Team-min.png
+      📄 S__4956717_0.jpg
+      📄 S__4956719_0.jpg
+      📄 S__4956720_0.jpg
+      📄 S__4956721_0.jpg
       📄 S__4956722_0.jpg
     📁 contact
     📁 Hero
@@ -121,8 +126,10 @@
       📁 review
       📁 services
     📁 admin
+      📁 about
       📁 admin-user
       📁 article
+      📁 Footer
       📄 layout.css
       📄 layout.tsx
       📁 login
@@ -183,12 +190,15 @@
       📄 UploadImageStatus.tsx
   📄 middleware.ts
   📁 models
+    📄 About.ts
     📄 AdminUser.ts
     📄 Article.ts
   📁 styles
     📄 apearFrom.css
     📄 globals.css
   📁 types
+    📄 AboutFormState.ts
+    📄 AboutType.ts
     📄 AdminUserFormState.ts
     📄 AdminUserType.ts
     📄 ArticleFormState.ts

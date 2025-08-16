@@ -1,0 +1,43 @@
+/* Reuse the base styling from the Add page without duplicating rules */
+@import url('../add/page.css');
+
+/* Page wrapper tweaks (optional) */
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Alerts */
+.profile-alert {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 0 1rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+.profile-alert.success {
+  background: #ecfdf5;   /* green-50 */
+  color: #065f46;        /* green-800 */
+  border: 1px solid #a7f3d0;
+}
+.profile-alert.error {
+  background: #fef2f2;   /* red-50 */
+  color: #7f1d1d;        /* red-900 */
+  border: 1px solid #fecaca;
+}
+
+/* Small inline hint (e.g., password mismatch) */
+.profile-hint.error {
+  color: #b91c1c;
+  font-size: 1.4rem;
+  margin: 0.25rem 0 0.75rem 0;
+}
+
+/* Optional: title accent specific to Profile page */
+.admin-user-form-title {
+  color: #0f172a;        /* slate-900 */
+}

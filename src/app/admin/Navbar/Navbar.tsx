@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation' // ✅ import router
 import '@/styles/globals.css'
 import './Navbar.css'
 
@@ -17,10 +18,11 @@ const roleDisplay: Record<string, string> = {
 }
 
 export default function AdminNavbar() {
+  const router = useRouter() // ✅ create router instance
   const [user, setUser] = useState<AdminUserType>({
-    username: '',
-    avatarUrl: '',
-    role: '',
+    username: 'username',
+    avatarUrl: '/logo/Caroline-Clinic-Logo.svg',
+    role: 'Role',
   })
 
   useEffect(() => {
@@ -50,12 +52,14 @@ export default function AdminNavbar() {
             ? user.username.length > 10
               ? user.username.slice(0, 10) + '…'
               : user.username
-            : '-'}
+            : ' '}
         </span>
         <img
-          src={user.avatarUrl || '/logo/Caroline-Clinic-Logo.svg'}
+          src={user.avatarUrl || ''}
           alt="User"
           className="admin-navbar-avatar"
+          onClick={() => router.push('/admin/admin-user/profile')} // ✅ redirect
+          style={{ cursor: 'pointer' }} // make it look clickable
         />
       </div>
     </nav>

@@ -4,7 +4,10 @@ import AdminUser from '@/models/AdminUser'
 import { Types } from 'mongoose'
 import { v2 as cloudinary } from 'cloudinary'
 
-// Cloudinary config (if not already initialized globally)
+// If you ever run this on Edge accidentally, Cloudinary won't work.
+// Force Node runtime if needed:
+// export const runtime = 'nodejs'
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
   api_key: process.env.CLOUDINARY_API_KEY!,
@@ -12,11 +15,10 @@ cloudinary.config({
 })
 
 export async function DELETE(
-  req: Request,
-  context: { params: { id: string } }
+  _req: Request,
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { params } = await context // 👈 required!
-  const { id } = params
+  const { id } = await context.params // ✅ await the params promise
 
   await connectToDB()
 

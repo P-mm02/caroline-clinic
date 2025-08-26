@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import './page.css'
+import { compressAvatar } from '@/utils/imageHelpers'
+import UploadImageStatus from '@/loading/UploadImageStatus/UploadImageStatus'
 
 export default function AddAdminMemberPage() {
   const router = useRouter()
@@ -16,10 +18,16 @@ export default function AddAdminMemberPage() {
     active: true,
     avatarFile: null as File | null,
   })
+
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [passwordError, setPasswordError] = useState('')
+  const [avatarInfo, setAvatarInfo] = useState<string>('') // size info
+
+  // Upload banner states
+  const [imageLoading, setImageLoading] = useState(false)
+  const [imageLoadingMsg, setImageLoadingMsg] = useState('Uploading...')
 
   // Avatar preview
   useEffect(() => {
@@ -31,44 +39,80 @@ export default function AddAdminMemberPage() {
     setAvatarPreview(null)
   }, [form.avatarFile])
 
-function handleFormChange(
-  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-) {
-  const { name, value, type, checked, files } = e.target as any
-
-  if (type === 'checkbox') {
-    setForm((f) => ({ ...f, [name]: checked }))
-  } else if (type === 'file') {
-    const file = files[0] ?? null
-    setForm((f) => ({ ...f, avatarFile: file }))
-  } else {
-    setForm((f) => ({ ...f, [name]: value }))
+  function prettySize(bytes: number) {
+    const mb = bytes / 1024 / 1024
+    return `${mb.toFixed(2)} MB`
   }
 
-  // ✅ Live password validation
-  if (name === 'confirmPassword' || name === 'password') {
-    const pwd = name === 'password' ? value : form.password
-    const confirm = name === 'confirmPassword' ? value : form.confirmPassword
-    setPasswordError(
-      pwd && confirm && pwd !== confirm ? 'Passwords do not match' : ''
-    )
-  }
+  async function handleFormChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    const { name, value, type, checked, files } = e.target as any
 
-  // ✅ Live email format check
-  if (name === 'email') {
-    if (value && !/^\S+@\S+\.\S+$/.test(value)) {
-      setError('Invalid email format')
+    if (type === 'checkbox') {
+      setForm((f) => ({ ...f, [name]: checked }))
+    } else if (type === 'file') {
+      const file: File | null = files?.[0] ?? null
+      if (!file) {
+        setForm((f) => ({ ...f, avatarFile: null }))
+        setAvatarInfo('')
+        return
+      }
+
+      if (!file.type.startsWith('image/')) {
+        setError('Please select an image file')
+        setForm((f) => ({ ...f, avatarFile: null }))
+        setAvatarInfo('')
+        return
+      }
+
+      try {
+        setImageLoading(true)
+        setImageLoadingMsg('Compressing...')
+        const compressed = await compressAvatar(file)
+        setForm((f) => ({ ...f, avatarFile: compressed }))
+        setError('')
+        setAvatarInfo(
+          `Compressed from ${prettySize(file.size)} → ${prettySize(
+            compressed.size
+          )}`
+        )
+      } catch (err) {
+        console.error(err)
+        setError('Failed to process image')
+        setForm((f) => ({ ...f, avatarFile: null }))
+        setAvatarInfo('')
+      } finally {
+        setImageLoading(false)
+        setImageLoadingMsg('Uploading...')
+      }
     } else {
-      setError('')
+      setForm((f) => ({ ...f, [name]: value }))
+    }
+
+    // Password validation
+    if (name === 'confirmPassword' || name === 'password') {
+      const pwd = name === 'password' ? value : form.password
+      const confirm = name === 'confirmPassword' ? value : form.confirmPassword
+      setPasswordError(
+        pwd && confirm && pwd !== confirm ? 'Passwords do not match' : ''
+      )
+    }
+
+    // Email validation
+    if (name === 'email') {
+      if (value && !/^\S+@\S+\.\S+$/.test(value)) {
+        setError('Invalid email format')
+      } else {
+        setError('')
+      }
     }
   }
-}
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
 
-    // Final password validation
     if (form.password !== form.confirmPassword) {
       setPasswordError('Passwords do not match')
       setSaving(false)
@@ -76,29 +120,39 @@ function handleFormChange(
     }
 
     setSaving(true)
+    setImageLoading(true)
+    setImageLoadingMsg('Saving...')
 
     const formData = new FormData()
     Object.entries(form).forEach(([k, v]) => {
-      // Do not submit confirmPassword to backend
       if (k === 'avatarFile' && v) formData.append('avatar', v as File)
-      else if (k !== 'avatarFile' && k !== 'confirmPassword') formData.append(k, v as string)
+      else if (k !== 'avatarFile' && k !== 'confirmPassword') {
+        formData.append(k, String(v))
+      }
     })
 
     const res = await fetch('/api/admin-user/add', {
       method: 'POST',
       body: formData,
     })
-    const resJson = await res.json()
+    const resJson = await res.json().catch(() => ({}))
+
     if (res.ok) {
       router.push('/admin/admin-user')
     } else {
-      setError(resJson.error || 'Failed to add user')
+      setError((resJson as any)?.error || 'Failed to add user')
       setSaving(false)
     }
+    setImageLoading(false)
   }
 
   return (
     <section className="admin-member-main">
+      <UploadImageStatus
+        imageLoading={imageLoading}
+        message={error ? 'Uploading failed!' : imageLoadingMsg}
+      />
+
       <form
         className="admin-user-form"
         onSubmit={handleSubmit}
@@ -115,6 +169,7 @@ function handleFormChange(
           placeholder="Username"
           autoComplete="off"
         />
+
         <input
           className="admin-user-form-input"
           name="password"
@@ -148,6 +203,7 @@ function handleFormChange(
           <option value="operator">Operator</option>
           <option value="viewer">Viewer</option>
         </select>
+
         <input
           className="admin-user-form-input"
           name="email"
@@ -171,7 +227,8 @@ function handleFormChange(
           />
           Active
         </label>
-        <label className="admin-user-form-avatar-wrap">
+
+        <label className="admin-user-form-avatar-wrap" htmlFor="avatar-input">
           <p className="admin-user-form-avatar-title">Profile Image</p>
           <Image
             src={avatarPreview || '/icons/Upload-Image-Icon-Circle.png'}
@@ -180,18 +237,24 @@ function handleFormChange(
             width={430}
             className="admin-user-form-avatar"
           />
-          <input
-            className="admin-user-form-input"
-            name="avatar"
-            type="file"
-            accept="image/*"
-            onChange={handleFormChange}
-            style={{ display: 'none' }}
-          />
+          {avatarInfo && (
+            <p style={{ marginTop: '0.5rem', opacity: 0.8 }}>{avatarInfo}</p>
+          )}
         </label>
-        {error && (
+        <input
+          id="avatar-input"
+          className="admin-user-form-input"
+          name="avatar"
+          type="file"
+          accept="image/*"
+          onChange={handleFormChange}
+          style={{ display: 'none' }}
+        />
+
+        {error && error !== 'Invalid email format' && (
           <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>
         )}
+
         <div className="admin-user-form-actions">
           <button
             type="button"

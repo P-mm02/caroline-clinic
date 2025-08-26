@@ -5,6 +5,7 @@ import { connectToDB } from '@/lib/mongoose'
 import AdminUser from '@/models/AdminUser'
 import { v2 as cloudinary } from 'cloudinary'
 import { Readable } from 'stream'
+import { extractPublicId as extractFromUrl } from '@/utils/imageHelpers'
 
 // ---- Cloudinary config ----
 cloudinary.config({
@@ -22,7 +23,7 @@ function bufferToStream(buffer: Buffer) {
   return readable
 }
 
-async function uploadAvatar(file: File): Promise<string> {
+async function uploadAvatarToFolder(file: File): Promise<string> {
   if (!file.type.startsWith('image/')) {
     throw new Error('Only image files allowed for avatar')
   }
@@ -38,6 +39,7 @@ async function uploadAvatar(file: File): Promise<string> {
         crop: 'thumb',
         width: 300,
         height: 300,
+        resource_type: 'image',
       },
       (error, result) => {
         if (error) return reject(error)
@@ -115,6 +117,7 @@ export async function GET() {
 
 // ---- PUT /api/admin-user/profile ----
 // Update username, email, avatar (multipart/form-data)
+// OPTION B: delete old Cloudinary asset first, then upload new one
 export async function PUT(req: Request) {
   try {
     const user = await getCurrentUser()
@@ -132,7 +135,7 @@ export async function PUT(req: Request) {
     const email =
       typeof emailRaw === 'string' ? emailRaw.trim().toLowerCase() : user.email
 
-    // Validate
+    // ---- Validation ----
     if (!username || username.length < 3) {
       return NextResponse.json(
         { error: 'Username must be at least 3 characters' },
@@ -146,7 +149,7 @@ export async function PUT(req: Request) {
       )
     }
 
-    // Duplicates only if changed
+    // ---- Duplicates (only if changed) ----
     if (username !== user.username) {
       const exists = await AdminUser.findOne({ username })
       if (exists) {
@@ -171,11 +174,29 @@ export async function PUT(req: Request) {
       user.email = email
     }
 
+    // ---- Avatar handling: delete old first, then upload new ----
     if (avatar) {
+      // 1) Best-effort delete old
+      const oldPublicId = extractFromUrl((user as any).avatarUrl || '')
+      if (oldPublicId) {
+        try {
+          await cloudinary.uploader.destroy(oldPublicId, {
+            resource_type: 'image',
+            invalidate: true, // purge CDN cache of old asset
+          })
+        } catch (e) {
+          console.warn('Cloudinary destroy failed for', oldPublicId, e)
+          // Continue anyway — per Option B we accept the risk of having no old image now
+        }
+      }
+
+      // 2) Upload new
       try {
-        const url = await uploadAvatar(avatar)
-        user.avatarUrl = url
+        const newUrl = await uploadAvatarToFolder(avatar)
+        user.avatarUrl = newUrl
       } catch (e: any) {
+        // At this point, old image may already be deleted.
+        // Return an error so client can prompt user to retry upload.
         return NextResponse.json(
           { error: e?.message || 'Failed to upload avatar' },
           { status: 415 }

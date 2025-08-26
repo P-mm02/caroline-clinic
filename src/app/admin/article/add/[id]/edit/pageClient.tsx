@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import '../../page.css'
 import {
@@ -8,27 +8,88 @@ import {
   handleRemoveContent,
   addContentInputRow,
   handleContentChange,
-  compressImage,
 } from '../../function'
 import { articleInitialForm } from '@/constants/article/articleInitialForm'
 import DeleteButton from './DeleteButton/DeleteButton'
-
 import UploadImageStatus from '@/loading/UploadImageStatus/UploadImageStatus'
+import { compressImage } from '@/utils/imageHelpers'
+
+// ---- Compression presets (edit page) ----
+const COVER_OPTS = {
+  maxSizeMB: 1.5,
+  maxWidthOrHeight: 1920,
+  fileType: 'image/webp',
+  initialQuality: 0.92,
+}
+const CONTENT_OPTS = {
+  maxSizeMB: 1.0,
+  maxWidthOrHeight: 1600,
+  fileType: 'image/webp',
+  initialQuality: 0.9,
+}
+
+type ContentItem = {
+  image?: string
+  text?: string
+  file?: File | null
+}
+type FormState = {
+  title?: string
+  description?: string
+  image?: string
+  date?: string
+  author?: string
+  coverFile?: File | null
+  contents: ContentItem[]
+}
+
+// ---- Helper to avoid object-URL leaks (cover) ----
+function useObjectURL(file: File | null | undefined) {
+  const [url, setUrl] = useState<string | null>(null)
+  useEffect(() => {
+    if (!file) {
+      setUrl(null)
+      return
+    }
+    const u = URL.createObjectURL(file)
+    setUrl(u)
+    return () => URL.revokeObjectURL(u)
+  }, [file])
+  return url
+}
 
 export default function PageClient() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     ...articleInitialForm,
     contents: articleInitialForm?.contents || [],
+    coverFile: null,
   })
   const [loading, setLoading] = useState(false)
   const [fetching, setFetching] = useState(true)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const [coverInfo, setCoverInfo] = useState<string>('') // 👈 new compression info
 
   const router = useRouter()
   const params = useParams()
   const articleId = params.id as string
 
+  // Upload banner UI state
+  const [imageLoading, setImageLoading] = useState(false)
+  const [imageLoadingMsg, setImageLoadingMsg] = useState('Uploading...')
+
+  // Reflect submit loading in the upload banner
+  useEffect(() => {
+    if (loading) {
+      setImageLoading(true)
+      setImageLoadingMsg('Saving...')
+    } else {
+      setImageLoading(false)
+      setImageLoadingMsg('Uploading...')
+    }
+  }, [loading])
+
+  // ---- Fetch article on mount ----
   useEffect(() => {
     async function fetchArticle() {
       setFetching(true)
@@ -37,7 +98,7 @@ export default function PageClient() {
         const res = await fetch(`/api/article/${articleId}`)
         const data = await res.json()
         if (!res.ok) throw new Error(data.error || 'Failed to load article')
-        let article = data
+        const article = data
         if (!article) throw new Error(`Article not found with ID: ${articleId}`)
         setForm({
           title: article.title || '',
@@ -47,102 +108,132 @@ export default function PageClient() {
           author: article.author || '',
           coverFile: null,
           contents: Array.isArray(article.contents)
-            ? article.contents.map((c: any) => ({
-                image: c?.image || '',
-                text: c?.text || '',
-                file: null,
-              }))
+            ? article.contents.map(
+                (c: any): ContentItem => ({
+                  image: c?.image || '',
+                  text: c?.text || '',
+                  file: null,
+                })
+              )
             : [{ image: '', text: '', file: null }],
         })
+        setCoverInfo('') // reset info when loading from server
       } catch (err: any) {
         console.error('Error fetching article:', err)
         setError(err.message || 'Unknown error')
+      } finally {
+        setFetching(false)
       }
-      setFetching(false)
     }
     if (articleId) fetchArticle()
   }, [articleId])
 
+  // ---- Safe preview for cover ----
+  const coverPreviewUrl = useObjectURL(form.coverFile ?? null)
+
+  // ---- Safe previews for content images ----
+  const contentPreviews = useMemo(() => {
+    const urls: (string | null)[] = []
+    const created: string[] = []
+    ;(form.contents || []).forEach((c) => {
+      if (c?.file) {
+        const u = URL.createObjectURL(c.file)
+        urls.push(u)
+        created.push(u)
+      } else {
+        urls.push(null)
+      }
+    })
+    return { urls, created }
+  }, [form.contents])
+
+  useEffect(() => {
+    return () => {
+      contentPreviews.created.forEach((u) => URL.revokeObjectURL(u))
+    }
+  }, [contentPreviews])
+
+  function prettySize(bytes: number) {
+    const mb = bytes / 1024 / 1024
+    return `${mb.toFixed(2)} MB`
+  }
+
+  // ---- Submit (UPDATE) ----
   async function handleUpdate(
     e: React.FormEvent,
-    form: any,
-    setError: (v: string) => void,
-    setSuccess: (v: string) => void,
-    setLoading: (v: boolean) => void,
-    router: any,
-    articleId: string
+    formState: FormState,
+    setErrorFn: (v: string) => void,
+    setSuccessFn: (v: string) => void,
+    setLoadingFn: (v: boolean) => void,
+    routerInst: typeof router,
+    id: string
   ) {
     e.preventDefault()
-    setError('')
-    setSuccess('')
-    setLoading(true)
+    setErrorFn('')
+    setSuccessFn('')
+    setLoadingFn(true)
     try {
-      let coverImageUrl = form.image
-      if (form.coverFile) {
-        const formData = new FormData()
-        formData.append('file', form.coverFile)
+      let coverImageUrl = formState.image
+      if (formState.coverFile) {
+        const fd = new FormData()
+        fd.append('file', formState.coverFile)
         const res = await fetch('/api/upload/article', {
           method: 'POST',
-          body: formData,
+          body: fd,
         })
         if (!res.ok) throw new Error('Cover image upload failed')
         const data = await res.json()
         coverImageUrl = data.url
       }
+
       const uploadedContents = await Promise.all(
-        (form.contents || []).map(async (c: any) => {
+        (formState.contents || []).map(async (c) => {
           if (c.file) {
-            const formData = new FormData()
-            formData.append('file', c.file)
+            const fd = new FormData()
+            fd.append('file', c.file)
             const res = await fetch('/api/upload/article', {
               method: 'POST',
-              body: formData,
+              body: fd,
             })
             if (!res.ok) throw new Error('Failed to upload content image')
             const data = await res.json()
-            return { image: data.url, text: c.text }
+            return { image: data.url, text: c.text || '' }
           }
-          return { image: c.image, text: c.text }
+          return { image: c.image || '', text: c.text || '' }
         })
       )
+
       const generatedHref =
         '/article/' +
-        encodeURIComponent(form.title.replace(/\s+/g, '-').toLowerCase())
-      const response = await fetch(`/api/article/${articleId}/edit`, {
+        encodeURIComponent(
+          (formState.title || '').replace(/\s+/g, '-').toLowerCase()
+        )
+
+      const response = await fetch(`/api/article/${id}/edit`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...form,
+          ...formState,
           image: coverImageUrl,
           coverFile: undefined,
           contents: uploadedContents,
           href: generatedHref,
         }),
       })
+
       if (!response.ok) throw new Error('Failed to update article')
-      setSuccess('Article updated successfully!')
-      setLoading(false)
-      setTimeout(() => router.push('/admin/article'), 1200)
+      setSuccessFn('Article updated successfully!')
+      setLoadingFn(false)
+      setTimeout(() => routerInst.push('/admin/article'), 1200)
     } catch (err: any) {
-      setError(err.message || 'Unknown error')
-      setLoading(false)
+      setErrorFn(err.message || 'Unknown error')
+      setLoadingFn(false)
     }
   }
-  
-  const [imageLoading, setImageLoading] = useState(false)
-  const [imageLoadingMsg, setImageLoadingMsg] = useState('Uploading...')
-
-  useEffect(() => {
-    if (loading) {
-      setImageLoading(true)
-      setImageLoadingMsg('Saving...')
-    } else {
-      setImageLoading(false)
-    }
-  }, [loading])
 
   if (fetching) return <div>Loading...</div>
-  if (error) return <div className="form-error">{error}</div>
+  if (error && !form.title) return <div className="form-error">{error}</div>
+
   return (
     <section className="admin-article-add">
       <UploadImageStatus
@@ -160,6 +251,7 @@ export default function PageClient() {
       >
         <h2>Edit Article</h2>
       </div>
+
       <form
         onSubmit={(e) =>
           handleUpdate(
@@ -183,6 +275,7 @@ export default function PageClient() {
             required
           />
         </label>
+
         <label>
           Description
           <textarea
@@ -192,11 +285,13 @@ export default function PageClient() {
             required
           />
         </label>
+
+        {/* ---- COVER IMAGE ---- */}
         <label>
           Cover Image
           {form.coverFile ? (
             <img
-              src={URL.createObjectURL(form.coverFile)}
+              src={coverPreviewUrl ?? ''}
               alt="Cover Preview"
               className="content-image-preview"
             />
@@ -208,23 +303,42 @@ export default function PageClient() {
             />
           ) : (
             <img
-              src={'/icons/Upload-Image-Icon.png'}
+              src="/icons/Upload-Image-Icon.png"
               alt="Fallback"
               className="content-image-preview"
               style={{ padding: '2rem' }}
             />
           )}
+          {/* 👇 compression info under cover */}
+          {coverInfo && (
+            <p style={{ marginTop: '0.5rem', opacity: 0.8 }}>{coverInfo}</p>
+          )}
           <input
             type="file"
             accept="image/*"
             onChange={async (e) => {
+              const file = e.target.files?.[0]
+              if (!file) return
+              if (!file.type.startsWith('image/')) {
+                setError('Please select an image file')
+                setCoverInfo('')
+                return
+              }
               setImageLoading(true)
               try {
-                const file = e.target.files?.[0]
-                if (!file) return
-                setImageLoadingMsg('Compressing...')
-                const compressedFile = await compressImage(file)
+                setImageLoadingMsg('Compressing cover...')
+                const compressedFile = await compressImage(file, COVER_OPTS)
                 setForm({ ...form, coverFile: compressedFile })
+                setCoverInfo(
+                  `Compressed from ${prettySize(file.size)} → ${prettySize(
+                    compressedFile.size
+                  )}`
+                )
+                setError('')
+              } catch (err) {
+                console.error(err)
+                setError('Failed to process cover image')
+                setCoverInfo('')
               } finally {
                 setImageLoading(false)
                 setImageLoadingMsg('Uploading...')
@@ -232,6 +346,7 @@ export default function PageClient() {
             }}
           />
         </label>
+
         <label>
           Date
           <input
@@ -242,6 +357,7 @@ export default function PageClient() {
             type="date"
           />
         </label>
+
         <label>
           Author
           <input
@@ -250,16 +366,20 @@ export default function PageClient() {
             onChange={handleChange(form, setForm)}
           />
         </label>
+
         <hr />
+
+        {/* ---- CONTENTS ---- */}
         <div className="content-input">
           <strong>Edit Contents (image + text)</strong>
+
           {Array.isArray(form.contents) &&
             form.contents.map((c, i) => (
               <div key={i} className="content-input-row">
                 <label>
                   {c.file ? (
                     <img
-                      src={URL.createObjectURL(c.file)}
+                      src={contentPreviews.urls[i] ?? ''}
                       className="content-image-preview"
                       alt="Preview"
                     />
@@ -271,20 +391,34 @@ export default function PageClient() {
                       style={{ padding: '2rem' }}
                     />
                   )}
+
                   <input
                     className="content-image-input"
                     type="file"
                     accept="image/*"
                     onChange={async (e) => {
+                      const file = e.target.files?.[0]
+                      if (!file) return
+                      if (!file.type.startsWith('image/')) {
+                        setError('Please select an image file')
+                        return
+                      }
                       setImageLoading(true)
                       try {
-                        const file = e.target.files?.[0]
-                        if (!file) return
-                        setImageLoadingMsg('Compressing...')
-                        const compressedFile = await compressImage(file)
+                        setImageLoadingMsg('Compressing image...')
+                        const compressedFile = await compressImage(
+                          file,
+                          CONTENT_OPTS
+                        )
                         const updated = [...(form.contents || [])]
+                        if (!updated[i])
+                          updated[i] = { image: '', text: '', file: null }
                         updated[i].file = compressedFile
                         setForm({ ...form, contents: updated })
+                        setError('')
+                      } catch (err) {
+                        console.error(err)
+                        setError('Failed to process content image')
                       } finally {
                         setImageLoading(false)
                         setImageLoadingMsg('Uploading...')
@@ -292,6 +426,7 @@ export default function PageClient() {
                     }}
                   />
                 </label>
+
                 <textarea
                   placeholder="Content Text"
                   value={c.text || ''}
@@ -305,6 +440,7 @@ export default function PageClient() {
                     )
                   }
                 />
+
                 <button
                   type="button"
                   className="remove-content-btn"
@@ -314,6 +450,7 @@ export default function PageClient() {
                 </button>
               </div>
             ))}
+
           <button
             type="button"
             className="add-content-btn"
@@ -322,6 +459,8 @@ export default function PageClient() {
             Add Row
           </button>
         </div>
+
+        {/* ---- FEEDBACK ---- */}
         {error && (
           <div className="form-error" role="alert">
             {error}
@@ -332,10 +471,13 @@ export default function PageClient() {
             {success}
           </div>
         )}
+
+        {/* ---- SUBMIT ---- */}
         <button type="submit" className="save-aricle-btn" disabled={loading}>
           {loading ? 'Saving...' : 'Save Changes'}
         </button>
       </form>
+
       <DeleteButton
         articleId={articleId}
         articleTitle={form.title || 'this article'}

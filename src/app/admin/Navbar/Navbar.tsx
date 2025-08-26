@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation' // ✅ import router
+import { useRouter } from 'next/navigation'
 import '@/styles/globals.css'
 import './Navbar.css'
 
@@ -18,23 +18,36 @@ const roleDisplay: Record<string, string> = {
 }
 
 export default function AdminNavbar() {
-  const router = useRouter() // ✅ create router instance
+  const router = useRouter()
   const [user, setUser] = useState<AdminUserType>({
     username: 'username',
     avatarUrl: '/logo/Caroline-Clinic-Logo.svg',
     role: 'Role',
   })
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const raw = localStorage.getItem('adminUser')
-      if (raw) {
-        try {
-          setUser(JSON.parse(raw))
-        } catch (e) {
-          setUser({ username: '', avatarUrl: '', role: '' })
-        }
+  // 🔹 helper to reload from localStorage
+  const loadUserFromStorage = () => {
+    if (typeof window === 'undefined') return
+    const raw = localStorage.getItem('adminUser')
+    if (raw) {
+      try {
+        setUser(JSON.parse(raw))
+      } catch {
+        setUser({ username: '', avatarUrl: '', role: '' })
       }
+    }
+  }
+
+  useEffect(() => {
+    // load on mount
+    loadUserFromStorage()
+
+    // listen for profile update events
+    const onProfileUpdate = () => loadUserFromStorage()
+    window.addEventListener('profile-updated', onProfileUpdate)
+
+    return () => {
+      window.removeEventListener('profile-updated', onProfileUpdate)
     }
   }, [])
 
@@ -58,8 +71,8 @@ export default function AdminNavbar() {
           src={user.avatarUrl || ''}
           alt="User"
           className="admin-navbar-avatar"
-          onClick={() => router.push('/admin/admin-user/profile')} // ✅ redirect
-          style={{ cursor: 'pointer' }} // make it look clickable
+          onClick={() => router.push('/admin/admin-user/profile')}
+          style={{ cursor: 'pointer' }}
         />
       </div>
     </nav>

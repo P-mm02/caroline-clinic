@@ -53,7 +53,10 @@ export default function AdminNavbar() {
 
   return (
     <nav className="admin-navbar">
-      <div className="admin-navbar-user">
+      <div
+        className="admin-navbar-user"
+        onClick={() => router.push('/admin/admin-user/profile')}
+      >
         {user.role && (
           <span className="admin-navbar-role">
             {roleDisplay[user.role] || user.role || '-'}
@@ -71,7 +74,6 @@ export default function AdminNavbar() {
           src={user.avatarUrl || ''}
           alt="User"
           className="admin-navbar-avatar"
-          onClick={() => router.push('/admin/admin-user/profile')}
           style={{ cursor: 'pointer' }}
         />
       </div>

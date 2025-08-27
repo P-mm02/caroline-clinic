@@ -1,206 +1,207 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import './page.css'
-import type { AboutFormStateWithFiles } from '@/types/AboutFormState'
-import { useRouter } from 'next/navigation'
 
-const emptyLang = { en: '', th: '', jp: '', zh: '' }
-
-const langDisplayNames: Record<'en' | 'th' | 'jp' | 'zh', string> = {
-  en: 'English',
-  th: 'Thai',
-  jp: 'Japanese',
-  zh: 'Chinese',
-}
-
-
-const initialState: AboutFormStateWithFiles = {
-  aboutDescription1: { ...emptyLang },
-  aboutDescription2: { ...emptyLang },
-  aboutImage: [],
-  aboutImageFiles: [],
+type CloudinaryImage = {
+  asset_id: string
+  public_id: string
+  format: string
+  width: number
+  height: number
+  bytes: number
+  secure_url: string
+  created_at: string
 }
 
 export default function AdminAboutPage() {
-  const [form, setForm] = useState<AboutFormStateWithFiles>(initialState)
+  const [images, setImages] = useState<CloudinaryImage[]>([])
   const [loading, setLoading] = useState(true)
-  const [saving, setSaving] = useState(false)
-  const router = useRouter()
+  const [error, setError] = useState('')
+  const [nextCursor, setNextCursor] = useState<string | null>(null)
+  const [busyIds, setBusyIds] = useState<Record<string, boolean>>({})
+  const [uploading, setUploading] = useState(false)
+  const [uploadMsg, setUploadMsg] = useState('Uploading...')
 
-  useEffect(() => {
-    const fetchAbout = async () => {
-      const res = await fetch('/api/about')
-      if (res.ok) {
-        const data = await res.json()
-        setForm({ ...data, aboutImageFiles: [] })
+  // ---- Fetch list ----
+  async function fetchList(cursor?: string | null) {
+    try {
+      const url = cursor
+        ? `/api/cloudinary/about/list?next=${encodeURIComponent(cursor)}`
+        : '/api/cloudinary/about/list'
+      const res = await fetch(url, { cache: 'no-store' })
+      if (!res.ok) throw new Error('Failed to load images')
+      const data = await res.json()
+      if (!cursor) {
+        setImages(data.resources)
+      } else {
+        setImages((prev) => [...prev, ...data.resources])
       }
+      setNextCursor(data.next_cursor ?? null)
+      setError('')
+    } catch (e) {
+      console.error(e)
+      setError('Failed to load images')
+    } finally {
       setLoading(false)
     }
-    fetchAbout()
+  }
+
+  useEffect(() => {
+    fetchList()
   }, [])
 
-  const handleLangChange = (
-    section: 'aboutDescription1' | 'aboutDescription2',
-    lang: keyof typeof emptyLang,
-    value: string
-  ) => {
-    setForm((f) => ({
-      ...f,
-      [section]: { ...f[section], [lang]: value },
-    }))
-  }
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files ? Array.from(e.target.files) : []
-    setForm((f) => ({
-      ...f,
-      aboutImageFiles: files,
-    }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSaving(true)
-
+  // ---- Upload ----
+  async function handleUpload(files: FileList | null) {
+    if (!files || files.length === 0) return
+    setUploading(true)
+    setUploadMsg('Uploading...')
     try {
-      let uploadedImageUrls: string[] = []
-
-      if (form.aboutImageFiles && form.aboutImageFiles.length > 0) {
-        const imageForm = new FormData()
-        form.aboutImageFiles.forEach((file) => {
-          if (file) imageForm.append('images', file)
-        })
-
-        const uploadRes = await fetch('/api/upload-images', {
-          method: 'POST',
-          body: imageForm,
-        })
-
-        if (uploadRes.ok) {
-          const { urls } = await uploadRes.json()
-          uploadedImageUrls = urls
-        }
-      }
-
-      const payload = {
-        aboutDescription1: form.aboutDescription1,
-        aboutDescription2: form.aboutDescription2,
-        aboutImage:
-          uploadedImageUrls.length > 0 ? uploadedImageUrls : form.aboutImage,
-      }
-
-      const res = await fetch('/api/about', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+      const form = new FormData()
+      Array.from(files).forEach((f) => form.append('files', f))
+      const res = await fetch('/api/cloudinary/about/upload', {
+        method: 'POST',
+        body: form,
       })
-
-      if (res.ok) {
-        alert('Saved successfully')
-        router.refresh()
-      } else {
-        alert('Failed to save')
-      }
-    } catch (err) {
-      console.error(err)
-      alert('Error occurred')
+      if (!res.ok) throw new Error('Upload failed')
+      // Option 1: re-fetch from start (simple + always correct)
+      await fetchList(null)
+      setError('')
+    } catch (e) {
+      console.error(e)
+      setError('Upload failed')
     } finally {
-      setSaving(false)
+      setUploading(false)
+      setUploadMsg('Uploading...')
     }
   }
 
-  if (loading) return <p>Loading...</p>
+  // ---- Delete (single) ----
+  async function handleDelete(public_id: string) {
+    const ok = confirm(`Delete "${public_id}"?`)
+    if (!ok) return
+    setBusyIds((s) => ({ ...s, [public_id]: true }))
+    try {
+      const res = await fetch('/api/cloudinary/about/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ public_id }),
+      })
+      if (!res.ok) throw new Error('Delete failed')
+      setImages((prev) => prev.filter((img) => img.public_id !== public_id))
+    } catch (e) {
+      console.error(e)
+      alert('Failed to delete image')
+    } finally {
+      setBusyIds((s) => ({ ...s, [public_id]: false }))
+    }
+  }
+
+  // helper
+  function prettySize(bytes: number) {
+    const mb = bytes / 1024 / 1024
+    return `${mb.toFixed(2)} MB`
+  }
 
   return (
-    <section className="admin-about-main">
-      <h1>About Page Admin</h1>
-      <form className="admin-about-form" onSubmit={handleSubmit}>
-        <h2>About Description 1</h2>
-        <LangTextareaGroup
-          section="aboutDescription1"
-          form={form}
-          handleLangChange={handleLangChange}
-        />
+    <section className="admin-about">
+      <h2 className="admin-about-title">About Images</h2>
+      <p className="admin-about-desc">
+        Manage images in Cloudinary folder <code>about</code>.
+      </p>
 
-        <h2>About Description 2</h2>
-        <LangTextareaGroup
-          section="aboutDescription2"
-          form={form}
-          handleLangChange={handleLangChange}
-        />
+      {/* Upload */}
+      <div className="about-upload-box">
+        <label className="about-upload-label">
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={(e) => handleUpload(e.target.files)}
+            hidden
+          />
+          <span className="about-upload-btn">
+            {uploading ? uploadMsg : '+ Upload Images'}
+          </span>
+        </label>
+        <p className="about-upload-hint">
+          You can select multiple images. They’ll go to Cloudinary folder{' '}
+          <code>about</code>.
+        </p>
+      </div>
 
-        <h2>About Images</h2>
-        <input
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={handleImageChange}
-        />
-        <div className="image-preview-list">
-          {(form.aboutImageFiles?.length ?? 0) > 0 ? (
-            form.aboutImageFiles?.map((file, i) =>
-              file ? (
-                <img
-                  key={i}
-                  src={URL.createObjectURL(file)}
-                  alt={`preview-${i}`}
-                  className="image-preview"
-                />
-              ) : null
-            )
-          ) : form.aboutImage.length > 0 ? (
-            form.aboutImage.map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt={`existing-${i}`}
-                className="image-preview"
-              />
-            ))
+      {/* Errors / Loading */}
+      {loading ? (
+        <div className="admin-about-loading">Loading...</div>
+      ) : error ? (
+        <div className="admin-about-error">{error}</div>
+      ) : (
+        <>
+          {/* Grid */}
+          {images.length === 0 ? (
+            <div className="admin-about-empty">
+              No images found in folder <code>about</code>.
+            </div>
           ) : (
-            <p>No images</p>
+            <div className="about-grid">
+              {images.map((img) => (
+                <div className="about-card" key={img.asset_id}>
+                  <a href={img.secure_url} target="_blank" rel="noreferrer">
+                    {/* Using Cloudinary auto thumb: */}
+                    <img
+                      src={img.secure_url.replace(
+                        '/upload/',
+                        '/upload/c_limit,w_600,q_auto,f_auto/'
+                      )}
+                      alt={img.public_id}
+                      className="about-thumb"
+                      loading="lazy"
+                    />
+                  </a>
+                  <div className="about-card-meta">
+                    <div className="about-card-id" title={img.public_id}>
+                      {img.public_id}
+                    </div>
+                    <div className="about-card-stats">
+                      {img.width}×{img.height} · {prettySize(img.bytes)}
+                    </div>
+                  </div>
+                  <div className="about-card-actions">
+                    <button
+                      className="about-delete-btn"
+                      onClick={() => handleDelete(img.public_id)}
+                      disabled={!!busyIds[img.public_id]}
+                    >
+                      {busyIds[img.public_id] ? 'Deleting...' : 'Delete'}
+                    </button>
+                    <button
+                      className="about-copy-btn"
+                      onClick={() => {
+                        navigator.clipboard.writeText(img.secure_url)
+                        alert('URL copied!')
+                      }}
+                    >
+                      Copy URL
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
-        </div>
 
-        <button type="submit" disabled={saving}>
-          {saving ? 'Saving...' : 'Save'}
-        </button>
-      </form>
+          {/* Pagination */}
+          {nextCursor && (
+            <div className="about-pagination">
+              <button
+                className="about-loadmore"
+                onClick={() => fetchList(nextCursor)}
+              >
+                Load more
+              </button>
+            </div>
+          )}
+        </>
+      )}
     </section>
-  )
-}
-
-type LangTextareaGroupProps = {
-  section: 'aboutDescription1' | 'aboutDescription2'
-  form: AboutFormStateWithFiles
-  handleLangChange: (
-    section: 'aboutDescription1' | 'aboutDescription2',
-    lang: keyof typeof emptyLang,
-    value: string
-  ) => void
-}
-
-function LangTextareaGroup({
-  section,
-  form,
-  handleLangChange,
-}: LangTextareaGroupProps) {
-  return (
-    <div className="lang-fields">
-      {(Object.keys(emptyLang) as Array<keyof typeof emptyLang>).map((lang) => (
-        <div key={lang} className="lang-field">
-          <label>
-            {lang.toUpperCase()} ({langDisplayNames[lang]})
-            <textarea
-              value={form[section][lang]}
-              onChange={(e) => handleLangChange(section, lang, e.target.value)}
-              placeholder={`${section} (${lang})`}
-              rows={2}
-            />
-          </label>
-        </div>
-      ))}
-    </div>
   )
 }

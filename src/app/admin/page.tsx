@@ -70,14 +70,14 @@ export default function AdminDashboard() {
       {/* Header */}
       <div className="admin-dashboard-header">
         <div className="admin-dashboard-branding">
-          <img
+{/*           <img
             src="/logo/Caroline-Clinic-Logo-noBG-Text.svg"
             alt="Caroline Clinic"
             className="admin-dashboard-logo"
           />
-          <div>
+ */}          <div>
             <div className="admin-dashboard-title">
-              Caroline Clinic Admin Dashboard
+              Admin Dashboard
             </div>
             <div className="admin-dashboard-welcome">Welcome back, Admin!</div>
           </div>

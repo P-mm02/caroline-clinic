@@ -27,8 +27,6 @@ async function uploadOne(file: File) {
       {
         folder: 'about',
         quality: 'auto', // Cloudinary will compress smartly
-        format: 'auto', // serve webp/avif where possible
-        transformation: [], // keep original, we can request variants via URL
       },
       (error, result) => {
         if (error) return reject(error)

@@ -52,21 +52,21 @@ export default function AdminSidebar() {
             Articles
           </Link>
           <Link
-            href="/admin/"
+            href="/admin/review"
             className="admin-nav-link"
             onClick={() => setIsOpenSidebar(false)}
           >
             Reviews
           </Link>
           <Link
-            href="/admin/"
+            href="/admin/promotion"
             className="admin-nav-link"
             onClick={() => setIsOpenSidebar(false)}
           >
             Promotions
           </Link>
           <Link
-            href="/admin/"
+            href="/admin/service"
             className="admin-nav-link"
             onClick={() => setIsOpenSidebar(false)}
           >

@@ -1,3 +1,4 @@
+// src/app/(site)/about/PageClient.tsx
 'use client'
 
 import './page.css'
@@ -9,6 +10,7 @@ import { useTranslation } from 'react-i18next'
 export default function AboutClient() {
   const { t } = useTranslation()
 
+  // --- reveal-on-load toggle (keep) ---
   const [show, setShow] = useState(false)
   useEffect(() => {
     function onLoad() {
@@ -34,17 +36,58 @@ export default function AboutClient() {
   const resume = useCallback(() => setAutoScrollActive(true), [])
 
   const scrollRef = useRef<HTMLDivElement>(null)
-  const aboutImages = [
-    '/images/about/S__4956722_0.jpg',
-    '/images/about/S__4956721_0.jpg',
-    '/images/about/S__4956720_0.jpg',
-    '/images/about/S__4956719_0.jpg',
-    '/images/about/S__4956717_0.jpg',
-  ]
+
+  // --- Cloudinary types & state ---
+  type CloudinaryImage = {
+    asset_id: string
+    public_id: string
+    format: string
+    width: number
+    height: number
+    bytes: number
+    secure_url: string
+    created_at: string
+  }
+
+  const [aboutImages, setAboutImages] = useState<CloudinaryImage[]>([])
+  const [nextCursor, setNextCursor] = useState<string | null>(null)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(true)
+
+  // ---- Fetch list ----
+  async function fetchList(cursor?: string | null) {
+    try {
+      const url = cursor
+        ? `/api/cloudinary/about/list?next=${encodeURIComponent(cursor)}`
+        : '/api/cloudinary/about/list'
+      const res = await fetch(url, { cache: 'no-store' })
+      if (!res.ok) throw new Error('Failed to load images')
+      const data = await res.json()
+      if (!cursor) {
+        setAboutImages(data.resources)
+      } else {
+        setAboutImages((prev) => [...prev, ...data.resources])
+      }
+      setNextCursor(data.next_cursor ?? null)
+      setError('')
+    } catch (e) {
+      console.error(e)
+      setError('Failed to load images')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // initial fetch
+  useEffect(() => {
+    fetchList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // State-driven arrow disables
   const [atStart, setAtStart] = useState(true)
-  const [atEnd, setAtEnd] = useState(aboutImages.length <= 1)
+  const [atEnd, setAtEnd] = useState(false) // start false to avoid disabling right arrow on mount
+
   const checkArrows = useCallback(() => {
     const el = scrollRef.current
     if (!el) return
@@ -58,9 +101,9 @@ export default function AboutClient() {
     checkArrows()
     el.addEventListener('scroll', checkArrows)
     return () => el.removeEventListener('scroll', checkArrows)
-  }, [aboutImages.length, checkArrows, show]) // Added show as a dependency
+  }, [aboutImages.length, checkArrows, show]) // keep show as dependency
 
-  // --- Auto scroll logic (optional) ---
+  // --- Auto scroll logic ---
   useEffect(() => {
     if (!show) return
     const container = scrollRef.current
@@ -82,12 +125,12 @@ export default function AboutClient() {
     const scrollStep = isMobile ? 320 : 640
     const handle = setInterval(() => {
       const maxScroll = container.scrollWidth - container.clientWidth
-      const atStart = container.scrollLeft <= 16
-      const atEnd = container.scrollLeft >= maxScroll - 16
+      const atStartLocal = container.scrollLeft <= 16
+      const atEndLocal = container.scrollLeft >= maxScroll - 16
 
       setDirection((dir) => {
-        if (atEnd) return -1
-        if (atStart) return 1
+        if (atEndLocal) return -1
+        if (atStartLocal) return 1
         return dir
       })
 
@@ -105,8 +148,6 @@ export default function AboutClient() {
   const handlePrev = () => scrollBy(isMobile ? -320 : -640)
   const handleNext = () => scrollBy(isMobile ? 320 : 640)
 
-  // REMOVE canScrollLeft/canScrollRight (use state only!)
-
   return (
     <section id="about" className="about-section">
       <div className="about-container">
@@ -118,6 +159,8 @@ export default function AboutClient() {
             <p className="about-description">{t(`about.description`)}</p>
             <p className="about-description">{t(`about.description2`)}</p>
           </div>
+
+          {/* Right: Images slider */}
           <div className="about-image-wrapper">
             <div
               className="about-slider-container"
@@ -132,28 +175,30 @@ export default function AboutClient() {
               >
                 ◀
               </button>
+
               {show && (
                 <div className="about-slider-track" ref={scrollRef}>
                   {aboutImages.map((img, idx) => (
                     <div
                       className="about-slider-img-wrapper"
-                      key={img}
+                      key={img.asset_id} // use a stable unique key
                       onTouchStart={pause}
                       onTouchEnd={resume}
                       onTouchCancel={resume}
                     >
                       <Image
-                        src={img}
+                        src={img.secure_url} // use actual URL
                         alt={`About Image ${idx + 1}`}
                         width={600}
                         height={1200}
                         className="about-image"
-                        loading="eager"
+                        loading="eager" // keep eager as requested
                       />
                     </div>
                   ))}
                 </div>
               )}
+
               <button
                 className="about-slider-arrow right"
                 onClick={handleNext}
@@ -163,6 +208,13 @@ export default function AboutClient() {
                 ▶
               </button>
             </div>
+
+            {/* (Optional) Load more button if you want to paginate manually */}
+            {nextCursor && !loading && !error && (
+              <div style={{ textAlign: 'center', marginTop: '0.5rem' }}>
+                <button onClick={() => fetchList(nextCursor)}>Load more</button>
+              </div>
+            )}
           </div>
         </div>
       </div>

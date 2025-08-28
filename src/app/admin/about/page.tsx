@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './page.css'
+import { compressImage } from '@/utils/imageHelpers'
 
 type CloudinaryImage = {
   asset_id: string
@@ -12,6 +13,13 @@ type CloudinaryImage = {
   bytes: number
   secure_url: string
   created_at: string
+}
+
+const ABOUT_OPTS = {
+  maxSizeMB: 2,
+  maxWidthOrHeight: 1440,
+  fileType: 'image/webp',
+  initialQuality: 1,
 }
 
 export default function AdminAboutPage() {
@@ -51,20 +59,67 @@ export default function AdminAboutPage() {
     fetchList()
   }, [])
 
-  // ---- Upload ----
+  // helper
+  function prettySize(bytes: number) {
+    const mb = bytes / 1024 / 1024
+    return `${mb.toFixed(2)} MB`
+  }
+
+  // ---- Upload (with client-side compression) ----
   async function handleUpload(files: FileList | null) {
     if (!files || files.length === 0) return
+
+    // Basic validation
+    const arr = Array.from(files)
+    const notImages = arr.filter((f) => !f.type.startsWith('image/'))
+    if (notImages.length > 0) {
+      setError(`Only image files allowed (${notImages.length} invalid).`)
+      return
+    }
+
     setUploading(true)
-    setUploadMsg('Uploading...')
+    setUploadMsg('Preparing...')
+    setError('')
+
     try {
+      // 1) Compress sequentially (keeps CPU/memory calm and gives clear progress)
+      const compressed: File[] = []
+      for (let i = 0; i < arr.length; i++) {
+        const f = arr[i]
+        setUploadMsg(
+          `Compressing ${i + 1}/${arr.length} — ${f.name} (${prettySize(
+            f.size
+          )})`
+        )
+
+        // Use your util (will fallback to original if compression fails)
+        const out = await compressImage(f, ABOUT_OPTS)
+
+        // Tiny UX: show size delta
+        if (out !== f) {
+          setUploadMsg(
+            `Compressed ${i + 1}/${arr.length} — ${f.name}: ${prettySize(
+              f.size
+            )} → ${prettySize(out.size)}`
+          )
+        }
+
+        compressed.push(out)
+      }
+
+      // 2) Send all compressed files
+      setUploadMsg('Uploading to Cloudinary...')
       const form = new FormData()
-      Array.from(files).forEach((f) => form.append('files', f))
+      compressed.forEach((f) => form.append('files', f))
+
       const res = await fetch('/api/cloudinary/about/upload', {
         method: 'POST',
         body: form,
       })
       if (!res.ok) throw new Error('Upload failed')
-      // Option 1: re-fetch from start (simple + always correct)
+
+      // 3) Refresh list (simple + always correct)
+      setUploadMsg('Refreshing list...')
       await fetchList(null)
       setError('')
     } catch (e) {
@@ -97,12 +152,6 @@ export default function AdminAboutPage() {
     }
   }
 
-  // helper
-  function prettySize(bytes: number) {
-    const mb = bytes / 1024 / 1024
-    return `${mb.toFixed(2)} MB`
-  }
-
   return (
     <section className="admin-about">
       <h2 className="admin-about-title">About Images</h2>
@@ -125,8 +174,8 @@ export default function AdminAboutPage() {
           </span>
         </label>
         <p className="about-upload-hint">
-          You can select multiple images. They’ll go to Cloudinary folder{' '}
-          <code>about</code>.
+          Client-side compression: ≤{ABOUT_OPTS.maxWidthOrHeight}px, ~
+          {ABOUT_OPTS.maxSizeMB}MB, {ABOUT_OPTS.fileType?.split('/')[1]}.
         </p>
       </div>
 
@@ -147,7 +196,7 @@ export default function AdminAboutPage() {
               {images.map((img) => (
                 <div className="about-card" key={img.asset_id}>
                   <a href={img.secure_url} target="_blank" rel="noreferrer">
-                    {/* Using Cloudinary auto thumb: */}
+                    {/* Delivery-time transforms for fast thumbnails */}
                     <img
                       src={img.secure_url.replace(
                         '/upload/',

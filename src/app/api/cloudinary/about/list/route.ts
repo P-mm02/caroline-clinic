@@ -12,16 +12,15 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
     const next = searchParams.get('next') ?? undefined
 
-    const result = await cloudinary.api.resources({
-      type: 'upload',
-      resource_type: 'image',
-      prefix: 'about/', // list only images inside the "about" folder
-      max_results: 100, // up to 500; 100 is safe
-      next_cursor: next,
-      direction: 'desc', // newest first
-    })
+    const query = cloudinary.search
+      .expression('folder:about AND resource_type:image')
+      .sort_by('created_at', 'desc') // 👈 newest first
+      .max_results(100)
 
-    // Return only the fields we actually need
+    if (next) query.next_cursor(next)
+
+    const result = await query.execute()
+
     const resources = (result.resources ?? []).map((r: any) => ({
       asset_id: r.asset_id,
       public_id: r.public_id,

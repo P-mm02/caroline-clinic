@@ -47,7 +47,7 @@ export default function Footer() {
       <footer className="footer">
         <div className="footer-content">
           <span>© {new Date().getFullYear()} Caroline Admin Panel</span>
-          <span>Powered by Vetra</span>
+          <span>Powered by Wee</span>
         </div>
       </footer>
     </>

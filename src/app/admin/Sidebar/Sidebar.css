@@ -126,4 +126,9 @@
   .sidebar-toggle-btn{
     display: flex;
   }
+  .footer {
+    left: 0;
+    width: 100vw;
+  }
+
 }

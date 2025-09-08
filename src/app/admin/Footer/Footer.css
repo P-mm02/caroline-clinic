@@ -26,11 +26,10 @@
 }
 
 .footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #22223b;
+  position: absolute;
+  left: 20rem;
+  width: calc(100vw - 20rem);  
+  background: #232346;
   color: #fff;
   text-align: center;
   padding: 1rem 0;
